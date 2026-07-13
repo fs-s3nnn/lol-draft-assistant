@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoL Draft Assistant | 身内大会ドラフト補助ツール</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 背景のパーティクル/スモーク用コンテナ -->
+  <div class="bg-effects"></div>
+
+  <!-- 通知トースト -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- メインヘッダー -->
+  <header class="app-header">
+    <div class="logo">
+      <span class="logo-subtitle">LEAGUE OF LEGENDS</span>
+      <span class="logo-title">DRAFT ASSISTANT</span>
+    </div>
+    <nav class="header-nav">
+      <button id="btn-show-dashboard" class="nav-btn active">プレイヤー管理</button>
+      <button id="btn-show-draft" class="nav-btn">ドラフトシミュレータ</button>
+      <button id="btn-show-settings" class="nav-btn">相性設定</button>
+    </nav>
+    <div class="header-actions">
+      <button id="btn-share-discord" class="btn btn-primary btn-discord">
+        <svg class="icon-discord" viewBox="0 0 127.14 96.36">
+          <path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.88-.65,1.72-1.34,2.53-2a75.58,75.58,0,0,0,76,0c.8,1.35,1.65,2,2.52,2a68.4,68.4,0,0,1-10.5,5,78.37,78.37,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,50.31,123,27.38,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
+        </svg>
+        Discord用URLをコピー
+      </button>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="app-content">
+
+    <!-- 1. ダッシュボード画面 -->
+    <section id="section-dashboard" class="view-section active">
+      <div class="section-header">
+        <h2>チーム＆キャラプール設定</h2>
+        <p class="section-desc">身内プレイヤーの情報を入力し、得意チャンピオン（プール）と勝率を設定してください。ブラウザに自動保存されます。</p>
+      </div>
+
+      <div class="draft-mode-selector">
+        <button id="btn-mode-custom" class="mode-select-btn active">カスタム戦 (敵プール開示)</button>
+        <button id="btn-mode-ranked" class="mode-select-btn">フルパランク (敵プール非公開)</button>
+      </div>
+
+      <div class="teams-container">
+        <!-- 青チーム (味方) -->
+        <div class="team-setup-card blue-side">
+          <div class="team-header">
+            <div class="side-badge blue">BLUE TEAM (味方)</div>
+          </div>
+          <div id="blue-players-list" class="players-setup-list">
+            <!-- JSで動的に5つのプレイヤー入力枠を生成 -->
+          </div>
+        </div>
+
+        <!-- 赤チーム (相手) -->
+        <div class="team-setup-card red-side">
+          <div class="team-header">
+            <div class="side-badge red">RED TEAM (相手)</div>
+          </div>
+          <div id="red-players-list" class="players-setup-list">
+            <!-- JSで動的に5つのプレイヤー入力枠を生成 -->
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-actions">
+        <button id="btn-start-draft" class="btn btn-gold btn-large">ドラフトシミュレーションを開始</button>
+      </div>
+    </section>
+
+    <!-- 2. ドラフトシミュレータ画面 -->
+    <section id="section-draft" class="view-section">
+      <div class="draft-top-bar">
+        <!-- 青チームのBANs -->
+        <div class="ban-container blue-bans">
+          <div class="ban-title">BAN</div>
+          <div class="ban-slots" id="blue-ban-slots">
+            <div class="ban-slot" data-index="0"></div>
+            <div class="ban-slot" data-index="1"></div>
+            <div class="ban-slot" data-index="2"></div>
+            <div class="ban-slot" data-index="3"></div>
+            <div class="ban-slot" data-index="4"></div>
+          </div>
+        </div>
+
+        <!-- 中央ステータス/タイマー -->
+        <div class="draft-status-center">
+          <div id="draft-phase-name" class="phase-name">ドラフト準備中</div>
+          <div id="draft-timer" class="draft-timer">30</div>
+          <div id="draft-sub-status" class="sub-status">BLUE BAN PHASE</div>
+        </div>
+
+        <!-- 赤チームのBANs -->
+        <div class="ban-container red-bans">
+          <div class="ban-title">BAN</div>
+          <div class="ban-slots" id="red-ban-slots">
+            <div class="ban-slot" data-index="0"></div>
+            <div class="ban-slot" data-index="1"></div>
+            <div class="ban-slot" data-index="2"></div>
+            <div class="ban-slot" data-index="3"></div>
+            <div class="ban-slot" data-index="4"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="draft-main-layout">
+        <!-- 左側：青チームのPicks -->
+        <div class="picks-column blue-picks" id="blue-pick-slots">
+          <!-- JSで5つのスロットを生成 -->
+        </div>
+
+        <!-- 中央：チャンピオン選択＆AI推奨エリア -->
+        <div class="draft-center-panel">
+          <!-- 勝利条件（Win Condition）プラン表示 -->
+          <div id="win-condition-banner" class="win-cond-banner">
+            <span class="win-cond-label">WIN CONDITION PLAN:</span>
+            <span id="win-cond-text" class="win-cond-text">ゲームプランを算出中...</span>
+          </div>
+
+          <!-- タブ切り替え（チャンピオン一覧 / AI推奨 / AIチャット） -->
+          <div class="panel-tabs">
+            <button id="tab-btn-champions" class="panel-tab active">チャンピオン選択</button>
+            <button id="tab-btn-ai" class="panel-tab">AI推奨 BAN/PICK</button>
+            <button id="tab-btn-chat" class="panel-tab">AIコーチと会話 💬</button>
+          </div>
+
+          <!-- チャンピオン一覧パネル -->
+          <div id="panel-champions" class="tab-panel active">
+            <div class="champ-filter-bar">
+              <input type="text" id="champ-search-input" placeholder="チャンピオンを検索...">
+              <div class="role-filters">
+                <button class="role-filter-btn active" data-role="all">ALL</button>
+                <button class="role-filter-btn" data-role="TOP">TOP</button>
+                <button class="role-filter-btn" data-role="JUNGLE">JG</button>
+                <button class="role-filter-btn" data-role="MIDDLE">MID</button>
+                <button class="role-filter-btn" data-role="BOTTOM">ADC</button>
+                <button class="role-filter-btn" data-role="UTILITY">SUP</button>
+              </div>
+            </div>
+            <div id="champions-grid" class="champions-grid">
+              <!-- JSで全チャンピオンのアイコンを一覧表示 -->
+              <div class="loading-spinner">チャンピオンデータを読み込み中...</div>
+            </div>
+            <div class="draft-action-footer">
+              <button id="btn-lock-in" class="btn btn-gold btn-disabled" disabled>LOCK IN</button>
+            </div>
+          </div>
+
+          <!-- AI推奨パネル -->
+          <div id="panel-ai" class="tab-panel">
+            <div class="ai-recommendations-layout">
+              <!-- BAN推奨 -->
+              <div class="ai-rec-box">
+                <div class="ai-rec-header ban-rec">推奨 BAN (相手の脅威)</div>
+                <div id="ai-ban-recs" class="ai-rec-list">
+                  <div class="no-rec-message">現在推奨はありません</div>
+                </div>
+              </div>
+              
+              <!-- PICK推奨 -->
+              <div class="ai-rec-box">
+                <div class="ai-rec-header pick-rec">推奨 PICK (味方の最適解)</div>
+                <div id="ai-pick-recs" class="ai-rec-list">
+                  <div class="no-rec-message">現在推奨はありません</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AIチャットパネル -->
+          <div id="panel-chat" class="tab-panel">
+            <div class="ai-chat-layout">
+              <div id="ai-chat-history" class="ai-chat-history">
+                <div class="chat-message coach">
+                  <div class="chat-avatar">🤖</div>
+                  <div class="chat-bubble">
+                    こんにちは！AIコーチのGeminiです。現在のドラフト状況や両チームのキャラプールをもとに、カウンターやシナジーを考慮した戦術アドバイスを行います。「ミッドの〇〇くんに何をピックすべき？」「相手の構成に対してどんなBANが効果的？」など、何でも相談してください！
+                  </div>
+                </div>
+              </div>
+              <div class="ai-chat-input-row">
+                <input type="text" id="ai-chat-input" placeholder="AIコーチにドラフト相談をする...">
+                <button id="btn-send-chat" class="btn btn-gold">送信</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右側：赤チームのPicks -->
+        <div class="picks-column red-picks" id="red-pick-slots">
+          <!-- JSで5つのスロットを生成 -->
+        </div>
+      </div>
+
+      <div class="draft-footer-actions">
+        <button id="btn-reset-draft" class="btn btn-secondary">ドラフトをリセット</button>
+        <button id="btn-back-to-dashboard" class="btn btn-secondary">プレイヤー設定に戻る</button>
+      </div>
+    </section>
+
+    <!-- 3. 相性設定画面 -->
+    <section id="section-settings" class="view-section">
+      <div class="section-header">
+        <h2>環境設定 & 相性カスタマイズ</h2>
+        <p class="section-desc">AIコーチ用のAPIキー設定や、チャンピオン間の相性を定義・変更できます。</p>
+      </div>
+
+      <!-- Gemini API設定 -->
+      <div class="setting-box gemini-config-box" style="margin-bottom: 30px;">
+        <h3>🤖 Gemini AIコーチ設定</h3>
+        <div class="setting-inputs">
+          <div class="form-group" style="width: 100%;">
+            <label for="gemini-api-key">Gemini API キー：</label>
+            <input type="password" id="gemini-api-key" class="form-input" style="width: 100%;" placeholder="AIコーチとの会話機能を使うにはAPIキーを入力してください">
+            <small class="form-help">APIキーはブラウザにのみ安全に保存され、直接GoogleのAPIと通信します。※キーが未入力の場合は簡易AIが動作します。<br><a href="https://aistudio.google.com/" target="_blank" style="color: var(--blue-magic); text-decoration: underline;">Google AI Studio</a> から無料でキーを取得可能です。</small>
+          </div>
+          <div style="margin-top: 10px;">
+            <button id="btn-save-gemini-key" class="btn btn-gold">APIキーを保存</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 選手名簿（マスター）管理 -->
+      <div class="setting-box player-master-box" style="margin-bottom: 30px;">
+        <h3>👤 選手名簿（マスター）管理</h3>
+        <p class="setting-desc" style="font-size: 11px; color: #a0a5b0; margin-bottom: 15px;">
+          身内のプレイヤーをあらかじめ登録しておけます。ここで登録したメンバーは、ダッシュボードの各ロール枠のドロップダウンから試合メンバーとして選択できます。
+        </p>
+        <div class="player-master-layout">
+          <!-- 新規追加フォーム -->
+          <div class="player-master-form">
+            <h4>新規選手登録</h4>
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label for="master-player-name">選手名：</label>
+              <input type="text" id="master-player-name" class="form-input" placeholder="例: 鈴木くん" style="width: 100%;">
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+              <label>得意ロールと各レーンの習熟度 (1-100)：</label>
+              <div class="master-player-roles-strengths-grid" style="display: flex; flex-direction: column; gap: 8px; margin-top: 5px;">
+                
+                <div class="role-strength-input-row" style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(5, 11, 16, 0.4); padding: 6px 12px; border: 1px solid rgba(200, 170, 110, 0.15);">
+                  <label style="display: flex; align-items: center; gap: 6px; font-size: 11px; cursor: pointer; color: #a0a5b0; width: 100px; margin: 0;">
+                    <input type="checkbox" name="master-player-roles" value="TOP"> TOP
+                  </label>
+                  <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="font-size: 10px; color: #606570;">強さ:</span>
+                    <input type="number" name="master-player-strength-TOP" class="form-input" min="1" max="100" value="80" style="width: 55px; padding: 2px 4px; text-align: center;" disabled>
+                  </div>
+                </div>
+
+                <div class="role-strength-input-row" style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(5, 11, 16, 0.4); padding: 6px 12px; border: 1px solid rgba(200, 170, 110, 0.15);">
+                  <label style="display: flex; align-items: center; gap: 6px; font-size: 11px; cursor: pointer; color: #a0a5b0; width: 100px; margin: 0;">
+                    <input type="checkbox" name="master-player-roles" value="JUNGLE"> JG (JG)
+                  </label>
+                  <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="font-size: 10px; color: #606570;">強さ:</span>
+                    <input type="number" name="master-player-strength-JUNGLE" class="form-input" min="1" max="100" value="80" style="width: 55px; padding: 2px 4px; text-align: center;" disabled>
+                  </div>
+                </div>
+
+                <div class="role-strength-input-row" style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(5, 11, 16, 0.4); padding: 6px 12px; border: 1px solid rgba(200, 170, 110, 0.15);">
+                  <label style="display: flex; align-items: center; gap: 6px; font-size: 11px; cursor: pointer; color: #a0a5b0; width: 100px; margin: 0;">
+                    <input type="checkbox" name="master-player-roles" value="MIDDLE"> MID (MID)
+                  </label>
+                  <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="font-size: 10px; color: #606570;">強さ:</span>
+                    <input type="number" name="master-player-strength-MIDDLE" class="form-input" min="1" max="100" value="80" style="width: 55px; padding: 2px 4px; text-align: center;" disabled>
+                  </div>
+                </div>
+
+                <div class="role-strength-input-row" style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(5, 11, 16, 0.4); padding: 6px 12px; border: 1px solid rgba(200, 170, 110, 0.15);">
+                  <label style="display: flex; align-items: center; gap: 6px; font-size: 11px; cursor: pointer; color: #a0a5b0; width: 100px; margin: 0;">
+                    <input type="checkbox" name="master-player-roles" value="BOTTOM"> ADC (ADC)
+                  </label>
+                  <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="font-size: 10px; color: #606570;">強さ:</span>
+                    <input type="number" name="master-player-strength-BOTTOM" class="form-input" min="1" max="100" value="80" style="width: 55px; padding: 2px 4px; text-align: center;" disabled>
+                  </div>
+                </div>
+
+                <div class="role-strength-input-row" style="display: flex; align-items: center; justify-content: space-between; background-color: rgba(5, 11, 16, 0.4); padding: 6px 12px; border: 1px solid rgba(200, 170, 110, 0.15);">
+                  <label style="display: flex; align-items: center; gap: 6px; font-size: 11px; cursor: pointer; color: #a0a5b0; width: 100px; margin: 0;">
+                    <input type="checkbox" name="master-player-roles" value="UTILITY"> SUP (SUP)
+                  </label>
+                  <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="font-size: 10px; color: #606570;">強さ:</span>
+                    <input type="number" name="master-player-strength-UTILITY" class="form-input" min="1" max="100" value="80" style="width: 55px; padding: 2px 4px; text-align: center;" disabled>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <button id="btn-add-master-player" class="btn btn-gold" style="width: 100%;">名簿に登録する</button>
+          </div>
+
+          <!-- 登録済み選手一覧 -->
+          <div class="player-master-list-container">
+            <h4>登録済み選手一覧</h4>
+            <div id="player-master-list" class="player-master-list">
+              <!-- JSで動的に名簿を描画 -->
+              <div class="no-rec-message">登録された選手がいません</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <!-- カウンター設定 -->
+        <div class="setting-box">
+          <h3>カウンター関係の編集</h3>
+          <div class="setting-inputs">
+            <div class="form-group">
+              <label for="counter-target">このチャンピオンに対し：</label>
+              <select id="counter-target" class="select-champ-list"><option value="">選択してください</option></select>
+            </div>
+            <div class="form-group">
+              <label for="counter-helpers">これが強い（カウンター）：</label>
+              <select id="counter-helpers" class="select-champ-list" multiple size="5"></select>
+              <small class="form-help">複数選択可能（Ctrlキーを押しながらクリック）</small>
+            </div>
+            <button id="btn-save-counter" class="btn btn-primary">カウンター関係を保存</button>
+          </div>
+        </div>
+
+        <!-- シナジー設定 -->
+        <div class="setting-box">
+          <h3>シナジー（相乗効果）の編集</h3>
+          <div class="setting-inputs">
+            <div class="form-group">
+              <label for="synergy-target">このチャンピオンと：</label>
+              <select id="synergy-target" class="select-champ-list"><option value="">選択してください</option></select>
+            </div>
+            <div class="form-group">
+              <label for="synergy-helpers">相性が良い（シナジー）：</label>
+              <select id="synergy-helpers" class="select-champ-list" multiple size="5"></select>
+              <small class="form-help">複数選択可能（Ctrlキーを押しながらクリック）</small>
+            </div>
+            <button id="btn-save-synergy" class="btn btn-primary">シナジー関係を保存</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 4. キャラリープール編集モーダル -->
+  <div id="modal-pool-edit" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">プレイヤーのプール編集</h3>
+        <button class="modal-close" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="add-pool-form">
+          <h4>チャンピオンを追加 (手動)</h4>
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="pool-champ-search">チャンピオンを選択：</label>
+              <input type="text" id="pool-champ-search" placeholder="名前で検索..." autocomplete="off">
+              <div id="pool-search-suggestions" class="search-suggestions hidden"></div>
+            </div>
+            <div class="form-group flex-1">
+              <label for="pool-winrate">勝率 (%)：</label>
+              <input type="number" id="pool-winrate" min="0" max="100" value="50" step="0.1">
+            </div>
+            <div class="form-group flex-1">
+              <label for="pool-mastery">熟練度 (1-5)：</label>
+              <select id="pool-mastery">
+                <option value="5">★5 (非常に高い)</option>
+                <option value="4">★4 (高い)</option>
+                <option value="3" selected>★3 (普通)</option>
+                <option value="2">★2 (使える)</option>
+                <option value="1">★1 (練習中)</option>
+              </select>
+            </div>
+            <button id="btn-add-to-pool" class="btn btn-gold btn-align-end">追加</button>
+          </div>
+        </div>
+
+        <div class="import-opgg-form">
+          <h4>または OP.GG からインポート</h4>
+          <div class="form-group">
+            <label for="opgg-paste-area">OP.GGの「チャンピオン」成績表のテキストをコピー（Ctrl+C）してここに貼り付けてください：</label>
+            <textarea id="opgg-paste-area" placeholder="1&#10;Aatrox&#10;60%&#10;15ゲーム&#10;または、表をそのままコピーして貼り付けても自動で解析されます。"></textarea>
+          </div>
+          <div class="import-opgg-footer">
+            <small class="form-help">※既存のプールに重複分は上書き、新規は追加されます。</small>
+            <button id="btn-import-opgg" class="btn btn-gold">インポート実行</button>
+          </div>
+        </div>
+
+        <div class="current-pool-list-section">
+          <h4>現在のキャラプール</h4>
+          <div class="pool-grid-header">
+            <div>チャンピオン</div>
+            <div>勝率</div>
+            <div>熟練度</div>
+            <div>操作</div>
+          </div>
+          <div id="modal-current-pool-list" class="pool-list-container">
+            <!-- JSで動的に追加されたチャンピオンをリスト表示 -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-save-pool" class="btn btn-gold">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Scripts -->
+  <script src="database.js"></script>
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
