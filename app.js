@@ -147,30 +147,8 @@ async function initDDragon() {
 }
 
 // サーバーからデータを読み込む
+// サーバーからデータを読み込む
 async function loadDataFromServer() {
-  const owner = localStorage.getItem("github_owner");
-  const repo = localStorage.getItem("github_repo");
-
-  // GitHub連携設定がある場合、GitHubのRAW APIから最新のdata.jsonをダイレクトに読み込む
-  if (owner && repo) {
-    try {
-      // キャッシュを防ぐためタイムスタンプを付与してフェッチ
-      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data.json?t=${Date.now()}`;
-      const res = await fetch(rawUrl);
-      if (res.ok) {
-        const data = await res.json();
-        applyLoadedData(data);
-        showToast("🟢 GitHubから最新の同期データを読み込みました！");
-        loadGitConfigToInputs(); // 連携情報のUI復元
-        loadGeminiKeyFromLocal(); // Geminiキー復元
-        return;
-      }
-    } catch (e) {
-      console.warn("Failed to load raw data from GitHub. Fallback to server/localStorage...", e);
-    }
-  }
-
-  // サーバーAPI (Express) から読み込む
   try {
     const res = await fetch('/api/data');
     if (res.ok) {
@@ -184,7 +162,6 @@ async function loadDataFromServer() {
     initLocalStorageFallback();
   }
 
-  loadGitConfigToInputs();
   loadGeminiKeyFromLocal();
 }
 
@@ -196,20 +173,6 @@ function applyLoadedData(data) {
   if (data.draftMode) AppState.draftMode = data.draftMode;
   migrateLocalStorageData();
   renderDraftHistoryList();
-}
-
-function loadGitConfigToInputs() {
-  const owner = localStorage.getItem("github_owner") || "";
-  const repo = localStorage.getItem("github_repo") || "";
-  const token = localStorage.getItem("github_token") || "";
-
-  const ownerEl = document.getElementById("github-owner");
-  const repoEl = document.getElementById("github-repo");
-  const tokenEl = document.getElementById("github-token");
-
-  if (ownerEl) ownerEl.value = owner;
-  if (repoEl) repoEl.value = repo;
-  if (tokenEl) tokenEl.value = token;
 }
 
 function loadGeminiKeyFromLocal() {
@@ -231,9 +194,6 @@ async function saveDataToServer() {
     draftMode: AppState.draftMode
   };
 
-  // 1. GitHub API 連携による自動コミットを優先実行
-  const githubSaved = await saveDataToGitHub(payload);
-
   // キャッシュとしてローカルストレージにも保存
   localStorage.setItem("lol_draft_player_master", JSON.stringify(AppState.playerMaster));
   localStorage.setItem("lol_draft_team_data", JSON.stringify(AppState.teamData));
@@ -241,11 +201,6 @@ async function saveDataToServer() {
   localStorage.setItem("lol_draft_mode", AppState.draftMode);
   localStorage.setItem("lol_draft_history", JSON.stringify(AppState.draftHistory || []));
 
-  if (githubSaved) {
-    return; // GitHub側へのプッシュが成功したため終了
-  }
-
-  // 2. 連携未設定、または失敗時はローカルサーバー(Render等)APIへセーブ
   try {
     const res = await fetch('/api/data', {
       method: 'POST',
@@ -258,68 +213,6 @@ async function saveDataToServer() {
     if (!res.ok) throw new Error('Save API failure');
   } catch (e) {
     console.error('Failed to save data to server.', e);
-  }
-}
-
-// GitHub API を使ってリポジトリ内の data.json を上書き自動コミットする
-async function saveDataToGitHub(payload) {
-  const owner = localStorage.getItem("github_owner");
-  const repo = localStorage.getItem("github_repo");
-  const token = localStorage.getItem("github_token");
-
-  if (!owner || !repo || !token) {
-    return false; // 設定未完了の場合は何もしない
-  }
-
-  try {
-    const filePath = 'data.json';
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
-
-    // 1. 既存ファイルの sha を取得（上書き時に必須）
-    let sha = null;
-    const getRes = await fetch(apiUrl, {
-      headers: {
-        'Authorization': `token ${token}`,
-        'Accept': 'application/vnd.github.v3+json'
-      }
-    });
-
-    if (getRes.ok) {
-      const fileData = await getRes.json();
-      sha = fileData.sha;
-    }
-
-    // 2. データをBase64にエンコード
-    const jsonStr = JSON.stringify(payload, null, 2);
-    const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
-
-    // 3. 上書きコミットを実行
-    const putRes = await fetch(apiUrl, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `token ${token}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/vnd.github.v3+json'
-      },
-      body: JSON.stringify({
-        message: 'Auto-save draft data from Shirosaba LOL Draft Tool',
-        content: base64Content,
-        sha: sha
-      })
-    });
-
-    if (!putRes.ok) {
-      const errDetail = await putRes.json();
-      throw new Error(`GitHub API error: ${errDetail.message}`);
-    }
-
-    console.log("Successfully auto-committed to GitHub!");
-    showToast("🟢 GitHubリポジトリへの自動同期保存が完了しました！");
-    return true;
-  } catch (error) {
-    console.error("Failed to commit to GitHub:", error);
-    showToast("⚠️ GitHub同期に失敗しました。トークンや設定を確認してください。");
-    return false;
   }
 }
 
@@ -740,30 +633,6 @@ function initEventListeners() {
   const saveDraftBtn = document.getElementById("btn-save-current-draft");
   if (saveDraftBtn) {
     saveDraftBtn.addEventListener("click", handleSaveCurrentDraft);
-  }
-
-  // GitHub連携設定の保存ボタン
-  const saveGitBtn = document.getElementById("btn-save-github-config");
-  if (saveGitBtn) {
-    saveGitBtn.addEventListener("click", () => {
-      const owner = document.getElementById("github-owner").value.trim();
-      const repo = document.getElementById("github-repo").value.trim();
-      const token = document.getElementById("github-token").value.trim();
-
-      if (!owner || !repo || !token) {
-        showToast("GitHub連携に必要な項目をすべて入力してください。");
-        return;
-      }
-
-      localStorage.setItem("github_owner", owner);
-      localStorage.setItem("github_repo", repo);
-      localStorage.setItem("github_token", token);
-
-      showToast("🟢 GitHub自動同期の連携設定を保存しました！最新データを読み込みます。");
-      setTimeout(() => {
-        location.reload();
-      }, 1500);
-    });
   }
 }
 

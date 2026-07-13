@@ -252,38 +252,6 @@
           </div>
         </div>
       </div>
-
-      <!-- 🐙 GitHub 自動同期連携設定 -->
-      <div class="setting-box github-config-box" style="margin-bottom: 30px; border: 1px solid rgba(200, 170, 110, 0.2);">
-        <h3>🐙 GitHub 自動保存・同期連携設定</h3>
-        <p class="setting-desc" style="font-size: 11px; color: #a0a5b0;">
-          GitHubと直接連携すると、選手データやドラフト構成の追加・変更が自動でGitHub上の `data.json` にコミットされ、全員で共有・自動保存できるようになります！
-        </p>
-        <div class="setting-inputs" style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
-          <div style="display: flex; gap: 15px;">
-            <div class="form-group" style="flex: 1;">
-              <label for="github-owner">GitHub ユーザー名：</label>
-              <input type="text" id="github-owner" class="form-input" placeholder="例: fs-s3nnn" style="width: 100%;">
-            </div>
-            <div class="form-group" style="flex: 1;">
-              <label for="github-repo">リポジトリ名：</label>
-              <input type="text" id="github-repo" class="form-input" placeholder="例: lol-draft-assistant" style="width: 100%;">
-            </div>
-          </div>
-          <div class="form-group" style="width: 100%;">
-            <label for="github-token">Personal Access Token (PAT)：</label>
-            <input type="password" id="github-token" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width: 100%;">
-            <small class="form-help" style="font-size: 10px; display: block; margin-top: 4px; color: #a0a5b0;">
-              GitHubの設定から、リポジトリの書き込み権限（`contents: write`）を持つトークンを作成して入力してください。※トークンはブラウザの LocalStorage にのみ安全に保存されます。<br>
-              <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" style="color: var(--blue-magic); text-decoration: underline;">ここからトークンを作成 (クラシックトークン推奨、repoスコープにチェック)</a>
-            </small>
-          </div>
-          <div style="margin-top: 5px;">
-            <button id="btn-save-github-config" class="btn btn-gold">GitHub連携設定を保存</button>
-          </div>
-        </div>
-      </div>
-
       <!-- 選手名簿（マスター）管理 -->
       <div class="setting-box player-master-box" style="margin-bottom: 30px;">
         <h3>👤 選手名簿（マスター）管理</h3>
