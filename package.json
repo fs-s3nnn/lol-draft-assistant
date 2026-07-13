@@ -1,0 +1,12 @@
+{
+  "name": "sirosaba-lol-draft-assistant",
+  "version": "1.0.0",
+  "description": "しろ鯖LOLドラフトツール",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

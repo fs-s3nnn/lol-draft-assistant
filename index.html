@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LoL Draft Assistant | 身内大会ドラフト補助ツール</title>
+  <title>しろ鯖LOLドラフトツール</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,22 +21,14 @@
   <!-- メインヘッダー -->
   <header class="app-header">
     <div class="logo">
-      <span class="logo-subtitle">LEAGUE OF LEGENDS</span>
-      <span class="logo-title">DRAFT ASSISTANT</span>
+      <span class="logo-subtitle">SHIROSABA LOL</span>
+      <span class="logo-title">DRAFT TOOL</span>
     </div>
     <nav class="header-nav">
       <button id="btn-show-dashboard" class="nav-btn active">プレイヤー管理</button>
       <button id="btn-show-draft" class="nav-btn">ドラフトシミュレータ</button>
-      <button id="btn-show-settings" class="nav-btn">相性設定</button>
+      <button id="btn-show-settings" class="nav-btn">環境設定</button>
     </nav>
-    <div class="header-actions">
-      <button id="btn-share-discord" class="btn btn-primary btn-discord">
-        <svg class="icon-discord" viewBox="0 0 127.14 96.36">
-          <path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c.88-.65,1.72-1.34,2.53-2a75.58,75.58,0,0,0,76,0c.8,1.35,1.65,2,2.52,2a68.4,68.4,0,0,1-10.5,5,78.37,78.37,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,50.31,123,27.38,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
-        </svg>
-        Discord用URLをコピー
-      </button>
-    </div>
   </header>
 
   <!-- メインコンテンツ -->
@@ -78,6 +70,22 @@
 
       <div class="dashboard-actions">
         <button id="btn-start-draft" class="btn btn-gold btn-large">ドラフトシミュレーションを開始</button>
+      </div>
+
+      <!-- 📁 ドラフトイメージの保存と復元 -->
+      <div class="setting-box" style="margin-top: 30px; margin-bottom: 30px; border: 1px solid rgba(200, 170, 110, 0.2);">
+        <h3>📁 ドラフト構成イメージの保存とロード</h3>
+        <p class="setting-desc" style="font-size: 11px; color: #a0a5b0;">現在の両チームのメンバー構成（アサイン選手）やレーン強さを名前を付けてサーバーに保存し、いつでも復元できます。</p>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <input type="text" id="input-save-draft-name" class="form-input" placeholder="構成名（例：練習試合A）" style="flex: 1;">
+          <button id="btn-save-current-draft" class="btn btn-gold" style="white-space: nowrap;">現在の構成を保存</button>
+        </div>
+        <div style="margin-top: 15px;">
+          <label style="font-size: 11px; color: var(--gold-magic); font-weight: 600; display: block; margin-bottom: 5px;">保存済みのドラフト構成一覧：</label>
+          <div id="saved-drafts-list" style="display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto; background-color: rgba(5,11,16,0.6); padding: 10px; border: 1px solid rgba(255,255,255,0.05);">
+            <div style="text-align: center; color: #606570; font-style: italic; font-size: 11px; padding: 10px;">保存された構成はありません</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -139,6 +147,18 @@
 
           <!-- チャンピオン一覧パネル -->
           <div id="panel-champions" class="tab-panel active">
+            <!-- 👤 現在の手番プレイヤーの得意プールクイック選択 -->
+            <div id="turn-player-pool-box" class="turn-player-pool-box hidden" style="background-color: rgba(5, 11, 16, 0.6); padding: 10px; border: 1px solid rgba(200, 170, 110, 0.15); margin-bottom: 12px; border-radius: 4px;">
+              <div style="font-size: 11px; color: var(--gold-magic); font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span>👤 現在の手番:</span>
+                <span id="turn-player-name-display" style="color: #fff; font-weight: bold; background-color: rgba(200, 170, 110, 0.2); padding: 1px 6px; border-radius: 2px;">--</span>
+                <span style="font-size: 9px; color: #a0a5b0; font-weight: normal;">(得意プールからクイック選択)</span>
+              </div>
+              <div id="turn-player-pool-list" style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; align-items: center;">
+                <!-- JSで動的に手番の選手のプールアイコンを生成 -->
+              </div>
+            </div>
+
             <div class="champ-filter-bar">
               <input type="text" id="champ-search-input" placeholder="チャンピオンを検索...">
               <div class="role-filters">
@@ -229,6 +249,37 @@
           </div>
           <div style="margin-top: 10px;">
             <button id="btn-save-gemini-key" class="btn btn-gold">APIキーを保存</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🐙 GitHub 自動同期連携設定 -->
+      <div class="setting-box github-config-box" style="margin-bottom: 30px; border: 1px solid rgba(200, 170, 110, 0.2);">
+        <h3>🐙 GitHub 自動保存・同期連携設定</h3>
+        <p class="setting-desc" style="font-size: 11px; color: #a0a5b0;">
+          GitHubと直接連携すると、選手データやドラフト構成の追加・変更が自動でGitHub上の `data.json` にコミットされ、全員で共有・自動保存できるようになります！
+        </p>
+        <div class="setting-inputs" style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
+          <div style="display: flex; gap: 15px;">
+            <div class="form-group" style="flex: 1;">
+              <label for="github-owner">GitHub ユーザー名：</label>
+              <input type="text" id="github-owner" class="form-input" placeholder="例: fs-s3nnn" style="width: 100%;">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label for="github-repo">リポジトリ名：</label>
+              <input type="text" id="github-repo" class="form-input" placeholder="例: lol-draft-assistant" style="width: 100%;">
+            </div>
+          </div>
+          <div class="form-group" style="width: 100%;">
+            <label for="github-token">Personal Access Token (PAT)：</label>
+            <input type="password" id="github-token" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width: 100%;">
+            <small class="form-help" style="font-size: 10px; display: block; margin-top: 4px; color: #a0a5b0;">
+              GitHubの設定から、リポジトリの書き込み権限（`contents: write`）を持つトークンを作成して入力してください。※トークンはブラウザの LocalStorage にのみ安全に保存されます。<br>
+              <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" style="color: var(--blue-magic); text-decoration: underline;">ここからトークンを作成 (クラシックトークン推奨、repoスコープにチェック)</a>
+            </small>
+          </div>
+          <div style="margin-top: 5px;">
+            <button id="btn-save-github-config" class="btn btn-gold">GitHub連携設定を保存</button>
           </div>
         </div>
       </div>

@@ -1570,3 +1570,34 @@ body {
 .hidden {
   display: none !important;
 }
+
+/* 得意プール クイック選択 */
+#turn-player-pool-list::-webkit-scrollbar {
+  height: 4px;
+}
+#turn-player-pool-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+#turn-player-pool-list::-webkit-scrollbar-thumb {
+  background: var(--hextech-gold-border);
+  border-radius: 2px;
+}
+
+.btn-pool-quick-select {
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-pool-quick-select:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 8px rgba(200, 170, 110, 0.3);
+}
+
+.btn-pool-quick-select.used {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  color: #505560 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+

@@ -114,10 +114,10 @@ const ROLE_SVGS = {
 document.addEventListener("DOMContentLoaded", async () => {
   showToast("チャンピオンデータを読み込んでいます...");
   await initDDragon();
-  initLocalStorage();
-  parseUrlData();
+  await loadDataFromServer();
   renderDashboard();
   renderPlayerMasterList();
+  renderDraftHistoryList();
   initEventListeners();
   populateSettingsChamps();
   showToast("準備完了！");
@@ -146,156 +146,239 @@ async function initDDragon() {
   }
 }
 
-// LocalStorageの初期化
-function initLocalStorage() {
-  // 1. 選手マスター名簿の初期化
-  const savedMaster = localStorage.getItem("lol_draft_player_master");
-  if (savedMaster) {
-    AppState.playerMaster = JSON.parse(savedMaster);
-    // 単一ロールから複数ロールへのマイグレーション、および各レーン強さのマイグレーション
-    AppState.playerMaster.forEach(p => {
-      if (!p.roles) {
-        p.roles = p.role ? [p.role] : ["TOP"];
+// サーバーからデータを読み込む
+async function loadDataFromServer() {
+  const owner = localStorage.getItem("github_owner");
+  const repo = localStorage.getItem("github_repo");
+
+  // GitHub連携設定がある場合、GitHubのRAW APIから最新のdata.jsonをダイレクトに読み込む
+  if (owner && repo) {
+    try {
+      // キャッシュを防ぐためタイムスタンプを付与してフェッチ
+      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/data.json?t=${Date.now()}`;
+      const res = await fetch(rawUrl);
+      if (res.ok) {
+        const data = await res.json();
+        applyLoadedData(data);
+        showToast("🟢 GitHubから最新の同期データを読み込みました！");
+        loadGitConfigToInputs(); // 連携情報のUI復元
+        loadGeminiKeyFromLocal(); // Geminiキー復元
+        return;
       }
-      if (!p.laneStrengths) {
-        const baseVal = p.strength !== undefined ? p.strength : 80;
-        p.laneStrengths = {
-          TOP: baseVal,
-          JUNGLE: baseVal,
-          MIDDLE: baseVal,
-          BOTTOM: baseVal,
-          UTILITY: baseVal
-        };
-      }
-    });
-    savePlayerMaster();
-  } else {
-    // デフォルトの選手名簿を構築（モックデータを登録）
-    const defaultMaster = [];
-    
-    // BLUEチームのモック
-    DEFAULT_BLUE_TEAM.forEach((p, i) => {
-      const baseVal = p.strength || 80;
-      defaultMaster.push({
-        id: `blue_mock_${i}`,
-        name: p.name,
-        roles: [p.role],
-        laneStrengths: {
-          TOP: baseVal,
-          JUNGLE: baseVal,
-          MIDDLE: baseVal,
-          BOTTOM: baseVal,
-          UTILITY: baseVal
-        },
-        strength: baseVal,
-        pool: JSON.parse(JSON.stringify(p.pool))
-      });
-    });
-
-    // REDチームのモック
-    DEFAULT_RED_TEAM.forEach((p, i) => {
-      const baseVal = p.strength || 80;
-      defaultMaster.push({
-        id: `red_mock_${i}`,
-        name: p.name,
-        roles: [p.role],
-        laneStrengths: {
-          TOP: baseVal,
-          JUNGLE: baseVal,
-          MIDDLE: baseVal,
-          BOTTOM: baseVal,
-          UTILITY: baseVal
-        },
-        strength: baseVal,
-        pool: JSON.parse(JSON.stringify(p.pool))
-      });
-    });
-
-    // 控え選手（リザーブ）の追加 (マルチロール＆個別レーン強さのデモ)
-    defaultMaster.push({ id: "reserve_1", name: "控えJG木村くん", roles: ["JUNGLE", "MIDDLE"], laneStrengths: { TOP: 50, JUNGLE: 80, MIDDLE: 60, BOTTOM: 50, UTILITY: 50 }, pool: [{ champId: "JarvanIV", winRate: 65, mastery: 5 }, { champId: "Maokai", winRate: 50, mastery: 4 }] });
-    defaultMaster.push({ id: "reserve_2", name: "控えMID渡辺くん", roles: ["MIDDLE", "JUNGLE"], laneStrengths: { TOP: 50, JUNGLE: 60, MIDDLE: 85, BOTTOM: 50, UTILITY: 50 }, pool: [{ champId: "Yasuo", winRate: 55, mastery: 5 }, { champId: "Zed", winRate: 60, mastery: 4 }] });
-    defaultMaster.push({ id: "reserve_3", name: "控えSUP斉藤くん", roles: ["UTILITY", "BOTTOM"], laneStrengths: { TOP: 50, JUNGLE: 50, MIDDLE: 50, BOTTOM: 65, UTILITY: 70 }, pool: [{ champId: "Thresh", winRate: 50, mastery: 4 }, { champId: "Lulu", winRate: 65, mastery: 4 }] });
-
-    AppState.playerMaster = defaultMaster;
-    savePlayerMaster();
+    } catch (e) {
+      console.warn("Failed to load raw data from GitHub. Fallback to server/localStorage...", e);
+    }
   }
 
-  // 2. アクティブチームデータのロード
-  const savedTeams = localStorage.getItem("lol_draft_team_data");
-  if (savedTeams) {
-    const parsed = JSON.parse(savedTeams);
-    const migrate = (team) => {
-      team.forEach(p => {
-        if (p.strength === undefined) p.strength = 80;
-      });
-    };
-    if (parsed.blue) migrate(parsed.blue);
-    if (parsed.red) migrate(parsed.red);
-    AppState.teamData = parsed;
-  } else {
-    // 選手名簿のモックから初期メンバーを自動割り当て
-    AppState.teamData = {
-      blue: AppState.playerMaster.filter(p => p.id.startsWith("blue_mock")).slice(0, 5).map(p => JSON.parse(JSON.stringify(p))),
-      red: AppState.playerMaster.filter(p => p.id.startsWith("red_mock")).slice(0, 5).map(p => JSON.parse(JSON.stringify(p)))
-    };
-    saveTeamData();
+  // サーバーAPI (Express) から読み込む
+  try {
+    const res = await fetch('/api/data');
+    if (res.ok) {
+      const data = await res.json();
+      applyLoadedData(data);
+    } else {
+      throw new Error('API server unavailable');
+    }
+  } catch (e) {
+    console.error('Failed to load data from server. Fallback to LocalStorage.', e);
+    initLocalStorageFallback();
   }
 
-  const savedDatabase = localStorage.getItem("lol_draft_custom_db");
-  if (savedDatabase) {
-    AppState.customDatabase = JSON.parse(savedDatabase);
-  } else {
-    AppState.customDatabase = JSON.parse(JSON.stringify(DEFAULT_DRAFT_DATABASE));
-    saveCustomDatabase();
-  }
+  loadGitConfigToInputs();
+  loadGeminiKeyFromLocal();
+}
 
+function applyLoadedData(data) {
+  if (data.playerMaster) AppState.playerMaster = data.playerMaster;
+  if (data.teamData && data.teamData.blue) AppState.teamData = data.teamData;
+  if (data.customDatabase) AppState.customDatabase = data.customDatabase;
+  if (data.draftHistory) AppState.draftHistory = data.draftHistory;
+  if (data.draftMode) AppState.draftMode = data.draftMode;
+  migrateLocalStorageData();
+  renderDraftHistoryList();
+}
+
+function loadGitConfigToInputs() {
+  const owner = localStorage.getItem("github_owner") || "";
+  const repo = localStorage.getItem("github_repo") || "";
+  const token = localStorage.getItem("github_token") || "";
+
+  const ownerEl = document.getElementById("github-owner");
+  const repoEl = document.getElementById("github-repo");
+  const tokenEl = document.getElementById("github-token");
+
+  if (ownerEl) ownerEl.value = owner;
+  if (repoEl) repoEl.value = repo;
+  if (tokenEl) tokenEl.value = token;
+}
+
+function loadGeminiKeyFromLocal() {
   const savedKey = localStorage.getItem("lol_draft_gemini_key");
   if (savedKey) {
     AppState.geminiApiKey = savedKey;
-    document.getElementById("gemini-api-key").value = savedKey;
+    const inputEl = document.getElementById("gemini-api-key");
+    if (inputEl) inputEl.value = savedKey;
   }
 }
 
-function saveTeamData() {
+// データを保存する
+async function saveDataToServer() {
+  const payload = {
+    playerMaster: AppState.playerMaster,
+    teamData: AppState.teamData,
+    customDatabase: AppState.customDatabase,
+    draftHistory: AppState.draftHistory || [],
+    draftMode: AppState.draftMode
+  };
+
+  // 1. GitHub API 連携による自動コミットを優先実行
+  const githubSaved = await saveDataToGitHub(payload);
+
+  // キャッシュとしてローカルストレージにも保存
+  localStorage.setItem("lol_draft_player_master", JSON.stringify(AppState.playerMaster));
   localStorage.setItem("lol_draft_team_data", JSON.stringify(AppState.teamData));
+  localStorage.setItem("lol_draft_custom_db", JSON.stringify(AppState.customDatabase));
+  localStorage.setItem("lol_draft_mode", AppState.draftMode);
+  localStorage.setItem("lol_draft_history", JSON.stringify(AppState.draftHistory || []));
+
+  if (githubSaved) {
+    return; // GitHub側へのプッシュが成功したため終了
+  }
+
+  // 2. 連携未設定、または失敗時はローカルサーバー(Render等)APIへセーブ
+  try {
+    const res = await fetch('/api/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    
+    if (!res.ok) throw new Error('Save API failure');
+  } catch (e) {
+    console.error('Failed to save data to server.', e);
+  }
+}
+
+// GitHub API を使ってリポジトリ内の data.json を上書き自動コミットする
+async function saveDataToGitHub(payload) {
+  const owner = localStorage.getItem("github_owner");
+  const repo = localStorage.getItem("github_repo");
+  const token = localStorage.getItem("github_token");
+
+  if (!owner || !repo || !token) {
+    return false; // 設定未完了の場合は何もしない
+  }
+
+  try {
+    const filePath = 'data.json';
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+
+    // 1. 既存ファイルの sha を取得（上書き時に必須）
+    let sha = null;
+    const getRes = await fetch(apiUrl, {
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+
+    if (getRes.ok) {
+      const fileData = await getRes.json();
+      sha = fileData.sha;
+    }
+
+    // 2. データをBase64にエンコード
+    const jsonStr = JSON.stringify(payload, null, 2);
+    const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
+
+    // 3. 上書きコミットを実行
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        message: 'Auto-save draft data from Shirosaba LOL Draft Tool',
+        content: base64Content,
+        sha: sha
+      })
+    });
+
+    if (!putRes.ok) {
+      const errDetail = await putRes.json();
+      throw new Error(`GitHub API error: ${errDetail.message}`);
+    }
+
+    console.log("Successfully auto-committed to GitHub!");
+    showToast("🟢 GitHubリポジトリへの自動同期保存が完了しました！");
+    return true;
+  } catch (error) {
+    console.error("Failed to commit to GitHub:", error);
+    showToast("⚠️ GitHub同期に失敗しました。トークンや設定を確認してください。");
+    return false;
+  }
+}
+
+// LocalStorageに古いデータがある場合にサーバー側へマージ（初回移行用）
+function migrateLocalStorageData() {
+  let migrated = false;
+  const oldMaster = localStorage.getItem("lol_draft_player_master");
+  if (oldMaster) {
+    try {
+      const parsed = JSON.parse(oldMaster);
+      parsed.forEach(p => {
+        const exists = AppState.playerMaster.some(m => m.name === p.name);
+        if (!exists) {
+          AppState.playerMaster.push(p);
+          migrated = true;
+        }
+      });
+      localStorage.removeItem("lol_draft_player_master"); // 移行後は削除
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  
+  if (migrated) {
+    saveDataToServer();
+  }
+}
+
+// サーバーに繋がらない場合のフォールバックロード
+function initLocalStorageFallback() {
+  const savedMaster = localStorage.getItem("lol_draft_player_master");
+  if (savedMaster) {
+    AppState.playerMaster = JSON.parse(savedMaster);
+  }
+  const savedTeams = localStorage.getItem("lol_draft_team_data");
+  if (savedTeams) {
+    AppState.teamData = JSON.parse(savedTeams);
+  }
+  const savedDb = localStorage.getItem("lol_draft_custom_db");
+  if (savedDb) {
+    AppState.customDatabase = JSON.parse(savedDb);
+  }
+  const savedHistory = localStorage.getItem("lol_draft_history");
+  if (savedHistory) {
+    AppState.draftHistory = JSON.parse(savedHistory);
+  }
+}
+
+// 各セーブ関数のラッパー
+function saveTeamData() {
+  saveDataToServer();
 }
 
 function saveCustomDatabase() {
-  localStorage.setItem("lol_draft_custom_db", JSON.stringify(AppState.customDatabase));
+  saveDataToServer();
 }
 
-// Discordから共有されたURLパラメータの解析
-function parseUrlData() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const sharedData = urlParams.get("data");
-  
-  if (sharedData) {
-    try {
-      // Base64デコード
-      const decodedJson = decodeURIComponent(escape(atob(sharedData)));
-      const parsed = JSON.parse(decodedJson);
-      
-      if (parsed.teamData) {
-        AppState.teamData = parsed.teamData;
-        saveTeamData();
-        // 共有された選手情報を名簿側にも自動マージ同期
-        syncTeamToPlayerMaster();
-      }
-      if (parsed.customDatabase) {
-        AppState.customDatabase = parsed.customDatabase;
-        saveCustomDatabase();
-      }
-      
-      showToast("Discord共有データからプレイヤー設定を読み込みました！", 4000);
-      
-      // クエリパラメータをクリアしてURLをすっきりさせる
-      window.history.replaceState({}, document.title, window.location.pathname);
-    } catch (e) {
-      console.error("共有データのパースに失敗しました。", e);
-      showToast("共有リンクの解析に失敗しました。", 4000);
-    }
-  }
-}
+// 不要になった共有URLパラメータ解析は空関数化
+function parseUrlData() {}
 
 // ダッシュボードUIの描画
 function renderDashboard() {
@@ -652,56 +735,38 @@ function initEventListeners() {
       }
     });
   });
-}
 
-// 共有URLの生成とコピー
-function generateAndCopyShareUrl() {
-  try {
-    const payload = {
-      teamData: AppState.teamData,
-      customDatabase: AppState.customDatabase
-    };
+  // ドラフト保存ボタン
+  const saveDraftBtn = document.getElementById("btn-save-current-draft");
+  if (saveDraftBtn) {
+    saveDraftBtn.addEventListener("click", handleSaveCurrentDraft);
+  }
 
-    const jsonStr = JSON.stringify(payload);
-    // Base64エンコード（日本語文字化け防止のため encodeURIComponent ＋ escape を経由）
-    const base64 = btoa(unescape(encodeURIComponent(jsonStr)));
-    
-    const isLocalFile = window.location.protocol === 'file:';
-    let shareUrl = "";
+  // GitHub連携設定の保存ボタン
+  const saveGitBtn = document.getElementById("btn-save-github-config");
+  if (saveGitBtn) {
+    saveGitBtn.addEventListener("click", () => {
+      const owner = document.getElementById("github-owner").value.trim();
+      const repo = document.getElementById("github-repo").value.trim();
+      const token = document.getElementById("github-token").value.trim();
 
-    if (isLocalFile) {
-      shareUrl = `${window.location.href.split('?')[0]}?data=${base64}`;
-    } else {
-      shareUrl = `${window.location.origin}${window.location.pathname}?data=${base64}`;
-    }
-
-    // クリップボードにコピー
-    navigator.clipboard.writeText(shareUrl).then(() => {
-      if (isLocalFile) {
-        showToast("⚠️注意: ローカル実行中のため、このコピーURLは他の人のPCでは開けません。Netlify等にアップロードして共有してください。", 6000);
-      } else {
-        showToast("共有URLをクリップボードにコピーしました！Discordに貼り付けて共有してください。");
+      if (!owner || !repo || !token) {
+        showToast("GitHub連携に必要な項目をすべて入力してください。");
+        return;
       }
-    }).catch(err => {
-      console.error("クリップボードへの書き込みに失敗しました。", err);
-      // フォールバック
-      const dummy = document.createElement("input");
-      document.body.appendChild(dummy);
-      dummy.value = shareUrl;
-      dummy.select();
-      document.execCommand("copy");
-      document.body.removeChild(dummy);
-      if (isLocalFile) {
-        showToast("⚠️注意: ローカル実行中のため共有不可。Webへアップロードしてください。", 6000);
-      } else {
-        showToast("共有URLをコピーしました！");
-      }
+
+      localStorage.setItem("github_owner", owner);
+      localStorage.setItem("github_repo", repo);
+      localStorage.setItem("github_token", token);
+
+      showToast("🟢 GitHub自動同期の連携設定を保存しました！最新データを読み込みます。");
+      setTimeout(() => {
+        location.reload();
+      }, 1500);
     });
-  } catch (e) {
-    console.error(e);
-    showToast("URLの生成に失敗しました。");
   }
 }
+
 
 // トースト通知を表示
 function showToast(message, duration = 3000) {
@@ -1246,10 +1311,13 @@ function updateDraftStateUI(isFinished = false) {
   document.querySelectorAll(".pick-slot").forEach(s => s.classList.remove("active-pick"));
   document.querySelectorAll(".ban-slot").forEach(s => s.classList.remove("active-target"));
 
+  const poolBox = document.getElementById("turn-player-pool-box");
+
   if (isFinished) {
     document.getElementById("draft-phase-name").textContent = "ドラフト完了！";
     document.getElementById("draft-timer").textContent = "--";
     document.getElementById("draft-sub-status").textContent = "お疲れ様でした";
+    if (poolBox) poolBox.classList.add("hidden");
     showToast("ドラフト会議が完了しました！");
     
     // AI推奨の最終更新
@@ -1289,10 +1357,105 @@ function updateDraftStateUI(isFinished = false) {
   // 勝利条件 (Win Condition) プランの更新
   updateWinConditionText();
 
+  // 手番プレイヤーの得意プール一覧を描画
+  renderTurnPlayerPoolUI();
+
   // AI推奨の自動更新（タブがAI推奨になっていれば）
   if (document.getElementById("tab-btn-ai").classList.contains("active")) {
     updateAIRecommendations();
   }
+}
+
+// 現在の手番プレイヤーの得意チャンピオンプールを描画するUI処理
+function renderTurnPlayerPoolUI() {
+  const box = document.getElementById("turn-player-pool-box");
+  const nameDisplay = document.getElementById("turn-player-name-display");
+  const list = document.getElementById("turn-player-pool-list");
+
+  if (!box || !nameDisplay || !list) return;
+
+  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  
+  // PICKフェーズでなければプールは非表示
+  if (!step || step.type !== 'pick') {
+    box.classList.add("hidden");
+    return;
+  }
+
+  // アサインされている選手を取得
+  const player = AppState.teamData[step.team][step.slotIndex];
+  if (!player || !player.name) {
+    box.classList.add("hidden");
+    return;
+  }
+
+  nameDisplay.textContent = `${player.name} (${AppState.roleMap[player.role]})`;
+  list.innerHTML = "";
+
+  // 既にBAN/PICKされているチャンピオン
+  const allUsed = new Set([
+    ...AppState.draft.blueBans,
+    ...AppState.draft.redBans,
+    ...AppState.draft.bluePicks.filter(Boolean),
+    ...AppState.draft.redPicks.filter(Boolean)
+  ]);
+
+  if (!player.pool || player.pool.length === 0) {
+    list.innerHTML = `<div style="font-size:10px; color:#606570; font-style:italic; padding: 4px 0;">登録されている得意チャンピオンがありません</div>`;
+  } else {
+    // 勝率の高い順にソート
+    const sortedPool = [...player.pool].sort((a, b) => b.winRate - a.winRate);
+
+    sortedPool.forEach(item => {
+      const champ = AppState.champions[item.champId];
+      if (!champ) return;
+
+      const isUsed = allUsed.has(item.champId);
+
+      const btn = document.createElement("button");
+      btn.className = `btn-pool-quick-select ${isUsed ? 'used' : ''}`;
+      btn.style.cssText = `
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(200, 170, 110, 0.08);
+        border: 1px solid ${isUsed ? 'rgba(255,255,255,0.03)' : 'rgba(200, 170, 110, 0.35)'};
+        color: ${isUsed ? '#505560' : '#fff'};
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: ${isUsed ? 'not-allowed' : 'pointer'};
+        font-size: 11px;
+        white-space: nowrap;
+        transition: all 0.2s;
+        opacity: ${isUsed ? '0.4' : '1'};
+      `;
+
+      const imgUrl = `https://ddragon.leagueoflegends.com/cdn/${AppState.ddragonVersion}/img/champion/${champ.image.full}`;
+      btn.innerHTML = `
+        <img src="${imgUrl}" alt="${champ.name}" style="width: 16px; height: 16px; border-radius: 50%;">
+        <span>${champ.name} (${item.winRate}%)</span>
+      `;
+
+      if (!isUsed) {
+        btn.addEventListener("click", () => {
+          selectChampionForDraft(item.champId);
+        });
+        
+        btn.addEventListener("mouseenter", () => {
+          btn.style.background = "rgba(200, 170, 110, 0.25)";
+          btn.style.borderColor = "var(--gold-magic)";
+        });
+        btn.addEventListener("mouseleave", () => {
+          btn.style.background = "rgba(200, 170, 110, 0.08)";
+          btn.style.borderColor = "rgba(200, 170, 110, 0.35)";
+        });
+      }
+
+      list.appendChild(btn);
+    });
+  }
+
+  box.classList.remove("hidden");
 }
 
 // AI推奨スコアの計算と描画
@@ -1750,7 +1913,7 @@ async function sendChatMessageToGemini(userQuery) {
 
   // プロンプトの組み立て
   const systemInstruction = `
-あなたはLeague of Legends (LoL) のプロコーチであり、身内大会用およびフルパランク用の専属ドラフトアドバイザーです。
+あなたはLeague of Legends (LoL) のプロコーチであり、オンラインコミュニティ「しろ鯖」専用のドラフト戦術アドバイザー兼コーチです。
 以下の現在のドラフト状況と、両チームのプレイヤーキャラプール、レーン習熟度（強さ数値 1-100）を完全に把握しています。
 
 ---
@@ -2141,4 +2304,132 @@ function syncTeamToPlayerMaster() {
     savePlayerMaster();
     renderPlayerMasterList();
   }
+}
+
+// ==========================================
+// ドラフト構成イメージ複数保存・ロード処理
+// ==========================================
+
+// 現在の構成を保存する処理
+function handleSaveCurrentDraft() {
+  const nameInput = document.getElementById("input-save-draft-name");
+  const name = nameInput.value.trim();
+
+  if (!name) {
+    showToast("構成名を入力してください（例：練習試合Aなど）");
+    return;
+  }
+
+  // 保存用オブジェクトの構築
+  const newRecord = {
+    id: `draft_${Date.now()}`,
+    name: name,
+    timestamp: new Date().toLocaleString('ja-JP'),
+    teamData: JSON.parse(JSON.stringify(AppState.teamData)),
+    draftMode: AppState.draftMode
+  };
+
+  if (!AppState.draftHistory) {
+    AppState.draftHistory = [];
+  }
+
+  // 同名の上書きチェック
+  const existingIndex = AppState.draftHistory.findIndex(d => d.name === name);
+  if (existingIndex !== -1) {
+    if (!confirm(`構成名「${name}」は既に存在します。上書きしますか？`)) {
+      return;
+    }
+    AppState.draftHistory[existingIndex] = newRecord;
+  } else {
+    AppState.draftHistory.push(newRecord);
+  }
+
+  saveDataToServer();
+  renderDraftHistoryList();
+
+  nameInput.value = "";
+  showToast(`ドラフト構成「${name}」を保存しました！`);
+}
+
+// 保存済み構成一覧の描画
+function renderDraftHistoryList() {
+  const container = document.getElementById("saved-drafts-list");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (!AppState.draftHistory || AppState.draftHistory.length === 0) {
+    container.innerHTML = `<div style="text-align: center; color: #606570; font-style: italic; font-size: 11px; padding: 10px;">保存された構成はありません</div>`;
+    return;
+  }
+
+  // 日時新しい順にソート
+  const sorted = [...AppState.draftHistory].sort((a, b) => b.id.localeCompare(a.id));
+
+  sorted.forEach(d => {
+    const row = document.createElement("div");
+    row.style.cssText = `
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 6px 10px;
+      border-radius: 4px;
+      gap: 10px;
+    `;
+
+    row.innerHTML = `
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 12px; color: #fff; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${d.name}</div>
+        <div style="font-size: 9px; color: #606570; margin-top: 2px;">保存日時: ${d.timestamp} (${d.draftMode === 'custom' ? 'カスタム' : 'フルパランク'})</div>
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <button class="btn btn-secondary btn-load-draft" data-id="${d.id}" style="padding: 2px 8px; font-size: 10px;">ロード</button>
+        <button class="btn btn-secondary btn-delete-draft" data-id="${d.id}" style="padding: 2px 8px; font-size: 10px; border-color: var(--red-magic); color: var(--red-magic);">削除</button>
+      </div>
+    `;
+
+    row.querySelector(".btn-load-draft").addEventListener("click", () => {
+      loadDraftHistory(d.id);
+    });
+
+    row.querySelector(".btn-delete-draft").addEventListener("click", () => {
+      if (confirm(`本当に構成「${d.name}」を削除しますか？`)) {
+        deleteDraftHistory(d.id);
+      }
+    });
+
+    container.appendChild(row);
+  });
+}
+
+// 構成のロード
+function loadDraftHistory(id) {
+  const record = AppState.draftHistory.find(d => d.id === id);
+  if (!record) return;
+
+  AppState.teamData = JSON.parse(JSON.stringify(record.teamData));
+  AppState.draftMode = record.draftMode || "custom";
+
+  // モード切り替えボタンのアクティブクラス更新
+  if (AppState.draftMode === "custom") {
+    document.getElementById("btn-mode-custom").classList.add("active");
+    document.getElementById("btn-mode-ranked").classList.remove("active");
+  } else {
+    document.getElementById("btn-mode-custom").classList.remove("active");
+    document.getElementById("btn-mode-ranked").classList.add("active");
+  }
+
+  saveDataToServer();
+  renderDashboard();
+  showToast(`構成「${record.name}」をロードしました！`);
+}
+
+// 構成の削除
+function deleteDraftHistory(id) {
+  AppState.draftHistory = AppState.draftHistory.filter(d => d.id !== id);
+  saveDataToServer();
+  renderDraftHistoryList();
+  showToast("構成を削除しました。");
 }
