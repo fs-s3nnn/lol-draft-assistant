@@ -494,10 +494,7 @@ function initEventListeners() {
     });
   });
 
-  // Discord共有ボタン
-  document.getElementById("btn-share-discord").addEventListener("click", () => {
-    generateAndCopyShareUrl();
-  });
+
 
   // ドラフト開始ボタン
   document.getElementById("btn-start-draft").addEventListener("click", () => {
