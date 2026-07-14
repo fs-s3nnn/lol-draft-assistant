@@ -436,6 +436,23 @@
   "teamData": {
     "blue": [
       {
+        "name": "あきTOP",
+        "role": "TOP",
+        "strength": 80,
+        "pool": [
+          {
+            "champId": "Aatrox",
+            "winRate": 60,
+            "mastery": 5
+          },
+          {
+            "champId": "Renekton",
+            "winRate": 55,
+            "mastery": 4
+          }
+        ]
+      },
+      {
         "id": "custom_player_1784005654639",
         "name": "SEN",
         "roles": [
@@ -463,23 +480,6 @@
           }
         ],
         "role": "MIDDLE"
-      },
-      {
-        "name": "あきTOP",
-        "role": "TOP",
-        "strength": 80,
-        "pool": [
-          {
-            "champId": "Aatrox",
-            "winRate": 60,
-            "mastery": 5
-          },
-          {
-            "champId": "Renekton",
-            "winRate": 55,
-            "mastery": 4
-          }
-        ]
       },
       {
         "name": "しんJG",
