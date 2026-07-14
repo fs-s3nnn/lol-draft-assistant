@@ -970,42 +970,43 @@
   "teamData": {
     "blue": [
       {
-        "id": "custom_player_1783943444581",
-        "name": "つな",
+        "id": "custom_player_1783943410763",
+        "name": "おじん",
         "roles": [
-          "BOTTOM"
+          "TOP",
+          "JUNGLE"
         ],
         "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
+          "TOP": 60,
+          "JUNGLE": 60,
           "MIDDLE": 50,
-          "BOTTOM": 80,
+          "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 80,
+        "strength": 60,
         "pool": [
           {
-            "champId": "Smolder",
+            "champId": "Ambessa",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Twitch",
+            "champId": "KSante",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "Samira",
+            "champId": "Darius",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "Jhin",
+            "champId": "Ekko",
             "winRate": 50,
             "mastery": 5
           }
         ],
-        "role": "BOTTOM"
+        "role": "TOP"
       },
       {
         "id": "custom_player_1783943452451",
@@ -1180,43 +1181,42 @@
         "role": "JUNGLE"
       },
       {
-        "id": "custom_player_1783943410763",
-        "name": "おじん",
+        "id": "custom_player_1783943444581",
+        "name": "つな",
         "roles": [
-          "TOP",
-          "JUNGLE"
+          "BOTTOM"
         ],
         "laneStrengths": {
-          "TOP": 60,
-          "JUNGLE": 60,
+          "TOP": 50,
+          "JUNGLE": 50,
           "MIDDLE": 50,
-          "BOTTOM": 50,
+          "BOTTOM": 80,
           "UTILITY": 50
         },
-        "strength": 60,
+        "strength": 80,
         "pool": [
           {
-            "champId": "Ambessa",
+            "champId": "Smolder",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "KSante",
+            "champId": "Twitch",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
-            "champId": "Darius",
+            "champId": "Samira",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
-            "champId": "Ekko",
+            "champId": "Jhin",
             "winRate": 50,
             "mastery": 5
           }
         ],
-        "role": "TOP"
+        "role": "BOTTOM"
       }
     ],
     "red": [
