@@ -190,8 +190,8 @@ app.post('/api/chat', async (req, res) => {
       });
 
     } else {
-      // 2. Gemini (Gemini 1.5 Flash) の呼び出し
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${finalApiKey}`, {
+      // 2. Gemini (Gemini 2.5 Flash) の呼び出し
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${finalApiKey}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
