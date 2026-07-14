@@ -970,43 +970,42 @@
   "teamData": {
     "blue": [
       {
-        "id": "custom_player_1783943410763",
-        "name": "おじん",
+        "id": "custom_player_1783943444581",
+        "name": "つな",
         "roles": [
-          "TOP",
-          "JUNGLE"
+          "BOTTOM"
         ],
         "laneStrengths": {
-          "TOP": 60,
-          "JUNGLE": 60,
+          "TOP": 50,
+          "JUNGLE": 50,
           "MIDDLE": 50,
-          "BOTTOM": 50,
+          "BOTTOM": 80,
           "UTILITY": 50
         },
-        "strength": 60,
+        "strength": 80,
         "pool": [
           {
-            "champId": "Ambessa",
+            "champId": "Smolder",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "KSante",
+            "champId": "Twitch",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
-            "champId": "Darius",
+            "champId": "Samira",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
-            "champId": "Ekko",
+            "champId": "Jhin",
             "winRate": 50,
             "mastery": 5
           }
         ],
-        "role": "TOP"
+        "role": "BOTTOM"
       },
       {
         "id": "custom_player_1784005654639",
@@ -1112,42 +1111,43 @@
         "role": "MIDDLE"
       },
       {
-        "id": "custom_player_1783943444581",
-        "name": "つな",
+        "id": "custom_player_1783943410763",
+        "name": "おじん",
         "roles": [
-          "BOTTOM"
+          "TOP",
+          "JUNGLE"
         ],
         "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
+          "TOP": 60,
+          "JUNGLE": 60,
           "MIDDLE": 50,
-          "BOTTOM": 80,
+          "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 80,
+        "strength": 60,
         "pool": [
           {
-            "champId": "Smolder",
+            "champId": "Ambessa",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Twitch",
+            "champId": "KSante",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "Samira",
+            "champId": "Darius",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "Jhin",
+            "champId": "Ekko",
             "winRate": 50,
             "mastery": 5
           }
         ],
-        "role": "BOTTOM"
+        "role": "TOP"
       },
       {
         "id": "custom_player_1783943452451",
@@ -1335,37 +1335,48 @@
         "role": "BOTTOM"
       },
       {
-        "id": "custom_player_1783945318852",
-        "name": "木蓮",
+        "id": "custom_player_1783945279541",
+        "name": "senna.",
         "roles": [
-          "MIDDLE"
+          "JUNGLE",
+          "UTILITY"
         ],
         "laneStrengths": {
           "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 30,
+          "JUNGLE": 20,
+          "MIDDLE": 50,
           "BOTTOM": 50,
-          "UTILITY": 50
+          "UTILITY": 40
         },
-        "strength": 30,
+        "strength": 40,
         "pool": [
           {
-            "champId": "Akali",
+            "champId": "Blitzcrank",
             "winRate": 50,
             "mastery": 3
           },
           {
-            "champId": "Diana",
+            "champId": "Seraphine",
             "winRate": 50,
             "mastery": 3
           },
           {
-            "champId": "Lissandra",
+            "champId": "Braum",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Zyra",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Neeko",
             "winRate": 50,
             "mastery": 3
           }
         ],
-        "role": "MIDDLE"
+        "role": "UTILITY"
       },
       {
         "id": "custom_player_1783945258452",
@@ -1432,48 +1443,37 @@
         "role": "JUNGLE"
       },
       {
-        "id": "custom_player_1783945279541",
-        "name": "senna.",
+        "id": "custom_player_1783945318852",
+        "name": "木蓮",
         "roles": [
-          "JUNGLE",
-          "UTILITY"
+          "MIDDLE"
         ],
         "laneStrengths": {
           "TOP": 50,
-          "JUNGLE": 20,
-          "MIDDLE": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 30,
           "BOTTOM": 50,
-          "UTILITY": 40
+          "UTILITY": 50
         },
-        "strength": 40,
+        "strength": 30,
         "pool": [
           {
-            "champId": "Blitzcrank",
+            "champId": "Akali",
             "winRate": 50,
             "mastery": 3
           },
           {
-            "champId": "Seraphine",
+            "champId": "Diana",
             "winRate": 50,
             "mastery": 3
           },
           {
-            "champId": "Braum",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Zyra",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Neeko",
+            "champId": "Lissandra",
             "winRate": 50,
             "mastery": 3
           }
         ],
-        "role": "UTILITY"
+        "role": "MIDDLE"
       }
     ]
   },
