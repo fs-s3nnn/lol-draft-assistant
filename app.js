@@ -1909,11 +1909,12 @@ async function handleChatSend() {
   try {
     let coachResponse = "";
 
-    if (AppState.geminiApiKey) {
-      // 本物の Gemini API を叩く
+    try {
+      // サーバー側の共有キー、またはユーザー個人のキーでGemini APIを叩きに行く
       coachResponse = await sendChatMessageToGemini(query);
-    } else {
-      // APIキーがない場合の簡易AI (ローカル)
+    } catch (apiErr) {
+      console.warn("Failed to get response from Gemini API, falling back to local coach.", apiErr);
+      // APIキー未設定やネットワークエラーの時は、ローカルの簡易コーチが応答を返す
       coachResponse = getLocalCoachResponse(query);
     }
 
@@ -1997,13 +1998,16 @@ ${JSON.stringify(context, null, 2)}
     }
   ];
 
-  // APIリクエスト (Gemini 1.5 Flash API の呼び出し)
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AppState.geminiApiKey}`, {
+  // サーバーのハイブリッドAPIプロキシを呼び出します（個人キーがあれば一緒に送信）
+  const response = await fetch(`/api/chat`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ contents: contents })
+    body: JSON.stringify({ 
+      contents: contents,
+      apiKey: AppState.geminiApiKey || ""
+    })
   });
 
   if (!response.ok) {

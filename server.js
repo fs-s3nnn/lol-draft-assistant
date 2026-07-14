@@ -107,6 +107,113 @@ app.post('/api/data', (req, res) => {
   });
 });
 
+// AIチャットプロキシAPI (Gemini & ChatGPT 両対応)
+app.post('/api/chat', async (req, res) => {
+  const { contents } = req.body;
+  
+  // フロントエンドから個人のキーが渡されているか、無ければサーバーの環境変数を使用
+  let clientApiKey = req.body.apiKey || "";
+  clientApiKey = clientApiKey.trim();
+
+  let useOpenAI = false;
+  let finalApiKey = "";
+
+  if (clientApiKey) {
+    useOpenAI = clientApiKey.startsWith("sk-");
+    finalApiKey = clientApiKey;
+  } else {
+    // サーバーの環境変数を確認 (OpenAIを優先、無ければGemini)
+    if (process.env.OPENAI_API_KEY) {
+      useOpenAI = true;
+      finalApiKey = process.env.OPENAI_API_KEY;
+    } else if (process.env.GEMINI_API_KEY) {
+      useOpenAI = false;
+      finalApiKey = process.env.GEMINI_API_KEY;
+    }
+  }
+
+  if (!finalApiKey) {
+    console.error("AI API key (Gemini/OpenAI) is not configured on Render server environment.");
+    return res.status(400).json({ error: 'AI API key (GEMINI_API_KEY or OPENAI_API_KEY) is not configured on the server.' });
+  }
+
+  try {
+    if (useOpenAI) {
+      // 1. OpenAI (ChatGPT: gpt-4o-mini) の呼び出し
+      // Geminiのcontentsフォーマット [ { role: "user"|"model", parts: [{ text: "..." }] } ] を
+      // OpenAIの messages フォーマット [ { role: "system"|"user"|"assistant", content: "..." } ] に変換
+      const systemInstruction = contents[0] && contents[0].parts ? contents[0].parts[0].text : "";
+      
+      const messages = [
+        { role: "system", content: systemInstruction }
+      ];
+
+      // 履歴を追加 (最初の指示プロンプトは除外)
+      for (let i = 1; i < contents.length; i++) {
+        const item = contents[i];
+        if (item.parts && item.parts[0]) {
+          messages.push({
+            role: item.role === 'user' ? 'user' : 'assistant',
+            content: item.parts[0].text
+          });
+        }
+      }
+
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${finalApiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-4o-mini", // 高速・格安・高性能
+          messages: messages
+        })
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        console.error("OpenAI API proxy error:", errText);
+        return res.status(response.status).json({ error: `OpenAI API error (Status ${response.status})` });
+      }
+
+      const resJson = await response.json();
+      const text = resJson.choices[0].message.content;
+      
+      // フロントエンドのコードを壊さないよう、Gemini風のレスポンスオブジェクトに翻訳して返す
+      return res.json({
+        candidates: [{
+          content: {
+            parts: [{ text: text }]
+          }
+        }]
+      });
+
+    } else {
+      // 2. Gemini (Gemini 1.5 Flash) の呼び出し
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${finalApiKey}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ contents: contents })
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        console.error("Gemini API proxy error:", errText);
+        return res.status(response.status).json({ error: `Gemini API error (Status ${response.status})` });
+      }
+
+      const resJson = await response.json();
+      return res.json(resJson);
+    }
+  } catch (error) {
+    console.error("Failed to proxy chat to AI:", error);
+    return res.status(500).json({ error: 'Failed to communicate with AI API via server proxy' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });

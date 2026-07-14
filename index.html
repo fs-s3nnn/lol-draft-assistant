@@ -238,14 +238,18 @@
         <p class="section-desc">AIコーチ用のAPIキー設定や、チャンピオン間の相性を定義・変更できます。</p>
       </div>
 
-      <!-- Gemini API設定 -->
+      <!-- AIコーチ設定 (Gemini / ChatGPT) -->
       <div class="setting-box gemini-config-box" style="margin-bottom: 30px;">
-        <h3>🤖 Gemini AIコーチ設定</h3>
+        <h3>🤖 AIコーチ設定 (Gemini / ChatGPT)</h3>
         <div class="setting-inputs">
           <div class="form-group" style="width: 100%;">
-            <label for="gemini-api-key">Gemini API キー：</label>
-            <input type="password" id="gemini-api-key" class="form-input" style="width: 100%;" placeholder="AIコーチとの会話機能を使うにはAPIキーを入力してください">
-            <small class="form-help">APIキーはブラウザにのみ安全に保存され、直接GoogleのAPIと通信します。※キーが未入力の場合は簡易AIが動作します。<br><a href="https://aistudio.google.com/" target="_blank" style="color: var(--blue-magic); text-decoration: underline;">Google AI Studio</a> から無料でキーを取得可能です。</small>
+            <label for="gemini-api-key">AI API キー (個別設定用)：</label>
+            <input type="password" id="gemini-api-key" class="form-input" style="width: 100%;" placeholder="サーバー側に共有キーが登録されていれば、ここは空欄のままで動作します">
+            <small class="form-help">
+              ※管理者がサーバー側 (Render) に環境変数 <code>GEMINI_API_KEY</code> または <code>OPENAI_API_KEY</code> を設定している場合、メンバー全員がキーを入力することなく自動的にAIコーチと会話できます。<br>
+              自分専用の別のキーを使いたい場合のみ、ここにキーを入力して保存してください（<code>sk-</code> から始まるOpenAIキー、または <code>AIzaSy</code> 等から始まるGeminiキーに対応し、自動認識されます）。<br>
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--blue-magic); text-decoration: underline;">Google AI Studio（無料）</a> または <a href="https://platform.openai.com/api-keys" target="_blank" style="color: var(--blue-magic); text-decoration: underline;">OpenAI Platform</a> からキーを取得可能です。
+            </small>
           </div>
           <div style="margin-top: 10px;">
             <button id="btn-save-gemini-key" class="btn btn-gold">APIキーを保存</button>
