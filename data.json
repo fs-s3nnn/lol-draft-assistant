@@ -408,23 +408,6 @@
   "teamData": {
     "blue": [
       {
-        "name": "しんJG",
-        "role": "JUNGLE",
-        "strength": 75,
-        "pool": [
-          {
-            "champId": "LeeSin",
-            "winRate": 55,
-            "mastery": 5
-          },
-          {
-            "champId": "Viego",
-            "winRate": 60,
-            "mastery": 4
-          }
-        ]
-      },
-      {
         "name": "あきTOP",
         "role": "TOP",
         "strength": 80,
@@ -437,6 +420,23 @@
           {
             "champId": "Renekton",
             "winRate": 55,
+            "mastery": 4
+          }
+        ]
+      },
+      {
+        "name": "しんJG",
+        "role": "JUNGLE",
+        "strength": 75,
+        "pool": [
+          {
+            "champId": "LeeSin",
+            "winRate": 55,
+            "mastery": 5
+          },
+          {
+            "champId": "Viego",
+            "winRate": 60,
             "mastery": 4
           }
         ]
