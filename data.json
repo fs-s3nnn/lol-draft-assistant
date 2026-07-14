@@ -1034,39 +1034,44 @@
         "role": "TOP"
       },
       {
-        "id": "custom_player_1783943444581",
-        "name": "つな",
+        "id": "custom_player_1783943464981",
+        "name": "Rulu",
         "roles": [
-          "BOTTOM"
+          "UTILITY"
         ],
         "laneStrengths": {
           "TOP": 50,
           "JUNGLE": 50,
           "MIDDLE": 50,
-          "BOTTOM": 80,
-          "UTILITY": 50
+          "BOTTOM": 50,
+          "UTILITY": 40
         },
-        "strength": 80,
+        "strength": 50,
         "pool": [
           {
-            "champId": "Smolder",
+            "champId": "Leona",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "Twitch",
+            "champId": "Nautilus",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "Samira",
+            "champId": "Alistar",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 3
           },
           {
-            "champId": "Jhin",
+            "champId": "Rell",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
+          },
+          {
+            "champId": "Braum",
+            "winRate": 50,
+            "mastery": 3
           }
         ],
         "role": "BOTTOM"
