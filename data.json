@@ -1353,21 +1353,37 @@
         "role": "JUNGLE"
       },
       {
-        "name": "さぶろう",
-        "role": "MIDDLE",
-        "strength": 75,
+        "id": "custom_player_1783945318852",
+        "name": "木蓮",
+        "roles": [
+          "MIDDLE"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 30,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 30,
         "pool": [
           {
-            "champId": "Ahri",
-            "winRate": 60,
-            "mastery": 5
+            "champId": "Akali",
+            "winRate": 50,
+            "mastery": 3
           },
           {
-            "champId": "Viktor",
+            "champId": "Diana",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 3
+          },
+          {
+            "champId": "Lissandra",
+            "winRate": 50,
+            "mastery": 3
           }
-        ]
+        ],
+        "role": "MIDDLE"
       },
       {
         "id": "custom_player_1783945872637",
