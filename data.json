@@ -1038,21 +1038,78 @@
         "role": "JUNGLE"
       },
       {
-        "name": "しんJG",
-        "role": "JUNGLE",
-        "strength": 75,
+        "id": "custom_player_1783943506843",
+        "name": "リョウテイル",
+        "roles": [
+          "JUNGLE",
+          "MIDDLE"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 50,
         "pool": [
           {
-            "champId": "LeeSin",
-            "winRate": 55,
+            "champId": "Galio",
+            "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Viego",
-            "winRate": 60,
+            "champId": "Orianna",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Xerath",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Zac",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Amumu",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Sejuani",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nocturne",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Viktor",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Syndra",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Hwei",
+            "winRate": 50,
             "mastery": 4
           }
-        ]
+        ],
+        "role": "JUNGLE"
       },
       {
         "name": "ぽんADC",
