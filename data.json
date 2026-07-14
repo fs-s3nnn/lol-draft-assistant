@@ -1047,7 +1047,28 @@
         "UTILITY": 50
       },
       "strength": 50,
-      "pool": []
+      "pool": [
+        {
+          "champId": "Taliyah",
+          "winRate": 50,
+          "mastery": 5
+        },
+        {
+          "champId": "Braum",
+          "winRate": 50,
+          "mastery": 5
+        },
+        {
+          "champId": "Morgana",
+          "winRate": 50,
+          "mastery": 5
+        },
+        {
+          "champId": "XinZhao",
+          "winRate": 50,
+          "mastery": 3
+        }
+      ]
     }
   ],
   "teamData": {
@@ -1160,8 +1181,8 @@
         "role": "BOTTOM"
       },
       {
-        "id": "custom_player_1783943506843",
-        "name": "リョウテイル",
+        "id": "custom_player_1784005654639",
+        "name": "SEN",
         "roles": [
           "JUNGLE",
           "MIDDLE"
@@ -1176,42 +1197,27 @@
         "strength": 50,
         "pool": [
           {
-            "champId": "Galio",
+            "champId": "Sylas",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Lillia",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Orianna",
+            "champId": "Zoe",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Xerath",
+            "champId": "Shaco",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Zac",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Amumu",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Sejuani",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Pantheon",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Nocturne",
+            "champId": "Leblanc",
             "winRate": 50,
             "mastery": 4
           },
@@ -1221,12 +1227,47 @@
             "mastery": 4
           },
           {
-            "champId": "Syndra",
+            "champId": "Orianna",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "JarvanIV",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
             "winRate": 50,
             "mastery": 4
           },
           {
             "champId": "Hwei",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Ahri",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Xerath",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "MonkeyKing",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nocturne",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Khazix",
             "winRate": 50,
             "mastery": 4
           }
