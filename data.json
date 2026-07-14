@@ -60,6 +60,11 @@
           "champId": "Pantheon",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "Hwei",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1261,6 +1266,11 @@
           },
           {
             "champId": "Pantheon",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Hwei",
             "winRate": 50,
             "mastery": 4
           }
