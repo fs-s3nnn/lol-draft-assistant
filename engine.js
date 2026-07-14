@@ -193,14 +193,14 @@ const DraftEngine = {
       }
     });
 
-    // 3. 相手のピックしている対面レーナーの特定 (カスタム/ランク共通で実際の敵ピックから特定)
+    // 3. 相手のピックしている対面レーナーの特定 (ロールに対応するインデックスから直接取得)
+    const roleIndices = { "TOP": 0, "JUNGLE": 1, "MIDDLE": 2, "BOTTOM": 3, "UTILITY": 4 };
+    const oppIdx = roleIndices[currentPlayer.role];
     let laneOpponentChampId = null;
-    const opponentPicksState = draftState.activeTeam === 'blue' ? draftState.redPicks : draftState.bluePicks;
-    opponentPlayers.forEach((oppPlayer, idx) => {
-      if (oppPlayer.role === currentPlayer.role) {
-        laneOpponentChampId = opponentPicksState[idx];
-      }
-    });
+    if (oppIdx !== undefined) {
+      const opponentPicksState = draftState.activeTeam === 'blue' ? draftState.redPicks : draftState.bluePicks;
+      laneOpponentChampId = opponentPicksState[oppIdx] || null;
+    }
 
     const recommendations = [];
 
