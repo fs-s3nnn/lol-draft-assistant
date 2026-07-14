@@ -56,33 +56,52 @@ const AppState = {
   }
 };
 
-// ドラフトのステップ進行定義（公式競技シーン順序）
+// ドラフトのステップ進行定義（公式競技シーン順序 or ランク戦簡易順序）
 // type: 'ban' or 'pick', team: 'blue' or 'red', slotIndex: 格納するBAN/PICKスロットのインデックス
-const DRAFT_STEPS = [
-  { type: 'ban', team: 'blue', slotIndex: 0, label: '青 BAN 1' },
-  { type: 'ban', team: 'red', slotIndex: 0, label: '赤 BAN 1' },
-  { type: 'ban', team: 'blue', slotIndex: 1, label: '青 BAN 2' },
-  { type: 'ban', team: 'red', slotIndex: 1, label: '赤 BAN 2' },
-  { type: 'ban', team: 'blue', slotIndex: 2, label: '青 BAN 3' },
-  { type: 'ban', team: 'red', slotIndex: 2, label: '赤 BAN 3' },
-  
-  { type: 'pick', team: 'blue', slotIndex: 0, label: '青 PICK 1' },
-  { type: 'pick', team: 'red', slotIndex: 0, label: '赤 PICK 1' },
-  { type: 'pick', team: 'red', slotIndex: 1, label: '赤 PICK 2' },
-  { type: 'pick', team: 'blue', slotIndex: 1, label: '青 PICK 2' },
-  { type: 'pick', team: 'blue', slotIndex: 2, label: '青 PICK 3' },
-  { type: 'pick', team: 'red', slotIndex: 2, label: '赤 PICK 3' },
-  
-  { type: 'ban', team: 'red', slotIndex: 3, label: '赤 BAN 4' },
-  { type: 'ban', team: 'blue', slotIndex: 3, label: '青 BAN 4' },
-  { type: 'ban', team: 'red', slotIndex: 4, label: '赤 BAN 5' },
-  { type: 'ban', team: 'blue', slotIndex: 4, label: '青 BAN 5' },
-  
-  { type: 'pick', team: 'red', slotIndex: 3, label: '赤 PICK 4' },
-  { type: 'pick', team: 'blue', slotIndex: 3, label: '青 PICK 4' },
-  { type: 'pick', team: 'blue', slotIndex: 4, label: '青 PICK 5' },
-  { type: 'pick', team: 'red', slotIndex: 4, label: '赤 PICK 5' }
-];
+function getDraftSteps() {
+  if (AppState.draftMode === 'ranked') {
+    // フルパランク戦：BANなし、交互にピックのみ (計10ステップ)
+    return [
+      { type: 'pick', team: 'blue', slotIndex: 0, label: '味方 TOP' },
+      { type: 'pick', team: 'red', slotIndex: 0, label: '対面敵 1' },
+      { type: 'pick', team: 'blue', slotIndex: 1, label: '味方 JUNGLE' },
+      { type: 'pick', team: 'red', slotIndex: 1, label: '対面敵 2' },
+      { type: 'pick', team: 'blue', slotIndex: 2, label: '味方 MID' },
+      { type: 'pick', team: 'red', slotIndex: 2, label: '対面敵 3' },
+      { type: 'pick', team: 'blue', slotIndex: 3, label: '味方 ADC' },
+      { type: 'pick', team: 'red', slotIndex: 3, label: '対面敵 4' },
+      { type: 'pick', team: 'blue', slotIndex: 4, label: '味方 SUPPORT' },
+      { type: 'pick', team: 'red', slotIndex: 4, label: '対面敵 5' }
+    ];
+  } else {
+    // カスタム戦：通常のドラフト (計20ステップ)
+    return [
+      { type: 'ban', team: 'blue', slotIndex: 0, label: '青 BAN 1' },
+      { type: 'ban', team: 'red', slotIndex: 0, label: '赤 BAN 1' },
+      { type: 'ban', team: 'blue', slotIndex: 1, label: '青 BAN 2' },
+      { type: 'ban', team: 'red', slotIndex: 1, label: '赤 BAN 2' },
+      { type: 'ban', team: 'blue', slotIndex: 2, label: '青 BAN 3' },
+      { type: 'ban', team: 'red', slotIndex: 2, label: '赤 BAN 3' },
+      
+      { type: 'pick', team: 'blue', slotIndex: 0, label: '青 PICK 1' },
+      { type: 'pick', team: 'red', slotIndex: 0, label: '赤 PICK 1' },
+      { type: 'pick', team: 'red', slotIndex: 1, label: '赤 PICK 2' },
+      { type: 'pick', team: 'blue', slotIndex: 1, label: '青 PICK 2' },
+      { type: 'pick', team: 'blue', slotIndex: 2, label: '青 PICK 3' },
+      { type: 'pick', team: 'red', slotIndex: 2, label: '赤 PICK 3' },
+      
+      { type: 'ban', team: 'red', slotIndex: 3, label: '赤 BAN 4' },
+      { type: 'ban', team: 'blue', slotIndex: 3, label: '青 BAN 4' },
+      { type: 'ban', team: 'red', slotIndex: 4, label: '赤 BAN 5' },
+      { type: 'ban', team: 'blue', slotIndex: 4, label: '青 BAN 5' },
+      
+      { type: 'pick', team: 'red', slotIndex: 3, label: '赤 PICK 4' },
+      { type: 'pick', team: 'blue', slotIndex: 3, label: '青 PICK 4' },
+      { type: 'pick', team: 'blue', slotIndex: 4, label: '青 PICK 5' },
+      { type: 'pick', team: 'red', slotIndex: 4, label: '赤 PICK 5' }
+    ];
+  }
+}
 
 // 初期モックデータ（初めて開いたときに見栄えを良くするため）
 const DEFAULT_BLUE_TEAM = [
@@ -741,6 +760,17 @@ function initEventListeners() {
     renderDashboard();
   });
 
+  // カウンター早見表モーダルを閉じる
+  document.getElementById("btn-close-counter-modal").addEventListener("click", () => {
+    document.getElementById("modal-counter-helper").classList.add("hidden");
+  });
+  window.addEventListener("click", (e) => {
+    const modal = document.getElementById("modal-counter-helper");
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+    }
+  });
+
   // 選手マスター新規登録
   const addMasterBtn = document.getElementById("btn-add-master-player");
   if (addMasterBtn) {
@@ -1138,6 +1168,17 @@ function renderTeamPicks(side, container) {
     info.appendChild(pRole);
     info.appendChild(cName);
 
+    // チャンピオンがピックされている場合、枠をクリックするとカウンター相性・理由モーダルを開く
+    if (champ) {
+      slot.style.cursor = "pointer";
+      slot.addEventListener("click", (e) => {
+        // ドラッグイベントとの干渉を防ぐため、アバター・情報・スロット全体のクリックのみ反応させる
+        if (e.target.closest('.pick-slot-avatar') || e.target.closest('.pick-slot-info') || e.target === slot) {
+          showCounterHelperModal(champ.id);
+        }
+      });
+    }
+
     slot.appendChild(bg);
     slot.appendChild(avatar);
     slot.appendChild(info);
@@ -1290,7 +1331,7 @@ function selectChampionForDraft(champId) {
   lockBtn.disabled = false;
 
   // プレビュー表示の更新（Pickスロット）
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   if (step && step.type === 'pick') {
     const slotEl = document.getElementById(`pick-slot-${step.team}-${step.slotIndex}`);
     if (slotEl) {
@@ -1311,7 +1352,7 @@ function handleLockIn() {
   const cid = AppState.draft.selectedChampId;
   if (!cid) return;
 
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   if (!step) return;
 
   if (step.type === 'ban') {
@@ -1342,7 +1383,7 @@ function handleLockIn() {
   // 次のステップへ
   AppState.draft.currentStepIndex++;
 
-  if (AppState.draft.currentStepIndex >= DRAFT_STEPS.length) {
+  if (AppState.draft.currentStepIndex >= getDraftSteps().length) {
     // ドラフト会議終了
     updateDraftStateUI(true);
   } else {
@@ -1391,7 +1432,7 @@ function updateDraftStateUI(isFinished = false) {
     return;
   }
 
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   if (!step) return;
 
   // タイトルとサブテキストの変更
@@ -1440,7 +1481,7 @@ function renderTurnPlayerPoolUI() {
 
   if (!box || !nameDisplay || !list) return;
 
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   
   // PICKフェーズでなければプールは非表示
   if (!step || step.type !== 'pick') {
@@ -1544,7 +1585,7 @@ function updateAIRecommendations(isFinished = false) {
     return;
   }
 
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   if (!step) return;
 
   // 現在の状況をエンジンへ渡す形に構築
@@ -1958,7 +1999,7 @@ async function handleChatSend() {
 
 // Gemini API 通信ロジック
 async function sendChatMessageToGemini(userQuery) {
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   const activeSide = step ? step.team : 'blue';
   
   const context = {
@@ -2044,7 +2085,7 @@ ${JSON.stringify(context, null, 2)}
 
 // 簡易ローカルAIコーチ（APIキー未設定時のフォールバック）
 function getLocalCoachResponse(query) {
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   if (!step) {
     return "ドラフトは既に終了しています。";
   }
@@ -2127,7 +2168,7 @@ function scrollToChatBottom() {
 
 // チームの勝利条件 (Win Condition) 計算・描画
 function updateWinConditionText() {
-  const step = DRAFT_STEPS[AppState.draft.currentStepIndex];
+  const step = getDraftSteps()[AppState.draft.currentStepIndex];
   const side = step ? step.team : 'blue'; 
   const players = AppState.teamData[side];
 
@@ -2655,5 +2696,102 @@ async function handleRunDiagnose() {
     loadingView.classList.add("hidden");
     startView.classList.remove("hidden");
     alert("通信エラーが発生しました。APIキーまたは接続状況を確認してください。");
+  }
+}
+
+// カウンター相性・理由詳細モーダルの表示
+async function showCounterHelperModal(targetChampId) {
+  const modal = document.getElementById("modal-counter-helper");
+  const targetNameEl = document.getElementById("counter-target-name");
+  const targetImgEl = document.getElementById("counter-target-img");
+  const listEl = document.getElementById("counter-rec-list");
+
+  const targetChamp = AppState.champions[targetChampId];
+  if (!targetChamp) return;
+
+  targetNameEl.textContent = targetChamp.name;
+  targetImgEl.style.backgroundImage = `url(https://ddragon.leagueoflegends.com/cdn/${AppState.ddragonVersion}/img/champion/${targetChamp.image.full})`;
+  listEl.innerHTML = `<div style="text-align: center; padding: 20px; font-size: 11px; color: #a0a5b0;">カウンターチャンピオンを検索中...</div>`;
+
+  modal.classList.remove("hidden");
+
+  // 対象チャンピオンに対するカウンターリストを取得
+  const db = AppState.customDatabase || {};
+  const counterIds = db.counters[targetChampId] || [];
+
+  if (counterIds.length === 0) {
+    listEl.innerHTML = `<div style="text-align: center; padding: 20px; font-size: 11px; color: #606570; font-style: italic;">このチャンピオンに対する登録カウンターデータがありません。</div>`;
+    return;
+  }
+
+  listEl.innerHTML = ""; // クリア
+
+  // 上位3体のカウンターを処理
+  for (const counterId of counterIds.slice(0, 3)) {
+    const counterChamp = AppState.champions[counterId];
+    if (!counterChamp) continue;
+
+    const row = document.createElement("div");
+    row.style.cssText = `
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(200, 170, 110, 0.15);
+      padding: 10px;
+      border-radius: 4px;
+    `;
+
+    const imgUrl = `https://ddragon.leagueoflegends.com/cdn/${AppState.ddragonVersion}/img/champion/${counterChamp.image.full}`;
+    row.innerHTML = `
+      <img src="${imgUrl}" alt="${counterChamp.name}" style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--hextech-gold); flex-shrink: 0; margin-top: 2px;">
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-size: 12px; color: var(--hextech-gold-light); font-weight: bold;">${counterChamp.name}</div>
+        <div class="counter-reason-text" data-counter-id="${counterId}" style="font-size: 10px; color: #d0d5e0; line-height: 1.5; margin-top: 4px;">理由を分析中...</div>
+      </div>
+    `;
+
+    listEl.appendChild(row);
+
+    // 理由の決定（静的DBから取得、無ければAIにその場で質問）
+    let reasonText = "";
+    if (db.counterReasons && db.counterReasons[targetChampId] && db.counterReasons[targetChampId][counterId]) {
+      reasonText = db.counterReasons[targetChampId][counterId];
+    }
+
+    if (reasonText) {
+      row.querySelector(".counter-reason-text").textContent = reasonText;
+    } else {
+      // 非同期でAIから理由を取得（非同期描画）
+      getAiCounterReasonAsync(targetChamp.name, counterChamp.name, row.querySelector(".counter-reason-text"));
+    }
+  }
+}
+
+// AI非同期カウンター理由取得
+async function getAiCounterReasonAsync(targetName, counterName, element) {
+  try {
+    const prompt = `League of Legendsにおいて、なぜ「${counterName}」は「${targetName}」のカウンター（相性が有利）になるのですか？プロコーチとして、スキルやレーン戦の噛み合いから理由を1文で簡潔に（50文字以内）で説明してください。返答は説明文のみ（余計な挨拶や「〜です」のような修飾は不要）にしてください。`;
+    const contents = [{ role: "user", parts: [{ text: prompt }] }];
+
+    const response = await fetch(`/api/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: contents, apiKey: AppState.geminiApiKey || "" })
+    });
+
+    if (!response.ok) throw new Error("API error");
+    const resJson = await response.json();
+    let reply = "";
+    if (resJson.candidates && resJson.candidates[0].content.parts[0].text) {
+      reply = resJson.candidates[0].content.parts[0].text.trim();
+    } else {
+      throw new Error("Empty reply");
+    }
+
+    element.textContent = reply;
+  } catch (err) {
+    console.error("AI counter reason generation failed:", err);
+    element.textContent = "レーン戦相性やスキルの仕組み上、有利に立ち回ることができます。";
   }
 }

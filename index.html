@@ -511,5 +511,32 @@
   <script src="database.js"></script>
   <script src="engine.js"></script>
   <script src="app.js"></script>
+
+  <!-- ⚔️ カウンター早見表モーダル -->
+  <div id="modal-counter-helper" class="modal hidden">
+    <div class="modal-content" style="max-width: 480px; background: #0c1218; border: 1px solid var(--gold-magic); box-shadow: 0 0 25px rgba(200, 170, 110, 0.25);">
+      <div class="modal-header" style="border-bottom: 1px solid rgba(200, 170, 110, 0.2); padding-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin: 0; font-family: 'Beaufort for LOL', sans-serif; font-size: 15px; color: var(--gold-magic); display: flex; align-items: center; gap: 8px;">
+          <span>⚔️ カウンター相性・詳細解説</span>
+        </h3>
+        <span id="btn-close-counter-modal" class="modal-close" style="cursor: pointer; font-size: 18px; color: #a0a5b0;">&times;</span>
+      </div>
+      <div class="modal-body" style="padding: 15px 0 5px 0;">
+        <!-- ターゲットの敵情報 -->
+        <div class="counter-target-champion" style="display: flex; align-items: center; gap: 12px; background: rgba(227, 26, 28, 0.05); border: 1px solid rgba(227, 26, 28, 0.15); padding: 10px; border-radius: 4px; margin-bottom: 15px;">
+          <div id="counter-target-img" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #e31a1c; background-size: cover; background-position: center;"></div>
+          <div>
+            <div style="font-size: 9px; color: #ff6b6b; font-weight: bold; letter-spacing: 0.5px;">TARGET ENEMY</div>
+            <div id="counter-target-name" style="font-size: 14px; color: #fff; font-weight: bold;">--</div>
+          </div>
+        </div>
+
+        <div style="font-size: 11px; color: #a0a5b0; margin-bottom: 10px; font-weight: bold;">おすすめのカウンター（有利な相性）：</div>
+        <div id="counter-rec-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 320px; overflow-y: auto; padding-right: 4px;">
+          <!-- JSでカウンターチャンピオンのリストと理由を動的に生成 -->
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
