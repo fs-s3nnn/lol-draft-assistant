@@ -323,6 +323,46 @@ function renderSetupTeam(side, container) {
     const row = document.createElement("div");
     row.className = "player-input-row";
     
+    // HTML5 ドラッグ＆ドロップによる並び替え設定
+    row.draggable = true;
+    row.style.cursor = "grab";
+    
+    row.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text/plain", JSON.stringify({ side: side, index: index }));
+      e.dataTransfer.effectAllowed = "move";
+      row.style.opacity = "0.5";
+      row.style.border = "1px dashed var(--gold-metallic)";
+    });
+
+    row.addEventListener("dragend", () => {
+      row.style.opacity = "1";
+      row.style.border = "";
+    });
+
+    row.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+    });
+
+    row.addEventListener("drop", (e) => {
+      e.preventDefault();
+      try {
+        const dragData = JSON.parse(e.dataTransfer.getData("text/plain"));
+        // 同じチーム内でのみ並び替えを許可
+        if (dragData && dragData.side === side && dragData.index !== index) {
+          swapTeamPlayerOrder(side, dragData.index, index);
+        }
+      } catch (err) {
+        console.error("Drop failed:", err);
+      }
+    });
+
+    // つかむ用ハンドルUIを左端に作成
+    const dragHandle = document.createElement("div");
+    dragHandle.className = "drag-handle";
+    dragHandle.style.cssText = "color: #606570; margin-right: 8px; font-weight: bold; cursor: grab; user-select: none; font-size: 14px;";
+    dragHandle.textContent = "☰";
+    
     // ロールアイコン
     const roleIcon = document.createElement("div");
     roleIcon.className = "player-role-icon";
@@ -467,6 +507,7 @@ function renderSetupTeam(side, container) {
     orderBtnGroup.appendChild(upBtn);
     orderBtnGroup.appendChild(downBtn);
 
+    row.appendChild(dragHandle);
     row.appendChild(roleIcon);
     row.appendChild(selectPlayer);
     row.appendChild(nameInput);
@@ -993,6 +1034,42 @@ function renderTeamPicks(side, container) {
     slot.dataset.index = index;
     slot.id = `pick-slot-${side}-${index}`;
 
+    // ドラフト進行中のドラッグ＆ドロップ設定 (フルパランクの敵チームはドラッグ不可)
+    const isDraggable = !isRankedRed;
+    if (isDraggable) {
+      slot.draggable = true;
+      slot.style.cursor = "grab";
+      
+      slot.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", JSON.stringify({ side: side, index: index }));
+        e.dataTransfer.effectAllowed = "move";
+        slot.style.opacity = "0.5";
+        slot.style.border = "1px dashed var(--hextech-gold)";
+      });
+
+      slot.addEventListener("dragend", () => {
+        slot.style.opacity = "1";
+        slot.style.border = "";
+      });
+
+      slot.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+      });
+
+      slot.addEventListener("drop", (e) => {
+        e.preventDefault();
+        try {
+          const dragData = JSON.parse(e.dataTransfer.getData("text/plain"));
+          if (dragData && dragData.side === side && dragData.index !== index) {
+            swapDraftSlotOrder(side, dragData.index, index);
+          }
+        } catch (err) {
+          console.error("Draft drop failed:", err);
+        }
+      });
+    }
+
     const champId = picks[index];
     const champ = champId ? AppState.champions[champId] : null;
 
@@ -1047,6 +1124,24 @@ function renderTeamPicks(side, container) {
 
     container.appendChild(slot);
   });
+}
+
+// ドラフト進行中のスロット入れ替え（プレイヤー＆ピック済みチャンプも同期スワップ）
+function swapDraftSlotOrder(side, i, j) {
+  // 1. チームプレイヤーデータの入れ替え
+  const tempPlayer = AppState.teamData[side][i];
+  AppState.teamData[side][i] = AppState.teamData[side][j];
+  AppState.teamData[side][j] = tempPlayer;
+
+  // 2. ピック済みチャンピオンの同期入れ替え
+  const picksKey = `${side}Picks`;
+  const tempChamp = AppState.draft[picksKey][i];
+  AppState.draft[picksKey][i] = AppState.draft[picksKey][j];
+  AppState.draft[picksKey][j] = tempChamp;
+
+  saveTeamData();
+  renderDraftPicks();
+  showToast("ドラフト内の配置を入れ替えました！");
 }
 
 // BAN枠の描画

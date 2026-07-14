@@ -1601,3 +1601,161 @@ body {
   box-shadow: none !important;
 }
 
+/* ==========================================
+   レスポンシブデザイン（画面サイズ調整）
+   ========================================== */
+
+/* 1400px以下のノートPCディスプレイ向けの調整 */
+@media (max-width: 1400px) {
+  .draft-main-layout {
+    grid-template-columns: 220px 1fr 220px;
+    gap: 15px;
+  }
+  .pick-slot {
+    height: 75px;
+    padding: 0 10px;
+  }
+  .pick-slot-avatar {
+    width: 36px;
+    height: 36px;
+  }
+  .pick-player-name {
+    font-size: 11px;
+  }
+  .pick-player-role {
+    font-size: 9px;
+  }
+  .pick-champ-name {
+    font-size: 12px;
+  }
+}
+
+/* 1150px以下の時のダッシュボードとドラフト調整 */
+@media (max-width: 1150px) {
+  .player-input-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+  .select-player-dropdown {
+    max-width: 100% !important;
+    flex: 1 1 45% !important;
+  }
+  .input-name {
+    flex: 1 1 45% !important;
+  }
+  .input-strength {
+    flex: 1 1 30% !important;
+  }
+  .select-role {
+    flex: 1 1 30% !important;
+  }
+  .player-pool-preview {
+    flex: 1 1 100% !important;
+    margin-top: 5px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 5px;
+  }
+  .player-input-row .btn {
+    flex: 1 1 100% !important;
+    margin-top: 5px;
+  }
+  
+  /* ドラフトレイアウトをスリムに */
+  .draft-main-layout {
+    grid-template-columns: 180px 1fr 180px;
+    gap: 10px;
+  }
+  .pick-slot {
+    height: 65px;
+    padding: 0 5px;
+  }
+  .pick-slot-avatar {
+    width: 30px;
+    height: 30px;
+  }
+  .pick-slot-info {
+    margin-left: 8px;
+  }
+  .pick-player-name, .pick-champ-name {
+    font-size: 10px;
+  }
+}
+
+/* 980px以下のタブレット・モバイル向け縦型ドラフト画面 */
+@media (max-width: 980px) {
+  .draft-main-layout {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+  
+  /* 左右のピックスロット列を、縦積みではなく5列の横並びストリップにする */
+  .picks-column {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 6px !important;
+  }
+  
+  .pick-slot {
+    height: 68px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 4px !important;
+    border-width: 1px !important;
+    border-bottom-width: 3px !important;
+  }
+  
+  /* チームごとの枠線の向きを下に統一 */
+  .picks-column.blue-picks .pick-slot {
+    border-left: 1px solid var(--hextech-gold-border) !important;
+    border-bottom: 3px solid rgba(0, 90, 130, 0.7) !important;
+  }
+  .picks-column.red-picks .pick-slot {
+    border-right: 1px solid var(--hextech-gold-border) !important;
+    border-bottom: 3px solid rgba(140, 28, 28, 0.7) !important;
+  }
+  
+  .pick-slot-bg {
+    opacity: 0.1 !important;
+  }
+  
+  .pick-slot-avatar {
+    margin-bottom: 2px !important;
+    width: 26px !important;
+    height: 26px !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  
+  .pick-slot-info {
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  .pick-player-name {
+    font-size: 8px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60px;
+  }
+  
+  .pick-player-role {
+    font-size: 7px !important;
+    margin: 0 !important;
+  }
+  
+  .pick-champ-name {
+    font-size: 8px !important;
+    font-weight: bold !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60px;
+  }
+}
+
