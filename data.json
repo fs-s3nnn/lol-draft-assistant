@@ -1150,21 +1150,73 @@
         "role": "BOTTOM"
       },
       {
-        "name": "すうSUP",
-        "role": "UTILITY",
+        "id": "custom_player_1783943452451",
+        "name": "JJ",
+        "roles": [
+          "BOTTOM",
+          "UTILITY"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 80,
+          "UTILITY": 80
+        },
         "strength": 80,
         "pool": [
           {
-            "champId": "Thresh",
+            "champId": "Caitlyn",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Varus",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Ashe",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Nautilus",
-            "winRate": 55,
-            "mastery": 4
+            "champId": "Blitzcrank",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Twitch",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "TahmKench",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Rakan",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Morgana",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Lulu",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Lucian",
+            "winRate": 50,
+            "mastery": 5
           }
-        ]
+        ],
+        "role": "UTILITY"
       }
     ],
     "red": [
