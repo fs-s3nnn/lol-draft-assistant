@@ -1221,21 +1221,72 @@
     ],
     "red": [
       {
-        "name": "たろう",
-        "role": "TOP",
-        "strength": 80,
+        "id": "custom_player_1783945286022",
+        "name": "skk",
+        "roles": [
+          "TOP"
+        ],
+        "laneStrengths": {
+          "TOP": 60,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 60,
         "pool": [
           {
-            "champId": "Jax",
-            "winRate": 55,
+            "champId": "Sion",
+            "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Jayce",
+            "champId": "Renekton",
             "winRate": 50,
             "mastery": 4
+          },
+          {
+            "champId": "Gwen",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Darius",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Garen",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "DrMundo",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Ornn",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Mordekaiser",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Illaoi",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Yorick",
+            "winRate": 50,
+            "mastery": 5
           }
-        ]
+        ],
+        "role": "TOP"
       },
       {
         "name": "じろう",
