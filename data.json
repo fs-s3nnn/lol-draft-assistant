@@ -436,21 +436,33 @@
   "teamData": {
     "blue": [
       {
-        "name": "てらMID",
-        "role": "MIDDLE",
-        "strength": 90,
+        "id": "custom_player_1784005654639",
+        "name": "SEN",
+        "roles": [
+          "JUNGLE",
+          "MIDDLE"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 50,
         "pool": [
           {
-            "champId": "Azir",
-            "winRate": 65,
-            "mastery": 5
+            "champId": "Sylas",
+            "winRate": 50,
+            "mastery": 4
           },
           {
-            "champId": "Orianna",
-            "winRate": 55,
-            "mastery": 4
+            "champId": "Lillia",
+            "winRate": 50,
+            "mastery": 5
           }
-        ]
+        ],
+        "role": "MIDDLE"
       },
       {
         "name": "あきTOP",
@@ -2511,5 +2523,5 @@
     "synergies": {}
   },
   "draftHistory": [],
-  "draftMode": "ranked"
+  "draftMode": "custom"
 }
