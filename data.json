@@ -35,6 +35,11 @@
           "champId": "Shaco",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "Leblanc",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1211,6 +1216,11 @@
           },
           {
             "champId": "Shaco",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Leblanc",
             "winRate": 50,
             "mastery": 4
           }
