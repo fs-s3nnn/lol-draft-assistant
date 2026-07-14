@@ -970,34 +970,40 @@
   "teamData": {
     "blue": [
       {
-        "id": "custom_player_1783943386498",
-        "name": "あとみ",
+        "id": "custom_player_1783943410763",
+        "name": "おじん",
         "roles": [
-          "TOP"
+          "TOP",
+          "JUNGLE"
         ],
         "laneStrengths": {
-          "TOP": 30,
-          "JUNGLE": 50,
+          "TOP": 60,
+          "JUNGLE": 60,
           "MIDDLE": 50,
           "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 30,
+        "strength": 60,
         "pool": [
           {
-            "champId": "Malphite",
+            "champId": "Ambessa",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 5
           },
           {
-            "champId": "DrMundo",
+            "champId": "KSante",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           },
           {
-            "champId": "Maokai",
+            "champId": "Darius",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
+          },
+          {
+            "champId": "Ekko",
+            "winRate": 50,
+            "mastery": 5
           }
         ],
         "role": "TOP"
