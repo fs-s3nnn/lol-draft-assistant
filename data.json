@@ -25,6 +25,11 @@
           "champId": "Lillia",
           "winRate": 50,
           "mastery": 5
+        },
+        {
+          "champId": "Zoe",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -965,6 +970,24 @@
           "mastery": 4
         }
       ]
+    },
+    {
+      "id": "custom_player_1784030454683",
+      "name": "erasou",
+      "roles": [
+        "JUNGLE",
+        "BOTTOM",
+        "UTILITY"
+      ],
+      "laneStrengths": {
+        "TOP": 50,
+        "JUNGLE": 50,
+        "MIDDLE": 50,
+        "BOTTOM": 50,
+        "UTILITY": 50
+      },
+      "strength": 50,
+      "pool": []
     }
   ],
   "teamData": {
@@ -1175,6 +1198,11 @@
             "champId": "Lillia",
             "winRate": 50,
             "mastery": 5
+          },
+          {
+            "champId": "Zoe",
+            "winRate": 50,
+            "mastery": 4
           }
         ],
         "role": "JUNGLE"
