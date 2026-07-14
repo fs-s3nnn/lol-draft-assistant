@@ -1117,68 +1117,48 @@
         "role": "BOTTOM"
       },
       {
-        "id": "custom_player_1783945258452",
-        "name": "れいちぇる",
+        "id": "custom_player_1783945279541",
+        "name": "senna.",
         "roles": [
           "JUNGLE",
-          "BOTTOM"
+          "UTILITY"
         ],
         "laneStrengths": {
           "TOP": 50,
-          "JUNGLE": 50,
+          "JUNGLE": 20,
           "MIDDLE": 50,
           "BOTTOM": 50,
-          "UTILITY": 50
+          "UTILITY": 40
         },
-        "strength": 50,
+        "strength": 40,
         "pool": [
           {
-            "champId": "Sylas",
+            "champId": "Blitzcrank",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 3
           },
           {
-            "champId": "Jax",
+            "champId": "Seraphine",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 3
           },
           {
-            "champId": "XinZhao",
+            "champId": "Braum",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 3
           },
           {
-            "champId": "Viego",
+            "champId": "Zyra",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 3
           },
           {
-            "champId": "Amumu",
+            "champId": "Neeko",
             "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Nidalee",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Vi",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "LeeSin",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Pantheon",
-            "winRate": 50,
-            "mastery": 4
+            "mastery": 3
           }
         ],
-        "role": "TOP"
+        "role": "UTILITY"
       },
       {
         "id": "custom_player_1784005654639",
@@ -1315,48 +1295,68 @@
         "role": "JUNGLE"
       },
       {
-        "id": "custom_player_1783945279541",
-        "name": "senna.",
+        "id": "custom_player_1783945258452",
+        "name": "れいちぇる",
         "roles": [
           "JUNGLE",
-          "UTILITY"
+          "BOTTOM"
         ],
         "laneStrengths": {
           "TOP": 50,
-          "JUNGLE": 20,
+          "JUNGLE": 50,
           "MIDDLE": 50,
           "BOTTOM": 50,
-          "UTILITY": 40
+          "UTILITY": 50
         },
-        "strength": 40,
+        "strength": 50,
         "pool": [
           {
-            "champId": "Blitzcrank",
+            "champId": "Sylas",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           },
           {
-            "champId": "Seraphine",
+            "champId": "Jax",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 5
           },
           {
-            "champId": "Braum",
+            "champId": "XinZhao",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           },
           {
-            "champId": "Zyra",
+            "champId": "Viego",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           },
           {
-            "champId": "Neeko",
+            "champId": "Amumu",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
+          },
+          {
+            "champId": "Nidalee",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Vi",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "LeeSin",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
+            "winRate": 50,
+            "mastery": 4
           }
         ],
-        "role": "UTILITY"
+        "role": "TOP"
       }
     ],
     "red": [
