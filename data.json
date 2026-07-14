@@ -50,6 +50,11 @@
           "champId": "Orianna",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "JarvanIV",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1241,6 +1246,11 @@
           },
           {
             "champId": "Orianna",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "JarvanIV",
             "winRate": 50,
             "mastery": 4
           }
