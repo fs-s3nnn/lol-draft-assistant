@@ -70,6 +70,11 @@
           "champId": "Ahri",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "Xerath",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1281,6 +1286,11 @@
           },
           {
             "champId": "Ahri",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Xerath",
             "winRate": 50,
             "mastery": 4
           }
