@@ -1112,21 +1112,42 @@
         "role": "MIDDLE"
       },
       {
-        "name": "ぽんADC",
-        "role": "BOTTOM",
-        "strength": 85,
+        "id": "custom_player_1783943444581",
+        "name": "つな",
+        "roles": [
+          "BOTTOM"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 80,
+          "UTILITY": 50
+        },
+        "strength": 80,
         "pool": [
           {
-            "champId": "Aphelios",
-            "winRate": 55,
+            "champId": "Smolder",
+            "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Jinx",
-            "winRate": 60,
-            "mastery": 4
+            "champId": "Twitch",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Samira",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Jhin",
+            "winRate": 50,
+            "mastery": 5
           }
-        ]
+        ],
+        "role": "BOTTOM"
       },
       {
         "name": "すうSUP",
