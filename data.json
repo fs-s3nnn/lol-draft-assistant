@@ -970,40 +970,65 @@
   "teamData": {
     "blue": [
       {
-        "id": "custom_player_1783943410763",
-        "name": "おじん",
+        "id": "custom_player_1783945258452",
+        "name": "れいちぇる",
         "roles": [
-          "TOP",
-          "JUNGLE"
+          "JUNGLE",
+          "BOTTOM"
         ],
         "laneStrengths": {
-          "TOP": 60,
-          "JUNGLE": 60,
+          "TOP": 50,
+          "JUNGLE": 50,
           "MIDDLE": 50,
           "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 60,
+        "strength": 50,
         "pool": [
           {
-            "champId": "Ambessa",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "KSante",
+            "champId": "Sylas",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Darius",
+            "champId": "Jax",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "XinZhao",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Ekko",
+            "champId": "Viego",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
+          },
+          {
+            "champId": "Amumu",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nidalee",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Vi",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "LeeSin",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
+            "winRate": 50,
+            "mastery": 4
           }
         ],
         "role": "TOP"
@@ -3379,5 +3404,5 @@
     "synergies": {}
   },
   "draftHistory": [],
-  "draftMode": "custom"
+  "draftMode": "ranked"
 }
