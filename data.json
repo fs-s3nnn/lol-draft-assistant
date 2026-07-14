@@ -30,6 +30,11 @@
           "champId": "Zoe",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "Shaco",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1201,6 +1206,11 @@
           },
           {
             "champId": "Zoe",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Shaco",
             "winRate": 50,
             "mastery": 4
           }
