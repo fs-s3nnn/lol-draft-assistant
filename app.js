@@ -290,8 +290,29 @@ function parseUrlData() {}
 
 // ダッシュボードUIの描画
 function renderDashboard() {
+  const redCard = document.querySelector(".team-setup-card.red-side");
+  const blueHeader = document.querySelector(".team-setup-card.blue-side .side-badge");
+
+  if (AppState.draftMode === "ranked") {
+    // フルパランクモードの時は相手チーム設定を非表示にする
+    if (redCard) redCard.style.display = "none";
+    if (blueHeader) {
+      blueHeader.textContent = "MY TEAM (味方チーム)";
+      blueHeader.style.background = "linear-gradient(135deg, #1f3b5c, #0a1424)";
+    }
+  } else {
+    // カスタム戦では両方表示
+    if (redCard) redCard.style.display = "block";
+    if (blueHeader) {
+      blueHeader.textContent = "BLUE TEAM (味方)";
+      blueHeader.style.background = "linear-gradient(135deg, #102a45, #1f8bbf)";
+    }
+  }
+
   renderSetupTeam('blue', document.getElementById("blue-players-list"));
-  renderSetupTeam('red', document.getElementById("red-players-list"));
+  if (AppState.draftMode !== "ranked") {
+    renderSetupTeam('red', document.getElementById("red-players-list"));
+  }
 }
 
 function renderSetupTeam(side, container) {
@@ -648,6 +669,7 @@ function initEventListeners() {
     document.getElementById("btn-mode-ranked").classList.remove("active");
     AppState.draftMode = "custom";
     showToast("対戦モード：カスタム戦 (相手の得意プールを考慮します)");
+    renderDashboard();
   });
 
   document.getElementById("btn-mode-ranked").addEventListener("click", () => {
@@ -655,6 +677,7 @@ function initEventListeners() {
     document.getElementById("btn-mode-ranked").classList.add("active");
     AppState.draftMode = "ranked";
     showToast("対戦モード：フルパランク (相手プールを非開示にし、一般メタからBAN推奨を出します)");
+    renderDashboard();
   });
 
   // 選手マスター新規登録
@@ -962,6 +985,7 @@ function renderTeamPicks(side, container) {
   container.innerHTML = "";
   const players = AppState.teamData[side];
   const picks = side === 'blue' ? AppState.draft.bluePicks : AppState.draft.redPicks;
+  const isRankedRed = side === 'red' && AppState.draftMode === 'ranked';
 
   players.forEach((player, index) => {
     const slot = document.createElement("div");
@@ -985,6 +1009,11 @@ function renderTeamPicks(side, container) {
     avatar.className = "pick-slot-avatar";
     if (champ) {
       avatar.style.backgroundImage = `url(https://ddragon.leagueoflegends.com/cdn/${AppState.ddragonVersion}/img/champion/${champ.image.full})`;
+    } else if (isRankedRed) {
+      // ランク戦の敵未ピック枠は赤いクエスチョンアバター
+      avatar.style.backgroundImage = "none";
+      avatar.innerHTML = `<span style="font-size: 18px; color: #ff4e50; font-weight: 700; line-height: 1.8;">?</span>`;
+      avatar.style.cssText = "display: flex; align-items: center; justify-content: center; border: 1.5px dashed rgba(255, 78, 80, 0.4); background: rgba(255, 78, 80, 0.05); border-radius: 50%;";
     }
 
     // プレイヤー＆チャンプ情報
@@ -993,7 +1022,12 @@ function renderTeamPicks(side, container) {
     
     const pName = document.createElement("span");
     pName.className = "pick-player-name";
-    pName.textContent = player.name || `プレイヤー ${index+1}`;
+    if (isRankedRed) {
+      pName.textContent = `対面敵 ${index + 1}`;
+      pName.style.color = "#ff4e50";
+    } else {
+      pName.textContent = player.name || `プレイヤー ${index+1}`;
+    }
 
     const pRole = document.createElement("span");
     pRole.className = "pick-player-role";
@@ -1295,6 +1329,12 @@ function renderTurnPlayerPoolUI() {
   
   // PICKフェーズでなければプールは非表示
   if (!step || step.type !== 'pick') {
+    box.classList.add("hidden");
+    return;
+  }
+
+  // フルパランク戦での敵手番時はプールを非表示にする
+  if (step.team === 'red' && AppState.draftMode === 'ranked') {
     box.classList.add("hidden");
     return;
   }
