@@ -80,6 +80,11 @@
           "champId": "MonkeyKing",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "Nocturne",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1301,6 +1306,11 @@
           },
           {
             "champId": "MonkeyKing",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nocturne",
             "winRate": 50,
             "mastery": 4
           }
