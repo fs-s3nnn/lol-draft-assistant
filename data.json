@@ -1008,33 +1008,73 @@
         "role": "BOTTOM"
       },
       {
-        "id": "custom_player_1784005654639",
-        "name": "SEN",
+        "id": "custom_player_1783943452451",
+        "name": "JJ",
         "roles": [
-          "JUNGLE",
-          "MIDDLE"
+          "BOTTOM",
+          "UTILITY"
         ],
         "laneStrengths": {
           "TOP": 50,
           "JUNGLE": 50,
           "MIDDLE": 50,
-          "BOTTOM": 50,
-          "UTILITY": 50
+          "BOTTOM": 80,
+          "UTILITY": 80
         },
-        "strength": 50,
+        "strength": 80,
         "pool": [
           {
-            "champId": "Sylas",
+            "champId": "Caitlyn",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Varus",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Ashe",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Lillia",
+            "champId": "Blitzcrank",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Twitch",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "TahmKench",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Rakan",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Morgana",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Lulu",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Lucian",
             "winRate": 50,
             "mastery": 5
           }
         ],
-        "role": "JUNGLE"
+        "role": "UTILITY"
       },
       {
         "id": "custom_player_1783943506843",
@@ -1150,73 +1190,33 @@
         "role": "TOP"
       },
       {
-        "id": "custom_player_1783943452451",
-        "name": "JJ",
+        "id": "custom_player_1784005654639",
+        "name": "SEN",
         "roles": [
-          "BOTTOM",
-          "UTILITY"
+          "JUNGLE",
+          "MIDDLE"
         ],
         "laneStrengths": {
           "TOP": 50,
           "JUNGLE": 50,
           "MIDDLE": 50,
-          "BOTTOM": 80,
-          "UTILITY": 80
+          "BOTTOM": 50,
+          "UTILITY": 50
         },
-        "strength": 80,
+        "strength": 50,
         "pool": [
           {
-            "champId": "Caitlyn",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Varus",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Ashe",
+            "champId": "Sylas",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Blitzcrank",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Twitch",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "TahmKench",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Rakan",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Morgana",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Lulu",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Lucian",
+            "champId": "Lillia",
             "winRate": 50,
             "mastery": 5
           }
         ],
-        "role": "UTILITY"
+        "role": "JUNGLE"
       }
     ],
     "red": [
