@@ -1759,3 +1759,20 @@ body {
   }
 }
 
+/* ==========================================
+   AI診断パネル・アニメーション用スタイル
+   ========================================== */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.diagnose-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.diagnose-text-box {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+

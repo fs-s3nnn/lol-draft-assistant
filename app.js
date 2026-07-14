@@ -654,30 +654,46 @@ function initEventListeners() {
     document.getElementById("btn-show-dashboard").click();
   });
 
-  // ドラフト画面内のタブ切り替え（チャンピオン一覧 vs AI推奨 vs AIチャット）
+  // ドラフト画面内のタブ切り替え（チャンピオン一覧 vs AI推奨 vs AI構成診断 vs AIチャット）
   document.getElementById("tab-btn-champions").addEventListener("click", () => {
     document.getElementById("tab-btn-champions").classList.add("active");
     document.getElementById("tab-btn-ai").classList.remove("active");
+    document.getElementById("tab-btn-diagnose").classList.remove("active");
     document.getElementById("tab-btn-chat").classList.remove("active");
     document.getElementById("panel-champions").classList.add("active");
     document.getElementById("panel-ai").classList.remove("active");
+    document.getElementById("panel-diagnose").classList.remove("active");
     document.getElementById("panel-chat").classList.remove("active");
   });
   document.getElementById("tab-btn-ai").addEventListener("click", () => {
     document.getElementById("tab-btn-champions").classList.remove("active");
     document.getElementById("tab-btn-ai").classList.add("active");
+    document.getElementById("tab-btn-diagnose").classList.remove("active");
     document.getElementById("tab-btn-chat").classList.remove("active");
     document.getElementById("panel-champions").classList.remove("active");
     document.getElementById("panel-ai").classList.add("active");
+    document.getElementById("panel-diagnose").classList.remove("active");
     document.getElementById("panel-chat").classList.remove("active");
     updateAIRecommendations(); // 推奨の更新
+  });
+  document.getElementById("tab-btn-diagnose").addEventListener("click", () => {
+    document.getElementById("tab-btn-champions").classList.remove("active");
+    document.getElementById("tab-btn-ai").classList.remove("active");
+    document.getElementById("tab-btn-diagnose").classList.add("active");
+    document.getElementById("tab-btn-chat").classList.remove("active");
+    document.getElementById("panel-champions").classList.remove("active");
+    document.getElementById("panel-ai").classList.remove("active");
+    document.getElementById("panel-diagnose").classList.add("active");
+    document.getElementById("panel-chat").classList.remove("active");
   });
   document.getElementById("tab-btn-chat").addEventListener("click", () => {
     document.getElementById("tab-btn-champions").classList.remove("active");
     document.getElementById("tab-btn-ai").classList.remove("active");
+    document.getElementById("tab-btn-diagnose").classList.remove("active");
     document.getElementById("tab-btn-chat").classList.add("active");
     document.getElementById("panel-champions").classList.remove("active");
     document.getElementById("panel-ai").classList.remove("active");
+    document.getElementById("panel-diagnose").classList.remove("active");
     document.getElementById("panel-chat").classList.add("active");
     scrollToChatBottom();
   });
@@ -703,6 +719,10 @@ function initEventListeners() {
       handleChatSend();
     }
   });
+
+  // AI構成診断の実行
+  document.getElementById("btn-run-diagnose").addEventListener("click", handleRunDiagnose);
+  document.getElementById("btn-re-diagnose").addEventListener("click", handleRunDiagnose);
 
   // ドラフトモード切り替え
   document.getElementById("btn-mode-custom").addEventListener("click", () => {
@@ -2488,4 +2508,152 @@ function deleteDraftHistory(id) {
   saveDataToServer();
   renderDraftHistoryList();
   showToast("構成を削除しました。");
+}
+
+// AI構成診断の実行
+async function handleRunDiagnose() {
+  const startView = document.getElementById("ai-diagnose-start-view");
+  const loadingView = document.getElementById("ai-diagnose-loading-view");
+  const resultView = document.getElementById("ai-diagnose-result-view");
+
+  startView.classList.add("hidden");
+  loadingView.classList.remove("hidden");
+  resultView.classList.add("hidden");
+
+  // ドラフトのピック情報を収集
+  const bluePicks = AppState.draft.bluePicks.filter(Boolean);
+  const redPicks = AppState.draft.redPicks.filter(Boolean);
+  const blueBans = AppState.draft.blueBans.filter(Boolean);
+  const redBans = AppState.draft.redBans.filter(Boolean);
+
+  if (bluePicks.length === 0 && redPicks.length === 0) {
+    loadingView.classList.add("hidden");
+    startView.classList.remove("hidden");
+    alert("ドラフトのピックが1体も選択されていません。診断を開始するにはチャンピオンをピックしてください。");
+    return;
+  }
+
+  // AIへの診断用特別プロンプトの構築
+  const prompt = `
+あなたはLeague of Legends (LoL) のプロフェッショナルコーチです。現在のドラフト完了状況（または途中経過）を徹底的に分析し、両チームの構成相性、勝率予測、時間帯別の具体的な勝利ゲームプラン、集団戦のイメージ、およびキープレイヤーを出力してください。
+
+【現在のドラフト状況】
+・味方チーム (BLUE): [${bluePicks.join(', ')}]
+・敵チーム (RED): [${redPicks.join(', ')}]
+・味方のBAN: [${blueBans.join(', ')}]
+・相手のBAN: [${redBans.join(', ')}]
+・モード: ${AppState.draftMode === 'ranked' ? 'フルパランク戦 (相手情報不明)' : 'カスタム戦 (相手情報開示済み)'}
+
+【出力の絶対ルール】
+必ず以下の6つのセクションを厳密に含めて出力してください。特に「有利度」の行はパーセンテージを解析するため、必ず指定のフォーマット「【有利度】味方XX% / 敵YY%」で記述してください（足して100%になるようにすること）。
+
+---
+【有利度】味方〇% / 敵〇%
+
+【強みと弱み】
+（ここに味方チームのピック構成のシナジーや、集団戦、キャリー力、強みと弱みを詳細に書く。箇条書きまたは段落）
+
+【警戒ポイント】
+（ここに敵チームの構成で警戒すべき点、カウンターされているレーン、相手の強い時間帯などを詳細に書く）
+
+【ゲームプラン】
+（ここに味方チームが勝つための具体的なゲームプランと時間帯別の立ち回りを詳細に書く）
+
+【集団戦のイメージ】
+（ここに集団戦での具体的なスキル連携、フォーカスすべき対象、立ち回りのイメージ、エンゲージの主導権などを詳細に書く）
+
+【キープレイヤー】
+（ここにこの試合の勝敗の鍵を握る味方のチャンピオンとそのレーン、担うべき役割を詳細に書く）
+---
+`;
+
+  try {
+    const contents = [
+      {
+        role: "user",
+        parts: [{ text: prompt }]
+      }
+    ];
+
+    // AIプロキシAPIを呼び出す
+    const response = await fetch(`/api/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ 
+        contents: contents,
+        apiKey: AppState.geminiApiKey || ""
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const resJson = await response.json();
+    let reply = "";
+    if (resJson.candidates && resJson.candidates[0].content.parts[0].text) {
+      reply = resJson.candidates[0].content.parts[0].text.trim();
+    } else {
+      throw new Error("無効なAPIレスポンスです。");
+    }
+
+    // 診断結果のパース処理
+    let winRateBlue = 50;
+    let winRateRed = 50;
+
+    // 【有利度】味方XX% / 敵YY% というテキストからパーセンテージを正規表現で抽出
+    const winRateMatch = reply.match(/【有利度】.*?味方\s*(\d+)\s*%\s*[\/\s]*敵\s*(\d+)\s*%/);
+    if (winRateMatch) {
+      winRateBlue = parseInt(winRateMatch[1]) || 50;
+      winRateRed = parseInt(winRateMatch[2]) || 50;
+    }
+
+    // 各セクションのテキストの切り分け
+    const sections = {
+      strengths: "--",
+      threats: "--",
+      plan: "--",
+      teamfight: "--",
+      keyplayer: "--"
+    };
+
+    const strengthsMatch = reply.match(/【強みと弱み】([\s\S]*?)(?=【|$)/);
+    const threatsMatch = reply.match(/【警戒ポイント】([\s\S]*?)(?=【|$)/);
+    const planMatch = reply.match(/【ゲームプラン】([\s\S]*?)(?=【|$)/);
+    const teamfightMatch = reply.match(/【集団戦のイメージ】([\s\S]*?)(?=【|$)/);
+    const keyplayerMatch = reply.match(/【キープレイヤー】([\s\S]*?)(?=【|$)/);
+
+    if (strengthsMatch) sections.strengths = strengthsMatch[1].trim();
+    if (threatsMatch) sections.threats = threatsMatch[1].trim();
+    if (planMatch) sections.plan = planMatch[1].trim();
+    if (teamfightMatch) sections.teamfight = teamfightMatch[1].trim();
+    if (keyplayerMatch) sections.keyplayer = keyplayerMatch[1].trim();
+
+    // UIへ反映
+    const barBlue = document.getElementById("diagnose-bar-blue");
+    const barRed = document.getElementById("diagnose-bar-red");
+
+    barBlue.style.width = `${winRateBlue}%`;
+    barBlue.textContent = `味方 ${winRateBlue}%`;
+    barRed.style.width = `${winRateRed}%`;
+    barRed.textContent = `敵 ${winRateRed}%`;
+
+    document.getElementById("diagnose-txt-strengths").textContent = sections.strengths;
+    document.getElementById("diagnose-txt-threats").textContent = sections.threats;
+    document.getElementById("diagnose-txt-plan").textContent = sections.plan;
+    document.getElementById("diagnose-txt-teamfight").textContent = sections.teamfight;
+    document.getElementById("diagnose-txt-keyplayer").textContent = sections.keyplayer;
+
+    loadingView.classList.add("hidden");
+    resultView.classList.remove("hidden");
+    showToast("AI構成診断が完了しました！");
+
+  } catch (error) {
+    console.error("AI診断の実行に失敗しました。", error);
+    loadingView.classList.add("hidden");
+    startView.classList.remove("hidden");
+    alert("通信エラーが発生しました。APIキーまたは接続状況を確認してください。");
+  }
 }
