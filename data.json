@@ -65,6 +65,11 @@
           "champId": "Hwei",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "Ahri",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1271,6 +1276,11 @@
           },
           {
             "champId": "Hwei",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Ahri",
             "winRate": 50,
             "mastery": 4
           }
