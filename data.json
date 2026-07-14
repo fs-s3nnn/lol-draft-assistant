@@ -1151,6 +1151,35 @@
         "role": "MIDDLE"
       },
       {
+        "id": "custom_player_1784005654639",
+        "name": "SEN",
+        "roles": [
+          "JUNGLE",
+          "MIDDLE"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 50,
+        "pool": [
+          {
+            "champId": "Sylas",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Lillia",
+            "winRate": 50,
+            "mastery": 5
+          }
+        ],
+        "role": "JUNGLE"
+      },
+      {
         "id": "custom_player_1783943410763",
         "name": "おじん",
         "roles": [
@@ -1188,35 +1217,6 @@
           }
         ],
         "role": "TOP"
-      },
-      {
-        "id": "custom_player_1784005654639",
-        "name": "SEN",
-        "roles": [
-          "JUNGLE",
-          "MIDDLE"
-        ],
-        "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 50,
-          "BOTTOM": 50,
-          "UTILITY": 50
-        },
-        "strength": 50,
-        "pool": [
-          {
-            "champId": "Sylas",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Lillia",
-            "winRate": 50,
-            "mastery": 5
-          }
-        ],
-        "role": "JUNGLE"
       }
     ],
     "red": [
