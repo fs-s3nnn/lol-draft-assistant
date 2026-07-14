@@ -75,6 +75,11 @@
           "champId": "Xerath",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "MonkeyKing",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1291,6 +1296,11 @@
           },
           {
             "champId": "Xerath",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "MonkeyKing",
             "winRate": 50,
             "mastery": 4
           }
