@@ -1289,21 +1289,68 @@
         "role": "TOP"
       },
       {
-        "name": "じろう",
-        "role": "JUNGLE",
-        "strength": 85,
+        "id": "custom_player_1783945258452",
+        "name": "れいちぇる",
+        "roles": [
+          "JUNGLE",
+          "BOTTOM"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 50,
         "pool": [
           {
-            "champId": "Graves",
-            "winRate": 55,
+            "champId": "Sylas",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Jax",
+            "winRate": 50,
             "mastery": 5
           },
           {
             "champId": "XinZhao",
-            "winRate": 60,
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Viego",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Amumu",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nidalee",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Vi",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "LeeSin",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
+            "winRate": 50,
             "mastery": 4
           }
-        ]
+        ],
+        "role": "JUNGLE"
       },
       {
         "name": "さぶろう",
