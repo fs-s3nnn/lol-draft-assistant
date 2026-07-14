@@ -1387,21 +1387,48 @@
         ]
       },
       {
-        "name": "ごろう",
-        "role": "UTILITY",
-        "strength": 85,
+        "id": "custom_player_1783945279541",
+        "name": "senna.",
+        "roles": [
+          "JUNGLE",
+          "UTILITY"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 20,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 40
+        },
+        "strength": 40,
         "pool": [
           {
-            "champId": "Lulu",
-            "winRate": 65,
-            "mastery": 5
+            "champId": "Blitzcrank",
+            "winRate": 50,
+            "mastery": 3
           },
           {
-            "champId": "Karma",
+            "champId": "Seraphine",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 3
+          },
+          {
+            "champId": "Braum",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Zyra",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Neeko",
+            "winRate": 50,
+            "mastery": 3
           }
-        ]
+        ],
+        "role": "UTILITY"
       }
     ]
   },
