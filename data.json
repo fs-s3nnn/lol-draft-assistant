@@ -1289,6 +1289,85 @@
         "role": "TOP"
       },
       {
+        "id": "custom_player_1783945872637",
+        "name": "jemty",
+        "roles": [
+          "TOP",
+          "JUNGLE",
+          "MIDDLE",
+          "BOTTOM"
+        ],
+        "laneStrengths": {
+          "TOP": 60,
+          "JUNGLE": 60,
+          "MIDDLE": 60,
+          "BOTTOM": 60,
+          "UTILITY": 50
+        },
+        "strength": 60,
+        "pool": [
+          {
+            "champId": "Lucian",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Ashe",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Varus",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Samira",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Draven",
+            "winRate": 50,
+            "mastery": 4
+          }
+        ],
+        "role": "BOTTOM"
+      },
+      {
+        "id": "custom_player_1783945318852",
+        "name": "木蓮",
+        "roles": [
+          "MIDDLE"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 30,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 30,
+        "pool": [
+          {
+            "champId": "Akali",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Diana",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Lissandra",
+            "winRate": 50,
+            "mastery": 3
+          }
+        ],
+        "role": "MIDDLE"
+      },
+      {
         "id": "custom_player_1783945258452",
         "name": "れいちぇる",
         "roles": [
@@ -1351,85 +1430,6 @@
           }
         ],
         "role": "JUNGLE"
-      },
-      {
-        "id": "custom_player_1783945318852",
-        "name": "木蓮",
-        "roles": [
-          "MIDDLE"
-        ],
-        "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 30,
-          "BOTTOM": 50,
-          "UTILITY": 50
-        },
-        "strength": 30,
-        "pool": [
-          {
-            "champId": "Akali",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Diana",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Lissandra",
-            "winRate": 50,
-            "mastery": 3
-          }
-        ],
-        "role": "MIDDLE"
-      },
-      {
-        "id": "custom_player_1783945872637",
-        "name": "jemty",
-        "roles": [
-          "TOP",
-          "JUNGLE",
-          "MIDDLE",
-          "BOTTOM"
-        ],
-        "laneStrengths": {
-          "TOP": 60,
-          "JUNGLE": 60,
-          "MIDDLE": 60,
-          "BOTTOM": 60,
-          "UTILITY": 50
-        },
-        "strength": 60,
-        "pool": [
-          {
-            "champId": "Lucian",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Ashe",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Varus",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Samira",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Draven",
-            "winRate": 50,
-            "mastery": 4
-          }
-        ],
-        "role": "BOTTOM"
       },
       {
         "id": "custom_player_1783945279541",
