@@ -85,6 +85,11 @@
           "champId": "Nocturne",
           "winRate": 50,
           "mastery": 4
+        },
+        {
+          "champId": "Khazix",
+          "winRate": 50,
+          "mastery": 4
         }
       ]
     },
@@ -1311,6 +1316,11 @@
           },
           {
             "champId": "Nocturne",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Khazix",
             "winRate": 50,
             "mastery": 4
           }
