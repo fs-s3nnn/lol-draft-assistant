@@ -168,7 +168,22 @@ async function loadDataFromServer() {
 function applyLoadedData(data) {
   if (data.playerMaster) AppState.playerMaster = data.playerMaster;
   if (data.teamData && data.teamData.blue) AppState.teamData = data.teamData;
-  if (data.customDatabase) AppState.customDatabase = data.customDatabase;
+  
+  // customDatabase が空かキー不足の場合、DEFAULT_DRAFT_DATABASEからデフォルト値をロード・マージ
+  AppState.customDatabase = data.customDatabase || {};
+  if (!AppState.customDatabase.counters || Object.keys(AppState.customDatabase.counters).length === 0) {
+    AppState.customDatabase.counters = JSON.parse(JSON.stringify(DEFAULT_DRAFT_DATABASE.counters || {}));
+  }
+  if (!AppState.customDatabase.synergy || Object.keys(AppState.customDatabase.synergy).length === 0) {
+    AppState.customDatabase.synergy = JSON.parse(JSON.stringify(DEFAULT_DRAFT_DATABASE.synergy || {}));
+  }
+  if (!AppState.customDatabase.synergies || Object.keys(AppState.customDatabase.synergies).length === 0) {
+    AppState.customDatabase.synergies = AppState.customDatabase.synergy || JSON.parse(JSON.stringify(DEFAULT_DRAFT_DATABASE.synergies || {}));
+  }
+  if (!AppState.customDatabase.champDetails || Object.keys(AppState.customDatabase.champDetails).length === 0) {
+    AppState.customDatabase.champDetails = JSON.parse(JSON.stringify(DEFAULT_DRAFT_DATABASE.champDetails || {}));
+  }
+
   if (data.draftHistory) AppState.draftHistory = data.draftHistory;
   if (data.draftMode) AppState.draftMode = data.draftMode;
   migrateLocalStorageData();
@@ -406,6 +421,31 @@ function renderSetupTeam(side, container) {
       openPoolEditModal(side, index);
     });
 
+    // 並び替え（ドラフト順）ボタングループ
+    const orderBtnGroup = document.createElement("div");
+    orderBtnGroup.style.cssText = "display: flex; flex-direction: column; gap: 2px; justify-content: center; margin-left: 5px;";
+
+    const upBtn = document.createElement("button");
+    upBtn.className = "btn btn-secondary";
+    upBtn.style.cssText = "padding: 1px 4px; font-size: 7px; height: 14px; line-height: 1; border-radius: 2px; min-width: auto;";
+    upBtn.textContent = "▲";
+    upBtn.disabled = index === 0;
+    upBtn.addEventListener("click", () => {
+      swapTeamPlayerOrder(side, index, index - 1);
+    });
+
+    const downBtn = document.createElement("button");
+    downBtn.className = "btn btn-secondary";
+    downBtn.style.cssText = "padding: 1px 4px; font-size: 7px; height: 14px; line-height: 1; border-radius: 2px; min-width: auto;";
+    downBtn.textContent = "▼";
+    downBtn.disabled = index === players.length - 1;
+    downBtn.addEventListener("click", () => {
+      swapTeamPlayerOrder(side, index, index + 1);
+    });
+
+    orderBtnGroup.appendChild(upBtn);
+    orderBtnGroup.appendChild(downBtn);
+
     row.appendChild(roleIcon);
     row.appendChild(selectPlayer);
     row.appendChild(nameInput);
@@ -413,9 +453,20 @@ function renderSetupTeam(side, container) {
     row.appendChild(roleSelect);
     row.appendChild(poolPreview);
     row.appendChild(editBtn);
+    row.appendChild(orderBtnGroup);
 
     container.appendChild(row);
   });
+}
+
+// 選手のアサイン順（ドラフト順）をスワップする処理
+function swapTeamPlayerOrder(side, i, j) {
+  const temp = AppState.teamData[side][i];
+  AppState.teamData[side][i] = AppState.teamData[side][j];
+  AppState.teamData[side][j] = temp;
+  saveTeamData();
+  renderDashboard();
+  showToast("ドラフト順（並び順）を変更しました。");
 }
 
 function renderPoolPreview(pool, container) {
@@ -1811,8 +1862,8 @@ ${JSON.stringify(context, null, 2)}
     }
   ];
 
-  // APIリクエスト (Gemini 2.5 Flash API の呼び出し)
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${AppState.geminiApiKey}`, {
+  // APIリクエスト (Gemini 1.5 Flash API の呼び出し)
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AppState.geminiApiKey}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
