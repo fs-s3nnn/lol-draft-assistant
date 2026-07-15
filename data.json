@@ -4189,128 +4189,127 @@
         "role": "MIDDLE"
       },
       {
-        "id": "custom_player_1783943410763",
-        "name": "おじん",
+        "id": "custom_player_1783943386498",
+        "name": "あとみ",
         "roles": [
-          "TOP",
-          "JUNGLE"
+          "TOP"
         ],
         "laneStrengths": {
-          "TOP": 60,
-          "JUNGLE": 60,
+          "TOP": 30,
+          "JUNGLE": 50,
           "MIDDLE": 50,
           "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 60,
+        "strength": 30,
         "pool": [
           {
-            "champId": "Ambessa",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "KSante",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Darius",
-            "winRate": 100,
-            "mastery": 5
-          },
-          {
-            "champId": "Ekko",
-            "winRate": 45,
+            "champId": "Malphite",
+            "winRate": 33,
             "mastery": 1
           },
           {
-            "champId": "Yasuo",
-            "winRate": 53,
-            "mastery": 2
-          },
-          {
-            "champId": "Zed",
-            "winRate": 57,
-            "mastery": 2
-          },
-          {
-            "champId": "Irelia",
-            "winRate": 71,
-            "mastery": 3
-          },
-          {
-            "champId": "Akali",
-            "winRate": 71,
+            "champId": "DrMundo",
+            "winRate": 100,
             "mastery": 4
           },
           {
-            "champId": "Pantheon",
-            "winRate": 40,
-            "mastery": 2
-          },
-          {
-            "champId": "Shyvana",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Lux",
+            "champId": "Maokai",
             "winRate": 67,
-            "mastery": 4
+            "mastery": 3
           },
           {
-            "champId": "Yone",
+            "champId": "Nautilus",
+            "winRate": 60,
+            "mastery": 3
+          },
+          {
+            "champId": "Bard",
+            "winRate": 100,
+            "mastery": 3
+          },
+          {
+            "champId": "Hwei",
             "winRate": 33,
             "mastery": 2
           },
           {
-            "champId": "XinZhao",
-            "winRate": 100,
-            "mastery": 5
+            "champId": "Seraphine",
+            "winRate": 0,
+            "mastery": 2
           },
           {
-            "champId": "Jax",
+            "champId": "Senna",
+            "winRate": 100,
+            "mastery": 4
+          },
+          {
+            "champId": "Rell",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Olaf",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Pyke",
+            "champId": "Sion",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Mel",
-            "winRate": 0,
-            "mastery": 3
-          },
-          {
-            "champId": "Sylas",
-            "winRate": 0,
-            "mastery": 3
-          },
-          {
-            "champId": "Vex",
-            "winRate": 0,
-            "mastery": 3
-          },
-          {
-            "champId": "Lillia",
+            "champId": "Nami",
             "winRate": 100,
             "mastery": 5
           },
           {
-            "champId": "Heimerdinger",
+            "champId": "Smolder",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Gwen",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Blitzcrank",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "MissFortune",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Yuumi",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Sona",
             "winRate": 0,
             "mastery": 3
           },
           {
-            "champId": "Renekton",
+            "champId": "Ivern",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "Karma",
             "winRate": 0,
             "mastery": 4
           },
           {
-            "champId": "Samira",
+            "champId": "Yorick",
+            "winRate": 0,
+            "mastery": 4
+          },
+          {
+            "champId": "Aurora",
             "winRate": 0,
             "mastery": 4
           }
