@@ -3616,6 +3616,615 @@
     },
     "synergies": {}
   },
-  "draftHistory": [],
-  "draftMode": "ranked"
+  "draftHistory": [
+    {
+      "id": "draft_1784134620296",
+      "name": "19日",
+      "timestamp": "2026/7/16 1:57:00",
+      "teamData": {
+        "blue": [
+          {
+            "id": "custom_player_1783943444581",
+            "name": "つな",
+            "roles": [
+              "BOTTOM"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 80,
+              "UTILITY": 50
+            },
+            "strength": 80,
+            "pool": [
+              {
+                "champId": "Smolder",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Twitch",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Samira",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Jhin",
+                "winRate": 50,
+                "mastery": 5
+              }
+            ],
+            "role": "BOTTOM"
+          },
+          {
+            "id": "custom_player_1783943452451",
+            "name": "JJ",
+            "roles": [
+              "BOTTOM",
+              "UTILITY"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 80,
+              "UTILITY": 80
+            },
+            "strength": 80,
+            "pool": [
+              {
+                "champId": "Caitlyn",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Varus",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Ashe",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Blitzcrank",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Twitch",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "TahmKench",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Rakan",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Morgana",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Lulu",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Lucian",
+                "winRate": 50,
+                "mastery": 5
+              }
+            ],
+            "role": "UTILITY"
+          },
+          {
+            "id": "custom_player_1783943506843",
+            "name": "リョウテイル",
+            "roles": [
+              "JUNGLE",
+              "MIDDLE"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 50,
+              "UTILITY": 50
+            },
+            "strength": 50,
+            "pool": [
+              {
+                "champId": "Galio",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Orianna",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Xerath",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Zac",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Amumu",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Sejuani",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Pantheon",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Nocturne",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Viktor",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Syndra",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Hwei",
+                "winRate": 50,
+                "mastery": 4
+              }
+            ],
+            "role": "JUNGLE"
+          },
+          {
+            "id": "custom_player_1784005654639",
+            "name": "SEN",
+            "roles": [
+              "JUNGLE",
+              "MIDDLE"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 50,
+              "UTILITY": 50
+            },
+            "strength": 50,
+            "pool": [
+              {
+                "champId": "Sylas",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Lillia",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Zoe",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Shaco",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Leblanc",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Viktor",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Orianna",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "JarvanIV",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Pantheon",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Hwei",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Ahri",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Xerath",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "MonkeyKing",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Nocturne",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Khazix",
+                "winRate": 50,
+                "mastery": 4
+              }
+            ],
+            "role": "MIDDLE"
+          },
+          {
+            "id": "custom_player_1783943523351",
+            "name": "Ci",
+            "roles": [
+              "TOP"
+            ],
+            "laneStrengths": {
+              "TOP": 60,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 50,
+              "UTILITY": 50
+            },
+            "strength": 60,
+            "pool": [
+              {
+                "champId": "Yone",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Chogath",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Shyvana",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Nasus",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Yorick",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Malphite",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Poppy",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Mordekaiser",
+                "winRate": 50,
+                "mastery": 4
+              }
+            ],
+            "role": "TOP"
+          }
+        ],
+        "red": [
+          {
+            "id": "custom_player_1784076386636",
+            "name": "ざわわ",
+            "roles": [
+              "BOTTOM"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 50,
+              "UTILITY": 50
+            },
+            "strength": 50,
+            "pool": [
+              {
+                "champId": "MissFortune",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Sivir",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Varus",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Ashe",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Jinx",
+                "winRate": 50,
+                "mastery": 4
+              }
+            ],
+            "role": "BOTTOM"
+          },
+          {
+            "id": "custom_player_1783945279541",
+            "name": "senna.",
+            "roles": [
+              "JUNGLE",
+              "UTILITY"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 20,
+              "MIDDLE": 50,
+              "BOTTOM": 50,
+              "UTILITY": 40
+            },
+            "strength": 40,
+            "pool": [
+              {
+                "champId": "Blitzcrank",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Seraphine",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Braum",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Zyra",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Neeko",
+                "winRate": 50,
+                "mastery": 3
+              }
+            ],
+            "role": "UTILITY"
+          },
+          {
+            "id": "custom_player_1783945258452",
+            "name": "れいちぇる",
+            "roles": [
+              "JUNGLE",
+              "BOTTOM"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 50,
+              "UTILITY": 50
+            },
+            "strength": 50,
+            "pool": [
+              {
+                "champId": "Sylas",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Jax",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "XinZhao",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Viego",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Amumu",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Nidalee",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Vi",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "LeeSin",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Pantheon",
+                "winRate": 50,
+                "mastery": 4
+              }
+            ],
+            "role": "JUNGLE"
+          },
+          {
+            "id": "custom_player_1783945306751",
+            "name": "kuroyan",
+            "roles": [
+              "JUNGLE",
+              "MIDDLE"
+            ],
+            "laneStrengths": {
+              "TOP": 50,
+              "JUNGLE": 20,
+              "MIDDLE": 20,
+              "BOTTOM": 50,
+              "UTILITY": 50
+            },
+            "strength": 20,
+            "pool": [
+              {
+                "champId": "Malzahar",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Mel",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Lissandra",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Vex",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Naafiri",
+                "winRate": 50,
+                "mastery": 3
+              }
+            ],
+            "role": "MIDDLE"
+          },
+          {
+            "id": "custom_player_1783945286022",
+            "name": "skk",
+            "roles": [
+              "TOP"
+            ],
+            "laneStrengths": {
+              "TOP": 60,
+              "JUNGLE": 50,
+              "MIDDLE": 50,
+              "BOTTOM": 50,
+              "UTILITY": 50
+            },
+            "strength": 60,
+            "pool": [
+              {
+                "champId": "Sion",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Renekton",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Gwen",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "Darius",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Garen",
+                "winRate": 50,
+                "mastery": 3
+              },
+              {
+                "champId": "DrMundo",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Ornn",
+                "winRate": 50,
+                "mastery": 4
+              },
+              {
+                "champId": "Mordekaiser",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Illaoi",
+                "winRate": 50,
+                "mastery": 5
+              },
+              {
+                "champId": "Yorick",
+                "winRate": 50,
+                "mastery": 5
+              }
+            ],
+            "role": "TOP"
+          }
+        ]
+      },
+      "draftMode": "custom"
+    }
+  ],
+  "draftMode": "custom"
 }
