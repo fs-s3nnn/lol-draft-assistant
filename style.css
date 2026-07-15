@@ -783,12 +783,12 @@ body {
 /* ドラフトメインエリア */
 .draft-main-layout {
   display: grid;
-  grid-template-columns: 280px 1fr 280px;
-  gap: 25px;
-  margin-bottom: 25px;
-  height: calc(100vh - 230px); /* 縦幅を画面内に固定フィットさせる */
-  min-height: 500px;
-  max-height: 600px;
+  grid-template-columns: 220px 1fr 220px; /* 横幅を280pxから220pxにスリム化 */
+  gap: 15px; /* 余白を縮小 */
+  margin-bottom: 15px;
+  height: calc(100vh - 210px); /* 縦幅を画面内に固定フィットさせる */
+  min-height: 460px;
+  max-height: 560px;
 }
 
 @media (max-width: 1200px) {
@@ -805,12 +805,12 @@ body {
 .picks-column {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 8px; /* 15pxから8pxに縮小 */
 }
 
 /* Pickスロット */
 .pick-slot {
-  height: 72px; /* 85pxから縮小し画面内にフィット */
+  height: 60px; /* 72pxから60pxにさらに縮小して確実に画面内にフィット */
   background-color: rgba(5, 11, 16, 0.7);
   border: 1px solid var(--hextech-gold-border);
   border-radius: 2px;
@@ -818,7 +818,7 @@ body {
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 0 10px; /* パディングを縮小 */
+  padding: 0 8px; /* パディングを縮小 */
   transition: all 0.3s ease;
 }
 .picks-column.blue-picks .pick-slot {
@@ -867,8 +867,8 @@ body {
 }
 
 .pick-slot-avatar {
-  width: 46px; /* 54pxから縮小 */
-  height: 46px;
+  width: 38px; /* 46pxから38pxに縮小 */
+  height: 38px;
   flex-shrink: 0; /* 縮小を防止 */
   border: 1px solid var(--hextech-gold-border);
   background-color: rgba(0, 0, 0, 0.4);
@@ -883,14 +883,14 @@ body {
 
 .pick-slot-info {
   z-index: 2;
-  margin: 0 10px; /* マージンを調整 */
+  margin: 0 8px; /* マージンを調整 */
   display: flex;
   flex-direction: column;
   min-width: 0; /* 文字があふれた場合の崩れを防止 */
   flex: 1; /* 横幅いっぱいに広げる */
 }
 .pick-player-name {
-  font-size: 12px; /* 14pxから縮小 */
+  font-size: 11px; /* 12pxから11pxに縮小 */
   font-weight: 700;
   color: #fff;
   white-space: nowrap;
@@ -898,7 +898,7 @@ body {
   text-overflow: ellipsis;
 }
 .pick-player-role {
-  font-size: 9px; /* 11pxから縮小 */
+  font-size: 8px; /* 9pxから8pxに縮小 */
   color: var(--hextech-gold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -906,7 +906,7 @@ body {
 }
 .pick-champ-name {
   font-family: var(--font-serif);
-  font-size: 10px; /* 12pxから縮小 */
+  font-size: 9px; /* 10pxから9pxに縮小 */
   font-weight: 700;
   color: #a0a5b0;
   margin-top: 2px;

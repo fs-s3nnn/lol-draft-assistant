@@ -2814,14 +2814,14 @@ function adjustAppScale() {
     return;
   }
 
-  // 基準となる画面の高さ（この高さであればスクロールなしで綺麗に収まる）
-  const baseHeight = 780;
+  // 基準となる画面の高さ（フッターボタンまで含めた高さ 900px）
+  const baseHeight = 900;
   const windowHeight = window.innerHeight;
 
   if (windowHeight < baseHeight) {
     const scale = windowHeight / baseHeight;
-    // 最小スケール値（小さくなりすぎて読めなくなるのを防ぐ）
-    const finalScale = Math.max(0.65, scale);
+    // 最小スケール値（極端に小さくなっても潰れないよう0.5までに緩和）
+    const finalScale = Math.max(0.5, scale);
     document.body.style.zoom = finalScale.toString();
   } else {
     document.body.style.zoom = "1";
