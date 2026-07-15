@@ -1266,6 +1266,11 @@
           "champId": "Trundle",
           "winRate": 0,
           "mastery": 3
+        },
+        {
+          "champId": "Belveth",
+          "winRate": 50,
+          "mastery": 5
         }
       ]
     },
