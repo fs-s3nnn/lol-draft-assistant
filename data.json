@@ -1757,13 +1757,13 @@
       "pool": [
         {
           "champId": "Sion",
-          "winRate": 50,
-          "mastery": 5
+          "winRate": 58,
+          "mastery": 1
         },
         {
           "champId": "Renekton",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 25,
+          "mastery": 3
         },
         {
           "champId": "Gwen",
@@ -1773,37 +1773,122 @@
         {
           "champId": "Darius",
           "winRate": 50,
-          "mastery": 4
-        },
-        {
-          "champId": "Garen",
-          "winRate": 50,
           "mastery": 3
         },
         {
+          "champId": "Garen",
+          "winRate": 71,
+          "mastery": 4
+        },
+        {
           "champId": "DrMundo",
-          "winRate": 50,
+          "winRate": 44,
           "mastery": 4
         },
         {
           "champId": "Ornn",
+          "winRate": 42,
+          "mastery": 3
+        },
+        {
+          "champId": "Mordekaiser",
+          "winRate": 60,
+          "mastery": 3
+        },
+        {
+          "champId": "Illaoi",
+          "winRate": 63,
+          "mastery": 3
+        },
+        {
+          "champId": "Yorick",
+          "winRate": 32,
+          "mastery": 1
+        },
+        {
+          "champId": "Zaahen",
+          "winRate": 30,
+          "mastery": 2
+        },
+        {
+          "champId": "Diana",
+          "winRate": 44,
+          "mastery": 3
+        },
+        {
+          "champId": "Nasus",
+          "winRate": 43,
+          "mastery": 4
+        },
+        {
+          "champId": "Irelia",
           "winRate": 50,
           "mastery": 4
         },
         {
-          "champId": "Mordekaiser",
+          "champId": "Galio",
+          "winRate": 33,
+          "mastery": 3
+        },
+        {
+          "champId": "Swain",
+          "winRate": 33,
+          "mastery": 3
+        },
+        {
+          "champId": "Sett",
+          "winRate": 40,
+          "mastery": 3
+        },
+        {
+          "champId": "Leona",
+          "winRate": 20,
+          "mastery": 3
+        },
+        {
+          "champId": "Naafiri",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Xerath",
+          "winRate": 67,
+          "mastery": 5
+        },
+        {
+          "champId": "Tryndamere",
+          "winRate": 33,
+          "mastery": 4
+        },
+        {
+          "champId": "Trundle",
           "winRate": 50,
           "mastery": 5
         },
         {
-          "champId": "Illaoi",
-          "winRate": 50,
+          "champId": "Lux",
+          "winRate": 100,
           "mastery": 5
         },
         {
-          "champId": "Yorick",
-          "winRate": 50,
+          "champId": "Fiora",
+          "winRate": 100,
           "mastery": 5
+        },
+        {
+          "champId": "Ahri",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Malphite",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Taric",
+          "winRate": 0,
+          "mastery": 4
         }
       ]
     },
