@@ -1116,6 +1116,44 @@
   "teamData": {
     "blue": [
       {
+        "id": "custom_player_1783943444581",
+        "name": "つな",
+        "roles": [
+          "BOTTOM"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 80,
+          "UTILITY": 50
+        },
+        "strength": 50,
+        "pool": [
+          {
+            "champId": "Smolder",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Twitch",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Samira",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Jhin",
+            "winRate": 50,
+            "mastery": 5
+          }
+        ],
+        "role": "BOTTOM"
+      },
+      {
         "id": "custom_player_1783943464981",
         "name": "Rulu",
         "roles": [
@@ -1157,44 +1195,6 @@
           }
         ],
         "role": "UTILITY"
-      },
-      {
-        "id": "custom_player_1783943444581",
-        "name": "つな",
-        "roles": [
-          "BOTTOM"
-        ],
-        "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 50,
-          "BOTTOM": 80,
-          "UTILITY": 50
-        },
-        "strength": 50,
-        "pool": [
-          {
-            "champId": "Smolder",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Twitch",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Samira",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Jhin",
-            "winRate": 50,
-            "mastery": 5
-          }
-        ],
-        "role": "BOTTOM"
       },
       {
         "id": "custom_player_1784030454683",
