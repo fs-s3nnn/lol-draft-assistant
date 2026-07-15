@@ -1531,32 +1531,43 @@
         "role": "JUNGLE"
       },
       {
-        "id": "custom_player_1783945318852",
-        "name": "木蓮",
+        "id": "custom_player_1783945306751",
+        "name": "kuroyan",
         "roles": [
+          "JUNGLE",
           "MIDDLE"
         ],
         "laneStrengths": {
           "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 30,
+          "JUNGLE": 20,
+          "MIDDLE": 20,
           "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 30,
+        "strength": 20,
         "pool": [
           {
-            "champId": "Akali",
+            "champId": "Malzahar",
             "winRate": 50,
             "mastery": 3
           },
           {
-            "champId": "Diana",
+            "champId": "Mel",
             "winRate": 50,
             "mastery": 3
           },
           {
             "champId": "Lissandra",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Vex",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Naafiri",
             "winRate": 50,
             "mastery": 3
           }
