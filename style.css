@@ -1058,6 +1058,7 @@ body {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  grid-auto-rows: max-content; /* 各行の高さが自動で潰れないように最大コンテンツ高に固定 */
   gap: 8px; /* 10pxから8pxに微縮小 */
   overflow-y: auto;
   padding: 5px;
@@ -1065,7 +1066,9 @@ body {
   min-height: 0; /* フレックスアイテムの縮小制限を解除 */
 }
 .champ-grid-item {
-  aspect-ratio: 1;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 64px; /* 高さの潰れを物理的に防止 */
   background-color: #050b10;
   border: 1px solid var(--hextech-gold-border);
   cursor: pointer;
@@ -1837,5 +1840,31 @@ body {
 .diagnose-text-box {
   word-break: break-all;
   white-space: pre-wrap;
+}
+
+/* 勝ち筋プランバナーのレスポンシブ改行対応 */
+.win-cond-banner {
+  background-color: rgba(200, 170, 110, 0.05);
+  border-bottom: 1px solid rgba(200, 170, 110, 0.15);
+  padding: 8px 15px;
+  font-size: 11px;
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap; /* 子要素を折り返し可能にする */
+  gap: 6px;
+  box-sizing: border-box;
+}
+.win-cond-label {
+  font-family: var(--font-serif);
+  font-weight: bold;
+  color: var(--hextech-gold-light);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.win-cond-text {
+  color: #d0d5e0;
+  word-break: break-word; /* 長いテキストの自動改行 */
+  flex: 1;
+  min-width: 200px;
 }
 
