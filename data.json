@@ -1116,38 +1116,37 @@
   "teamData": {
     "blue": [
       {
-        "id": "custom_player_1783943410763",
-        "name": "おじん",
+        "id": "custom_player_1783943444581",
+        "name": "つな",
         "roles": [
-          "TOP",
-          "JUNGLE"
+          "BOTTOM"
         ],
         "laneStrengths": {
-          "TOP": 60,
-          "JUNGLE": 60,
+          "TOP": 50,
+          "JUNGLE": 50,
           "MIDDLE": 50,
-          "BOTTOM": 50,
+          "BOTTOM": 80,
           "UTILITY": 50
         },
-        "strength": 50,
+        "strength": 80,
         "pool": [
           {
-            "champId": "Ambessa",
+            "champId": "Smolder",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "KSante",
+            "champId": "Twitch",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
-            "champId": "Darius",
+            "champId": "Samira",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
-            "champId": "Ekko",
+            "champId": "Jhin",
             "winRate": 50,
             "mastery": 5
           }
