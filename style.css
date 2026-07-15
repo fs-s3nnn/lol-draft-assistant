@@ -669,6 +669,13 @@ body {
 /* ==========================================
    ドラフトシミュレータ画面
    ========================================== */
+#section-draft {
+  max-height: 100vh;
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .draft-top-bar {
   display: flex;
   justify-content: space-between;

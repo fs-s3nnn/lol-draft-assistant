@@ -620,8 +620,14 @@ function initEventListeners() {
       document.getElementById(sectionId).classList.add("active");
 
       // ドラフト画面への遷移時
-      if (sectionId === "section-draft" && !AppState.draft.active) {
-        startDraftSimulation();
+      if (sectionId === "section-draft") {
+        if (!AppState.draft.active) {
+          startDraftSimulation();
+        }
+        adjustAppScale();
+      } else {
+        // ドラフト画面以外ではズームを1倍に戻す
+        document.body.style.zoom = "1";
       }
     });
   });
@@ -2795,3 +2801,32 @@ async function getAiCounterReasonAsync(targetName, counterName, element) {
     element.textContent = "レーン戦相性やスキルの仕組み上、有利に立ち回ることができます。";
   }
 }
+
+// ブラウザズームや拡大設定に関わらずドラフト画面を1画面にピッタリ収めるズーム制御
+function adjustAppScale() {
+  const draftSection = document.getElementById("section-draft");
+  if (!draftSection) return;
+
+  // ドラフト画面がアクティブでない場合は、ズームを解除する
+  const isActive = draftSection.classList.contains("active");
+  if (!isActive) {
+    document.body.style.zoom = "1";
+    return;
+  }
+
+  // 基準となる画面の高さ（この高さであればスクロールなしで綺麗に収まる）
+  const baseHeight = 780;
+  const windowHeight = window.innerHeight;
+
+  if (windowHeight < baseHeight) {
+    const scale = windowHeight / baseHeight;
+    // 最小スケール値（小さくなりすぎて読めなくなるのを防ぐ）
+    const finalScale = Math.max(0.65, scale);
+    document.body.style.zoom = finalScale.toString();
+  } else {
+    document.body.style.zoom = "1";
+  }
+}
+
+// リサイズイベントの登録
+window.addEventListener("resize", adjustAppScale);
