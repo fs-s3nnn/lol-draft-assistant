@@ -1897,6 +1897,70 @@
         "role": "UTILITY"
       },
       {
+        "id": "custom_player_1783945258452",
+        "name": "れいちぇる",
+        "roles": [
+          "JUNGLE",
+          "BOTTOM"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 50,
+        "pool": [
+          {
+            "champId": "Sylas",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Jax",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "XinZhao",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Viego",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Amumu",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nidalee",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Vi",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "LeeSin",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
+            "winRate": 50,
+            "mastery": 4
+          }
+        ],
+        "role": "JUNGLE"
+      },
+      {
         "id": "custom_player_1783945286022",
         "name": "skk",
         "roles": [
@@ -1963,70 +2027,6 @@
           }
         ],
         "role": "TOP"
-      },
-      {
-        "id": "custom_player_1783945258452",
-        "name": "れいちぇる",
-        "roles": [
-          "JUNGLE",
-          "BOTTOM"
-        ],
-        "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 50,
-          "BOTTOM": 50,
-          "UTILITY": 50
-        },
-        "strength": 50,
-        "pool": [
-          {
-            "champId": "Sylas",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Jax",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "XinZhao",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Viego",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Amumu",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Nidalee",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Vi",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "LeeSin",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Pantheon",
-            "winRate": 50,
-            "mastery": 4
-          }
-        ],
-        "role": "JUNGLE"
       },
       {
         "id": "custom_player_1783945318852",
