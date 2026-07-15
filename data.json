@@ -1957,28 +1957,113 @@
       "pool": [
         {
           "champId": "Malzahar",
-          "winRate": 50,
-          "mastery": 3
+          "winRate": 0,
+          "mastery": 2
         },
         {
           "champId": "Mel",
           "winRate": 50,
-          "mastery": 3
+          "mastery": 1
         },
         {
           "champId": "Lissandra",
-          "winRate": 50,
+          "winRate": 100,
           "mastery": 3
         },
         {
           "champId": "Vex",
-          "winRate": 50,
+          "winRate": 0,
           "mastery": 3
         },
         {
           "champId": "Naafiri",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Shyvana",
+          "winRate": 75,
+          "mastery": 3
+        },
+        {
+          "champId": "Seraphine",
+          "winRate": 0,
+          "mastery": 1
+        },
+        {
+          "champId": "Akali",
+          "winRate": 33,
+          "mastery": 2
+        },
+        {
+          "champId": "Nautilus",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Leona",
           "winRate": 50,
           "mastery": 3
+        },
+        {
+          "champId": "Zyra",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Smolder",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Swain",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Morgana",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Nocturne",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Ekko",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Twitch",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Yone",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Caitlyn",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Aurora",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Trundle",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Xerath",
+          "winRate": 0,
+          "mastery": 4
         }
       ]
     },
