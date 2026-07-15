@@ -2701,7 +2701,7 @@
       "pool": [
         {
           "champId": "Lucian",
-          "winRate": 50,
+          "winRate": 0,
           "mastery": 4
         },
         {
@@ -2711,8 +2711,8 @@
         },
         {
           "champId": "Varus",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 25,
+          "mastery": 2
         },
         {
           "champId": "Samira",
@@ -2722,6 +2722,181 @@
         {
           "champId": "Draven",
           "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Udyr",
+          "winRate": 50,
+          "mastery": 1
+        },
+        {
+          "champId": "Khazix",
+          "winRate": 50,
+          "mastery": 2
+        },
+        {
+          "champId": "MissFortune",
+          "winRate": 100,
+          "mastery": 3
+        },
+        {
+          "champId": "Ezreal",
+          "winRate": 50,
+          "mastery": 2
+        },
+        {
+          "champId": "Darius",
+          "winRate": 50,
+          "mastery": 3
+        },
+        {
+          "champId": "Kaisa",
+          "winRate": 50,
+          "mastery": 3
+        },
+        {
+          "champId": "Sejuani",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Kled",
+          "winRate": 67,
+          "mastery": 4
+        },
+        {
+          "champId": "MasterYi",
+          "winRate": 67,
+          "mastery": 5
+        },
+        {
+          "champId": "Gangplank",
+          "winRate": 67,
+          "mastery": 5
+        },
+        {
+          "champId": "Garen",
+          "winRate": 67,
+          "mastery": 5
+        },
+        {
+          "champId": "Graves",
+          "winRate": 33,
+          "mastery": 3
+        },
+        {
+          "champId": "Sion",
+          "winRate": 33,
+          "mastery": 3
+        },
+        {
+          "champId": "Jax",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Kindred",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Thresh",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Kayn",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Jhin",
+          "winRate": 50,
+          "mastery": 5
+        },
+        {
+          "champId": "Aatrox",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Warwick",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Shyvana",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "DrMundo",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Rengar",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Sivir",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Morgana",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Rammus",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Blitzcrank",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Singed",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Bard",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Trundle",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Ornn",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Zilean",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Xayah",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "JarvanIV",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Karthus",
+          "winRate": 0,
           "mastery": 4
         }
       ]
