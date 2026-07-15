@@ -1520,49 +1520,6 @@
   "teamData": {
     "blue": [
       {
-        "id": "custom_player_1783943464981",
-        "name": "Rulu",
-        "roles": [
-          "UTILITY"
-        ],
-        "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 50,
-          "BOTTOM": 50,
-          "UTILITY": 40
-        },
-        "strength": 50,
-        "pool": [
-          {
-            "champId": "Leona",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Nautilus",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Alistar",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Rell",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Braum",
-            "winRate": 50,
-            "mastery": 3
-          }
-        ],
-        "role": "BOTTOM"
-      },
-      {
         "id": "custom_player_1783945279541",
         "name": "senna.",
         "roles": [
@@ -1605,6 +1562,49 @@
           }
         ],
         "role": "UTILITY"
+      },
+      {
+        "id": "custom_player_1783943464981",
+        "name": "Rulu",
+        "roles": [
+          "UTILITY"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 40
+        },
+        "strength": 50,
+        "pool": [
+          {
+            "champId": "Leona",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nautilus",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Alistar",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Rell",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Braum",
+            "winRate": 50,
+            "mastery": 3
+          }
+        ],
+        "role": "BOTTOM"
       },
       {
         "id": "custom_player_1784005654639",
@@ -3965,5 +3965,5 @@
     "synergies": {}
   },
   "draftHistory": [],
-  "draftMode": "ranked"
+  "draftMode": "custom"
 }
