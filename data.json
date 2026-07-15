@@ -4141,6 +4141,134 @@
         "role": "JUNGLE"
       },
       {
+        "id": "custom_player_1783943386498",
+        "name": "あとみ",
+        "roles": [
+          "TOP"
+        ],
+        "laneStrengths": {
+          "TOP": 30,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 50
+        },
+        "strength": 30,
+        "pool": [
+          {
+            "champId": "Malphite",
+            "winRate": 33,
+            "mastery": 1
+          },
+          {
+            "champId": "DrMundo",
+            "winRate": 100,
+            "mastery": 4
+          },
+          {
+            "champId": "Maokai",
+            "winRate": 67,
+            "mastery": 3
+          },
+          {
+            "champId": "Nautilus",
+            "winRate": 60,
+            "mastery": 3
+          },
+          {
+            "champId": "Bard",
+            "winRate": 100,
+            "mastery": 3
+          },
+          {
+            "champId": "Hwei",
+            "winRate": 33,
+            "mastery": 2
+          },
+          {
+            "champId": "Seraphine",
+            "winRate": 0,
+            "mastery": 2
+          },
+          {
+            "champId": "Senna",
+            "winRate": 100,
+            "mastery": 4
+          },
+          {
+            "champId": "Rell",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Olaf",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Sion",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nami",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Smolder",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Gwen",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Blitzcrank",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "MissFortune",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Yuumi",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Sona",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "Ivern",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "Karma",
+            "winRate": 0,
+            "mastery": 4
+          },
+          {
+            "champId": "Yorick",
+            "winRate": 0,
+            "mastery": 4
+          },
+          {
+            "champId": "Aurora",
+            "winRate": 0,
+            "mastery": 4
+          }
+        ],
+        "role": "TOP"
+      },
+      {
         "id": "custom_player_1783943506843",
         "name": "リョウテイル",
         "roles": [
@@ -4293,134 +4421,6 @@
           }
         ],
         "role": "MIDDLE"
-      },
-      {
-        "id": "custom_player_1783943386498",
-        "name": "あとみ",
-        "roles": [
-          "TOP"
-        ],
-        "laneStrengths": {
-          "TOP": 30,
-          "JUNGLE": 50,
-          "MIDDLE": 50,
-          "BOTTOM": 50,
-          "UTILITY": 50
-        },
-        "strength": 30,
-        "pool": [
-          {
-            "champId": "Malphite",
-            "winRate": 33,
-            "mastery": 1
-          },
-          {
-            "champId": "DrMundo",
-            "winRate": 100,
-            "mastery": 4
-          },
-          {
-            "champId": "Maokai",
-            "winRate": 67,
-            "mastery": 3
-          },
-          {
-            "champId": "Nautilus",
-            "winRate": 60,
-            "mastery": 3
-          },
-          {
-            "champId": "Bard",
-            "winRate": 100,
-            "mastery": 3
-          },
-          {
-            "champId": "Hwei",
-            "winRate": 33,
-            "mastery": 2
-          },
-          {
-            "champId": "Seraphine",
-            "winRate": 0,
-            "mastery": 2
-          },
-          {
-            "champId": "Senna",
-            "winRate": 100,
-            "mastery": 4
-          },
-          {
-            "champId": "Rell",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Olaf",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Sion",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Nami",
-            "winRate": 100,
-            "mastery": 5
-          },
-          {
-            "champId": "Smolder",
-            "winRate": 100,
-            "mastery": 5
-          },
-          {
-            "champId": "Gwen",
-            "winRate": 100,
-            "mastery": 5
-          },
-          {
-            "champId": "Blitzcrank",
-            "winRate": 100,
-            "mastery": 5
-          },
-          {
-            "champId": "MissFortune",
-            "winRate": 100,
-            "mastery": 5
-          },
-          {
-            "champId": "Yuumi",
-            "winRate": 100,
-            "mastery": 5
-          },
-          {
-            "champId": "Sona",
-            "winRate": 0,
-            "mastery": 3
-          },
-          {
-            "champId": "Ivern",
-            "winRate": 0,
-            "mastery": 3
-          },
-          {
-            "champId": "Karma",
-            "winRate": 0,
-            "mastery": 4
-          },
-          {
-            "champId": "Yorick",
-            "winRate": 0,
-            "mastery": 4
-          },
-          {
-            "champId": "Aurora",
-            "winRate": 0,
-            "mastery": 4
-          }
-        ],
-        "role": "TOP"
       }
     ],
     "red": [
