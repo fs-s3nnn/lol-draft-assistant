@@ -786,9 +786,7 @@ body {
   grid-template-columns: 220px 1fr 220px; /* 横幅を280pxから220pxにスリム化 */
   gap: 15px; /* 余白を縮小 */
   margin-bottom: 15px;
-  height: calc(100vh - 210px); /* 縦幅を画面内に固定フィットさせる */
-  min-height: 460px;
-  max-height: 560px;
+  height: 520px; /* 高さを固定し、ズームに全体のフィット調整を任せる */
 }
 
 @media (max-width: 1200px) {
@@ -928,6 +926,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%; /* 親グリッドの高さに追従 */
+  min-height: 0; /* 縮小を許可 */
+  overflow: hidden; /* コンテンツのはみ出しを防ぐ */
 }
 
 .panel-tabs {
