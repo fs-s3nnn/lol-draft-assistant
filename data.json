@@ -1391,34 +1391,59 @@
         "role": "MIDDLE"
       },
       {
-        "id": "custom_player_1783943386498",
-        "name": "あとみ",
+        "id": "custom_player_1783943523351",
+        "name": "Ci",
         "roles": [
           "TOP"
         ],
         "laneStrengths": {
-          "TOP": 30,
+          "TOP": 60,
           "JUNGLE": 50,
           "MIDDLE": 50,
           "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 30,
+        "strength": 60,
         "pool": [
+          {
+            "champId": "Yone",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Chogath",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Shyvana",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nasus",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Yorick",
+            "winRate": 50,
+            "mastery": 4
+          },
           {
             "champId": "Malphite",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           },
           {
-            "champId": "DrMundo",
+            "champId": "Poppy",
             "winRate": 50,
             "mastery": 3
           },
           {
-            "champId": "Maokai",
+            "champId": "Mordekaiser",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           }
         ],
         "role": "TOP"
