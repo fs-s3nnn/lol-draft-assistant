@@ -1388,18 +1388,17 @@
             "mastery": 4
           }
         ],
-        "role": "MIDDLE"
+        "role": "JUNGLE"
       },
       {
-        "id": "custom_player_1783943410763",
-        "name": "おじん",
+        "id": "custom_player_1783943523351",
+        "name": "Ci",
         "roles": [
-          "TOP",
-          "JUNGLE"
+          "TOP"
         ],
         "laneStrengths": {
           "TOP": 60,
-          "JUNGLE": 60,
+          "JUNGLE": 50,
           "MIDDLE": 50,
           "BOTTOM": 50,
           "UTILITY": 50
@@ -1407,24 +1406,44 @@
         "strength": 60,
         "pool": [
           {
-            "champId": "Ambessa",
+            "champId": "Yone",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "KSante",
+            "champId": "Chogath",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Darius",
+            "champId": "Shyvana",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Ekko",
+            "champId": "Nasus",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
+          },
+          {
+            "champId": "Yorick",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Malphite",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Poppy",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Mordekaiser",
+            "winRate": 50,
+            "mastery": 4
           }
         ],
         "role": "TOP"
