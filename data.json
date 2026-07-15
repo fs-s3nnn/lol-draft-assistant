@@ -4141,48 +4141,154 @@
         "role": "JUNGLE"
       },
       {
-        "id": "custom_player_1783943430266",
-        "name": "sonido",
+        "id": "custom_player_1783943506843",
+        "name": "リョウテイル",
         "roles": [
+          "JUNGLE",
           "MIDDLE"
         ],
         "laneStrengths": {
           "TOP": 50,
           "JUNGLE": 50,
-          "MIDDLE": 60,
+          "MIDDLE": 50,
           "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 60,
+        "strength": 50,
         "pool": [
           {
-            "champId": "Diana",
+            "champId": "Galio",
+            "winRate": 0,
+            "mastery": 2
+          },
+          {
+            "champId": "Orianna",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
+          },
+          {
+            "champId": "Xerath",
+            "winRate": 91,
+            "mastery": 2
+          },
+          {
+            "champId": "Zac",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Amumu",
+            "winRate": 33,
+            "mastery": 1
+          },
+          {
+            "champId": "Sejuani",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "Nocturne",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Viktor",
+            "winRate": 50,
+            "mastery": 4
           },
           {
             "champId": "Syndra",
+            "winRate": 33,
+            "mastery": 1
+          },
+          {
+            "champId": "Hwei",
             "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Locke",
+            "winRate": 75,
+            "mastery": 3
+          },
+          {
+            "champId": "Seraphine",
+            "winRate": 100,
+            "mastery": 4
+          },
+          {
+            "champId": "Malphite",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Sylas",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Nunu",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Lillia",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Naafiri",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "Lux",
+            "winRate": 100,
             "mastery": 5
           },
           {
-            "champId": "Leblanc",
-            "winRate": 50,
+            "champId": "Jhin",
+            "winRate": 100,
+            "mastery": 5
+          },
+          {
+            "champId": "Shyvana",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "Poppy",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "MonkeyKing",
+            "winRate": 0,
+            "mastery": 3
+          },
+          {
+            "champId": "Rammus",
+            "winRate": 0,
             "mastery": 4
           },
           {
-            "champId": "Brand",
-            "winRate": 50,
+            "champId": "Warwick",
+            "winRate": 0,
             "mastery": 4
           },
           {
-            "champId": "Ahri",
-            "winRate": 50,
+            "champId": "Sona",
+            "winRate": 0,
             "mastery": 4
           },
           {
-            "champId": "XinZhao",
-            "winRate": 50,
+            "champId": "Belveth",
+            "winRate": 0,
             "mastery": 4
           }
         ],
