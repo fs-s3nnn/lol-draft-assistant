@@ -1223,11 +1223,6 @@
       "strength": 50,
       "pool": [
         {
-          "champId": "Belveth",
-          "winRate": 51,
-          "mastery": 1
-        },
-        {
           "champId": "Briar",
           "winRate": 48,
           "mastery": 2
