@@ -1380,30 +1380,27 @@
     ],
     "red": [
       {
-        "id": "custom_player_1783945872637",
-        "name": "jemty",
+        "id": "custom_player_1784076386636",
+        "name": "ざわわ",
         "roles": [
-          "TOP",
-          "JUNGLE",
-          "MIDDLE",
           "BOTTOM"
         ],
         "laneStrengths": {
-          "TOP": 60,
-          "JUNGLE": 60,
-          "MIDDLE": 60,
-          "BOTTOM": 60,
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 60,
+        "strength": 50,
         "pool": [
           {
-            "champId": "Lucian",
+            "champId": "MissFortune",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Ashe",
+            "champId": "Sivir",
             "winRate": 50,
             "mastery": 4
           },
@@ -1413,12 +1410,12 @@
             "mastery": 4
           },
           {
-            "champId": "Samira",
+            "champId": "Ashe",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Draven",
+            "champId": "Jinx",
             "winRate": 50,
             "mastery": 4
           }
