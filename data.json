@@ -1197,12 +1197,11 @@
         "role": "UTILITY"
       },
       {
-        "id": "custom_player_1784030454683",
-        "name": "erasou",
+        "id": "custom_player_1784005654639",
+        "name": "SEN",
         "roles": [
           "JUNGLE",
-          "BOTTOM",
-          "UTILITY"
+          "MIDDLE"
         ],
         "laneStrengths": {
           "TOP": 50,
@@ -1214,24 +1213,79 @@
         "strength": 50,
         "pool": [
           {
-            "champId": "Taliyah",
+            "champId": "Sylas",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Lillia",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Braum",
+            "champId": "Zoe",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "Morgana",
+            "champId": "Shaco",
             "winRate": 50,
-            "mastery": 5
+            "mastery": 4
           },
           {
-            "champId": "XinZhao",
+            "champId": "Leblanc",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
+          },
+          {
+            "champId": "Viktor",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Orianna",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "JarvanIV",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Hwei",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Ahri",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Xerath",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "MonkeyKing",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nocturne",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Khazix",
+            "winRate": 50,
+            "mastery": 4
           }
         ],
         "role": "JUNGLE"
