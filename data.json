@@ -227,23 +227,63 @@
       "pool": [
         {
           "champId": "Smolder",
-          "winRate": 50,
-          "mastery": 5
+          "winRate": 100,
+          "mastery": 3
         },
         {
           "champId": "Twitch",
-          "winRate": 50,
-          "mastery": 5
+          "winRate": 75,
+          "mastery": 2
         },
         {
           "champId": "Samira",
           "winRate": 50,
-          "mastery": 5
+          "mastery": 3
         },
         {
           "champId": "Jhin",
+          "winRate": 0,
+          "mastery": 2
+        },
+        {
+          "champId": "Kaisa",
+          "winRate": 63,
+          "mastery": 3
+        },
+        {
+          "champId": "Vayne",
           "winRate": 50,
-          "mastery": 5
+          "mastery": 2
+        },
+        {
+          "champId": "Yasuo",
+          "winRate": 50,
+          "mastery": 3
+        },
+        {
+          "champId": "Lucian",
+          "winRate": 50,
+          "mastery": 3
+        },
+        {
+          "champId": "Xerath",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Nilah",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Xayah",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Ashe",
+          "winRate": 0,
+          "mastery": 3
         }
       ]
     },
