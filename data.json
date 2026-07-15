@@ -1473,6 +1473,48 @@
           "mastery": 4
         }
       ]
+    },
+    {
+      "id": "custom_player_1784076386636",
+      "name": "ざわわ",
+      "roles": [
+        "BOTTOM"
+      ],
+      "laneStrengths": {
+        "TOP": 50,
+        "JUNGLE": 50,
+        "MIDDLE": 50,
+        "BOTTOM": 50,
+        "UTILITY": 50
+      },
+      "strength": 50,
+      "pool": [
+        {
+          "champId": "MissFortune",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Sivir",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Varus",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Ashe",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Jinx",
+          "winRate": 50,
+          "mastery": 4
+        }
+      ]
     }
   ],
   "teamData": {
