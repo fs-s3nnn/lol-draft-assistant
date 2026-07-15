@@ -1842,20 +1842,28 @@ function parseOpggText(text) {
   AppState.championList.forEach(c => {
     champMap[c.name.toLowerCase()] = c.id;
     champMap[c.id.toLowerCase()] = c.id;
+    // スペースを除去した比較用（Jarvan IV ➔ jarvaniv のため）
+    champMap[c.name.replace(/\s+/g, '').toLowerCase()] = c.id;
   });
 
   // 改行やタブでテキストをスキャン
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    
     let matchedChampId = null;
 
     // トークン分割してチェック
-    const tokens = line.split(/[\s\t,]+/).map(t => t.toLowerCase().trim()).filter(Boolean);
-    for (const token of tokens) {
-      if (champMap[token]) {
-        matchedChampId = champMap[token];
-        break;
+    const cleanLine = line.replace(/\s+/g, '').toLowerCase();
+    if (champMap[cleanLine]) {
+      matchedChampId = champMap[cleanLine];
+    }
+
+    if (!matchedChampId) {
+      const tokens = line.split(/[\s\t,]+/).map(t => t.toLowerCase().trim()).filter(Boolean);
+      for (const token of tokens) {
+        if (champMap[token]) {
+          matchedChampId = champMap[token];
+          break;
+        }
       }
     }
 
@@ -1872,15 +1880,17 @@ function parseOpggText(text) {
     if (matchedChampId) {
       // チャンピオンを検出。勝率とゲーム数（試合数）のコンテキストスキャン
       let winRate = 50;
-      let games = 10;
+      let games = 5; // デフォルト試合数
 
-      // 該当行、その前後行を含むコンテキストテキストの結合
+      // 該当行、その後の行を含むコンテキストテキストの結合（最大8行分先までスキャンしてデータを逃さない）
       const contextLines = [];
       if (i > 0) contextLines.push(lines[i-1]);
       contextLines.push(line);
-      if (i < lines.length - 1) contextLines.push(lines[i+1]);
-      if (i < lines.length - 2) contextLines.push(lines[i+2]);
-      if (i < lines.length - 3) contextLines.push(lines[i+3]); // OP.GGのコピーは改行が多いため広めにスキャン
+      for (let j = 1; j <= 8; j++) {
+        if (i + j < lines.length) {
+          contextLines.push(lines[i+j]);
+        }
+      }
 
       const contextText = contextLines.join(' ');
 
@@ -1891,21 +1901,30 @@ function parseOpggText(text) {
         winRate = parseFloat(wrMatch[1]);
       }
 
-      // 2. 試合数の抽出 (「ゲーム」「戦」「Played」「G」などの手前の数値)
-      const gamesRegex = /(\d+)\s*(?:ゲーム|戦|試合|Played|played|G|g)/i;
-      const gamesMatch = contextText.match(gamesRegex);
-      if (gamesMatch) {
-        games = parseInt(gamesMatch[1], 10);
+      // 2. 試合数の抽出 (勝数W + 敗数L の合算を最優先する)
+      const winMatch = contextText.match(/(\d+)\s*W/i);
+      const loseMatch = contextText.match(/(\d+)\s*L/i);
+      if (winMatch || loseMatch) {
+        const wins = winMatch ? parseInt(winMatch[1], 10) : 0;
+        const loses = loseMatch ? parseInt(loseMatch[1], 10) : 0;
+        games = wins + loses;
       } else {
-        // 単位が見つからない場合、コンテキスト内の「順位や勝率以外の妥当な数値」を推測
-        const numbers = contextText.match(/\b\d+\b/g);
-        if (numbers) {
-          for (const numStr of numbers) {
-            const num = parseInt(numStr, 10);
-            // 順位（1桁）や勝率（winRateの整数部分）以外の、1以上の数値を試合数として仮定
-            if (num > 0 && num < 1000 && num !== Math.floor(winRate)) {
-              games = num;
-              break;
+        // フォールバック: 「ゲーム」「戦」「Played」「G」などの単位
+        const gamesRegex = /(\d+)\s*(?:ゲーム|戦|試合|Played|played|G|g)/i;
+        const gamesMatch = contextText.match(gamesRegex);
+        if (gamesMatch) {
+          games = parseInt(gamesMatch[1], 10);
+        } else {
+          // 単位が見つからない場合、コンテキスト内の「順位や勝率以外の妥当な数値」を推測
+          const numbers = contextText.match(/\b\d+\b/g);
+          if (numbers) {
+            for (const numStr of numbers) {
+              const num = parseInt(numStr, 10);
+              // 順位（1〜3桁）や勝率以外の数値を試合数として仮定
+              if (num > 0 && num < 1000 && num !== Math.floor(winRate) && num !== (i + 1)) {
+                games = num;
+                break;
+              }
             }
           }
         }
@@ -1913,10 +1932,10 @@ function parseOpggText(text) {
 
       // 試合数と勝率から熟練度（★1〜5）をインテリジェントに判定
       let mastery = 3;
-      if (games >= 30) mastery = 5;
-      else if (games >= 15) mastery = 4;
-      else if (games >= 6) mastery = 3;
-      else if (games >= 3) mastery = 2;
+      if (games >= 20) mastery = 5;
+      else if (games >= 10) mastery = 4;
+      else if (games >= 5) mastery = 3;
+      else if (games >= 2) mastery = 2;
       else mastery = 1;
 
       // 勝率に応じた補正
@@ -1927,10 +1946,13 @@ function parseOpggText(text) {
       if (!results.some(r => r.champId === matchedChampId)) {
         results.push({
           champId: matchedChampId,
-          winRate: winRate,
+          winRate: Math.round(winRate),
           mastery: mastery
         });
       }
+
+      // このチャンピオンのデータ行分インデックスを進めることで、同じ名前の2回出現による重複パースを防止
+      i += 3;
     }
   }
 
