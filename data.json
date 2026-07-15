@@ -1159,45 +1159,49 @@
         "role": "UTILITY"
       },
       {
-        "id": "custom_player_1783945279541",
-        "name": "senna.",
+        "id": "custom_player_1783943430266",
+        "name": "sonido",
         "roles": [
-          "JUNGLE",
-          "UTILITY"
+          "MIDDLE"
         ],
         "laneStrengths": {
           "TOP": 50,
-          "JUNGLE": 20,
-          "MIDDLE": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 60,
           "BOTTOM": 50,
-          "UTILITY": 40
+          "UTILITY": 50
         },
-        "strength": 40,
+        "strength": 50,
         "pool": [
           {
-            "champId": "Blitzcrank",
+            "champId": "Diana",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 5
           },
           {
-            "champId": "Seraphine",
+            "champId": "Syndra",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 5
           },
           {
-            "champId": "Braum",
+            "champId": "Leblanc",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           },
           {
-            "champId": "Zyra",
+            "champId": "Brand",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
           },
           {
-            "champId": "Neeko",
+            "champId": "Ahri",
             "winRate": 50,
-            "mastery": 3
+            "mastery": 4
+          },
+          {
+            "champId": "XinZhao",
+            "winRate": 50,
+            "mastery": 4
           }
         ],
         "role": "UTILITY"
