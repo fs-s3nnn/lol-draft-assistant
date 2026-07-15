@@ -1317,8 +1317,8 @@
         "role": "MIDDLE"
       },
       {
-        "id": "custom_player_1784005654639",
-        "name": "SEN",
+        "id": "custom_player_1783943506843",
+        "name": "リョウテイル",
         "roles": [
           "JUNGLE",
           "MIDDLE"
@@ -1333,34 +1333,9 @@
         "strength": 50,
         "pool": [
           {
-            "champId": "Sylas",
-            "winRate": 100,
-            "mastery": 3
-          },
-          {
-            "champId": "Lillia",
-            "winRate": 100,
-            "mastery": 4
-          },
-          {
-            "champId": "Zoe",
-            "winRate": 40,
-            "mastery": 2
-          },
-          {
-            "champId": "Shaco",
-            "winRate": 100,
-            "mastery": 2
-          },
-          {
-            "champId": "Leblanc",
+            "champId": "Galio",
             "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Viktor",
-            "winRate": 57,
-            "mastery": 3
+            "mastery": 5
           },
           {
             "champId": "Orianna",
@@ -1368,144 +1343,49 @@
             "mastery": 4
           },
           {
-            "champId": "JarvanIV",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Pantheon",
-            "winRate": 100,
-            "mastery": 2
-          },
-          {
-            "champId": "Hwei",
-            "winRate": 100,
-            "mastery": 3
-          },
-          {
-            "champId": "Ahri",
+            "champId": "Xerath",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Xerath",
-            "winRate": 0,
-            "mastery": 1
+            "champId": "Zac",
+            "winRate": 50,
+            "mastery": 4
           },
           {
-            "champId": "MonkeyKing",
+            "champId": "Amumu",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Sejuani",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Pantheon",
             "winRate": 50,
             "mastery": 4
           },
           {
             "champId": "Nocturne",
-            "winRate": 67,
-            "mastery": 3
-          },
-          {
-            "champId": "Khazix",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Nasus",
-            "winRate": 60,
+            "champId": "Viktor",
+            "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Quinn",
-            "winRate": 75,
-            "mastery": 3
-          },
-          {
-            "champId": "Briar",
-            "winRate": 67,
-            "mastery": 3
-          },
-          {
-            "champId": "Viego",
-            "winRate": 100,
-            "mastery": 3
-          },
-          {
-            "champId": "Singed",
-            "winRate": 100,
-            "mastery": 3
-          },
-          {
-            "champId": "Kayn",
-            "winRate": 100,
-            "mastery": 3
-          },
-          {
-            "champId": "MasterYi",
+            "champId": "Syndra",
             "winRate": 50,
-            "mastery": 2
+            "mastery": 4
           },
           {
-            "champId": "Caitlyn",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Jhin",
-            "winRate": 100,
-            "mastery": 2
-          },
-          {
-            "champId": "TwistedFate",
-            "winRate": 100,
-            "mastery": 2
-          },
-          {
-            "champId": "Sion",
-            "winRate": 100,
-            "mastery": 2
-          },
-          {
-            "champId": "Qiyana",
-            "winRate": 100,
-            "mastery": 2
-          },
-          {
-            "champId": "Vi",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Ezreal",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Tristana",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "XinZhao",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Aurora",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Zilean",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Fiddlesticks",
-            "winRate": 0,
-            "mastery": 1
-          },
-          {
-            "champId": "Zed",
-            "winRate": 0,
-            "mastery": 1
+            "champId": "Hwei",
+            "winRate": 50,
+            "mastery": 4
           }
         ],
         "role": "MIDDLE"
