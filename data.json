@@ -1159,49 +1159,39 @@
         "role": "UTILITY"
       },
       {
-        "id": "custom_player_1783943430266",
-        "name": "sonido",
+        "id": "custom_player_1783943444581",
+        "name": "つな",
         "roles": [
-          "MIDDLE"
+          "BOTTOM"
         ],
         "laneStrengths": {
           "TOP": 50,
           "JUNGLE": 50,
-          "MIDDLE": 60,
-          "BOTTOM": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 80,
           "UTILITY": 50
         },
         "strength": 50,
         "pool": [
           {
-            "champId": "Diana",
+            "champId": "Smolder",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Syndra",
+            "champId": "Twitch",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "Leblanc",
+            "champId": "Samira",
             "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
-            "champId": "Brand",
+            "champId": "Jhin",
             "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Ahri",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "XinZhao",
-            "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           }
         ],
         "role": "UTILITY"
