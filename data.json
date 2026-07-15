@@ -2361,13 +2361,13 @@
       "pool": [
         {
           "champId": "Elise",
-          "winRate": 50,
-          "mastery": 5
+          "winRate": 100,
+          "mastery": 3
         },
         {
           "champId": "Locke",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 71,
+          "mastery": 2
         },
         {
           "champId": "Evelynn",
@@ -2376,17 +2376,17 @@
         },
         {
           "champId": "Kayn",
-          "winRate": 50,
+          "winRate": 75,
           "mastery": 4
         },
         {
           "champId": "Nidalee",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 100,
+          "mastery": 5
         },
         {
           "champId": "Sylas",
-          "winRate": 50,
+          "winRate": 0,
           "mastery": 4
         },
         {
@@ -2396,17 +2396,192 @@
         },
         {
           "champId": "RekSai",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 100,
+          "mastery": 5
         },
         {
           "champId": "Kindred",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 100,
+          "mastery": 5
         },
         {
           "champId": "Naafiri",
           "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Thresh",
+          "winRate": 50,
+          "mastery": 2
+        },
+        {
+          "champId": "Smolder",
+          "winRate": 75,
+          "mastery": 3
+        },
+        {
+          "champId": "Senna",
+          "winRate": 33,
+          "mastery": 2
+        },
+        {
+          "champId": "Kaisa",
+          "winRate": 0,
+          "mastery": 2
+        },
+        {
+          "champId": "Seraphine",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Jhin",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Ezreal",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Zeri",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Katarina",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Mordekaiser",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Belveth",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Akali",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Jayce",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Ahri",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Nasus",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "DrMundo",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Yorick",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Vladimir",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Lillia",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Shyvana",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Mel",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Nilah",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "TwistedFate",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Sivir",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Varus",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Kalista",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Camille",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Khazix",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Blitzcrank",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Ryze",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Samira",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Trundle",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Gwen",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Briar",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Ambessa",
+          "winRate": 0,
           "mastery": 4
         }
       ]
