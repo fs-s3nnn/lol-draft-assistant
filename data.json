@@ -1339,65 +1339,40 @@
         "role": "MIDDLE"
       },
       {
-        "id": "custom_player_1783945258452",
-        "name": "れいちぇる",
+        "id": "custom_player_1783943410763",
+        "name": "おじん",
         "roles": [
-          "JUNGLE",
-          "BOTTOM"
+          "TOP",
+          "JUNGLE"
         ],
         "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
+          "TOP": 60,
+          "JUNGLE": 60,
           "MIDDLE": 50,
           "BOTTOM": 50,
           "UTILITY": 50
         },
-        "strength": 50,
+        "strength": 60,
         "pool": [
           {
-            "champId": "Sylas",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Jax",
+            "champId": "Ambessa",
             "winRate": 50,
             "mastery": 5
           },
           {
-            "champId": "XinZhao",
+            "champId": "KSante",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Viego",
+            "champId": "Darius",
             "winRate": 50,
             "mastery": 4
           },
           {
-            "champId": "Amumu",
+            "champId": "Ekko",
             "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Nidalee",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Vi",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "LeeSin",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Pantheon",
-            "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           }
         ],
         "role": "TOP"
