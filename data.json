@@ -1224,8 +1224,53 @@
       "pool": [
         {
           "champId": "Belveth",
-          "winRate": 50,
-          "mastery": 5
+          "winRate": 51,
+          "mastery": 1
+        },
+        {
+          "champId": "Briar",
+          "winRate": 48,
+          "mastery": 2
+        },
+        {
+          "champId": "Skarner",
+          "winRate": 0,
+          "mastery": 1
+        },
+        {
+          "champId": "Lillia",
+          "winRate": 0,
+          "mastery": 1
+        },
+        {
+          "champId": "Diana",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Leona",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Jax",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Jhin",
+          "winRate": 0,
+          "mastery": 2
+        },
+        {
+          "champId": "Nocturne",
+          "winRate": 0,
+          "mastery": 2
+        },
+        {
+          "champId": "Trundle",
+          "winRate": 0,
+          "mastery": 3
         }
       ]
     },
