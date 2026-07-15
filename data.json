@@ -1520,6 +1520,49 @@
   "teamData": {
     "blue": [
       {
+        "id": "custom_player_1783943464981",
+        "name": "Rulu",
+        "roles": [
+          "UTILITY"
+        ],
+        "laneStrengths": {
+          "TOP": 50,
+          "JUNGLE": 50,
+          "MIDDLE": 50,
+          "BOTTOM": 50,
+          "UTILITY": 40
+        },
+        "strength": 50,
+        "pool": [
+          {
+            "champId": "Leona",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Nautilus",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Alistar",
+            "winRate": 50,
+            "mastery": 3
+          },
+          {
+            "champId": "Rell",
+            "winRate": 50,
+            "mastery": 4
+          },
+          {
+            "champId": "Braum",
+            "winRate": 50,
+            "mastery": 3
+          }
+        ],
+        "role": "BOTTOM"
+      },
+      {
         "id": "custom_player_1783945279541",
         "name": "senna.",
         "roles": [
@@ -1564,9 +1607,11 @@
         "role": "UTILITY"
       },
       {
-        "id": "custom_player_1783943464981",
-        "name": "Rulu",
+        "id": "custom_player_1784030454683",
+        "name": "erasou",
         "roles": [
+          "JUNGLE",
+          "BOTTOM",
           "UTILITY"
         ],
         "laneStrengths": {
@@ -1574,37 +1619,32 @@
           "JUNGLE": 50,
           "MIDDLE": 50,
           "BOTTOM": 50,
-          "UTILITY": 40
+          "UTILITY": 50
         },
         "strength": 50,
         "pool": [
           {
-            "champId": "Leona",
+            "champId": "Taliyah",
             "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Nautilus",
-            "winRate": 50,
-            "mastery": 4
-          },
-          {
-            "champId": "Alistar",
-            "winRate": 50,
-            "mastery": 3
-          },
-          {
-            "champId": "Rell",
-            "winRate": 50,
-            "mastery": 4
+            "mastery": 5
           },
           {
             "champId": "Braum",
             "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "Morgana",
+            "winRate": 50,
+            "mastery": 5
+          },
+          {
+            "champId": "XinZhao",
+            "winRate": 50,
             "mastery": 3
           }
         ],
-        "role": "BOTTOM"
+        "role": "JUNGLE"
       },
       {
         "id": "custom_player_1784005654639",
@@ -1699,46 +1739,6 @@
           }
         ],
         "role": "MIDDLE"
-      },
-      {
-        "id": "custom_player_1784030454683",
-        "name": "erasou",
-        "roles": [
-          "JUNGLE",
-          "BOTTOM",
-          "UTILITY"
-        ],
-        "laneStrengths": {
-          "TOP": 50,
-          "JUNGLE": 50,
-          "MIDDLE": 50,
-          "BOTTOM": 50,
-          "UTILITY": 50
-        },
-        "strength": 50,
-        "pool": [
-          {
-            "champId": "Taliyah",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Braum",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "Morgana",
-            "winRate": 50,
-            "mastery": 5
-          },
-          {
-            "champId": "XinZhao",
-            "winRate": 50,
-            "mastery": 3
-          }
-        ],
-        "role": "JUNGLE"
       },
       {
         "id": "custom_player_1783945258452",
@@ -3965,5 +3965,5 @@
     "synergies": {}
   },
   "draftHistory": [],
-  "draftMode": "custom"
+  "draftMode": "ranked"
 }
