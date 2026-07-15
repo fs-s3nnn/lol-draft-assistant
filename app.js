@@ -1837,6 +1837,7 @@ function handleOpggImport() {
 
   // モーダルとダッシュボード表示を更新
   renderModalCurrentPool();
+  renderPlayerMasterList(); // 名簿一覧の画面表示も即座に更新する
 
   // テキストエリアをクリア
   pasteArea.value = "";
@@ -2275,6 +2276,7 @@ function updateWinConditionText() {
 // 選手マスター名簿の保存
 function savePlayerMaster() {
   localStorage.setItem("lol_draft_player_master", JSON.stringify(AppState.playerMaster));
+  saveDataToServer(); // サーバーのDBにも永続保存する
 }
 
 // 選手マスター名簿（設定画面）の一覧描画
