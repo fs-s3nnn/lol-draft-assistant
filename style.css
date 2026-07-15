@@ -670,10 +670,10 @@ body {
    ドラフトシミュレータ画面
    ========================================== */
 #section-draft {
-  max-height: 100vh;
-  overflow: hidden;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  padding: 20px 30px;
 }
 
 .draft-top-bar {
@@ -785,30 +785,70 @@ body {
   display: grid;
   grid-template-columns: 220px 1fr 220px; /* 横幅を280pxから220pxにスリム化 */
   gap: 15px; /* 余白を縮小 */
-  margin-bottom: 15px;
-  height: 520px; /* 高さを固定し、ズームに全体のフィット調整を任せる */
+  margin-bottom: 20px;
+  height: auto; /* 高さをコンテンツに合わせる */
 }
 
 @media (max-width: 1200px) {
   .draft-main-layout {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
   .picks-column {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
-    gap: 15px !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* 横一列に5名配置 */
+    gap: 6px !important;
+    height: auto !important;
+  }
+  .pick-slot {
+    height: 72px !important;
+    flex-direction: column !important; /* アイコンとテキストを縦に並べる */
+    justify-content: center !important;
+    padding: 6px 4px !important;
+    text-align: center !important;
+  }
+  .picks-column.blue-picks .pick-slot {
+    border-left: none !important;
+    border-top: 3px solid rgba(0, 90, 130, 0.5) !important;
+  }
+  .picks-column.red-picks .pick-slot {
+    flex-direction: column !important;
+    text-align: center !important;
+    border-right: none !important;
+    border-top: 3px solid rgba(140, 28, 28, 0.5) !important;
+  }
+  .pick-slot-avatar {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .pick-slot-info {
+    margin: 4px 0 0 0 !important;
+    align-items: center !important;
+  }
+  .pick-player-name {
+    font-size: 10px !important;
+  }
+  .pick-player-role {
+    font-size: 7px !important;
+    letter-spacing: 0px !important;
+    margin-top: 0 !important;
+  }
+  .pick-champ-name {
+    font-size: 8px !important;
+    margin-top: 1px !important;
   }
 }
 
 .picks-column {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* 15pxから8pxに縮小 */
+  gap: 12px;
+  height: auto;
 }
 
 /* Pickスロット */
 .pick-slot {
-  height: 60px; /* 72pxから60pxにさらに縮小して確実に画面内にフィット */
+  height: 76px; /* スロット高さを固定 */
   background-color: rgba(5, 11, 16, 0.7);
   border: 1px solid var(--hextech-gold-border);
   border-radius: 2px;
@@ -816,7 +856,7 @@ body {
   overflow: hidden;
   display: flex;
   align-items: center;
-  padding: 0 8px; /* パディングを縮小 */
+  padding: 0 12px;
   transition: all 0.3s ease;
 }
 .picks-column.blue-picks .pick-slot {
@@ -865,8 +905,8 @@ body {
 }
 
 .pick-slot-avatar {
-  width: 38px; /* 46pxから38pxに縮小 */
-  height: 38px;
+  width: 48px; /* アバターサイズを標準サイズに戻す */
+  height: 48px;
   flex-shrink: 0; /* 縮小を防止 */
   border: 1px solid var(--hextech-gold-border);
   background-color: rgba(0, 0, 0, 0.4);
@@ -881,14 +921,14 @@ body {
 
 .pick-slot-info {
   z-index: 2;
-  margin: 0 8px; /* マージンを調整 */
+  margin: 0 12px; /* マージンを調整 */
   display: flex;
   flex-direction: column;
   min-width: 0; /* 文字があふれた場合の崩れを防止 */
   flex: 1; /* 横幅いっぱいに広げる */
 }
 .pick-player-name {
-  font-size: 11px; /* 12pxから11pxに縮小 */
+  font-size: 13px; /* 読みやすいサイズに固定 */
   font-weight: 700;
   color: #fff;
   white-space: nowrap;
@@ -896,7 +936,7 @@ body {
   text-overflow: ellipsis;
 }
 .pick-player-role {
-  font-size: 8px; /* 9pxから8pxに縮小 */
+  font-size: 10px;
   color: var(--hextech-gold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -904,7 +944,7 @@ body {
 }
 .pick-champ-name {
   font-family: var(--font-serif);
-  font-size: 9px; /* 10pxから9pxに縮小 */
+  font-size: 11px;
   font-weight: 700;
   color: #a0a5b0;
   margin-top: 2px;
@@ -925,7 +965,7 @@ body {
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  height: 100%; /* 親グリッドの高さに追従 */
+  height: 520px; /* 中央選択パネルの高さを520pxに固定してスクロールを保証 */
   min-height: 0; /* 縮小を許可 */
   overflow: hidden; /* コンテンツのはみ出しを防ぐ */
 }
@@ -1073,7 +1113,8 @@ body {
 .draft-action-footer {
   display: flex;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 10px; /* 15pxから縮小 */
+  flex-shrink: 0; /* フレックスで潰れないように固定 */
 }
 
 /* AI推奨レイアウト */

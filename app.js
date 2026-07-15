@@ -2802,31 +2802,7 @@ async function getAiCounterReasonAsync(targetName, counterName, element) {
   }
 }
 
-// ブラウザズームや拡大設定に関わらずドラフト画面を1画面にピッタリ収めるズーム制御
+// ズーム制御の無効化（CSSフレックスボックスによる自動フィットに変更したため常に等倍を維持）
 function adjustAppScale() {
-  const draftSection = document.getElementById("section-draft");
-  if (!draftSection) return;
-
-  // ドラフト画面がアクティブでない場合は、ズームを解除する
-  const isActive = draftSection.classList.contains("active");
-  if (!isActive) {
-    document.body.style.zoom = "1";
-    return;
-  }
-
-  // 基準となる画面の高さ（フッターボタンまで含めた高さ 900px）
-  const baseHeight = 900;
-  const windowHeight = window.innerHeight;
-
-  if (windowHeight < baseHeight) {
-    const scale = windowHeight / baseHeight;
-    // 最小スケール値（極端に小さくなっても潰れないよう0.5までに緩和）
-    const finalScale = Math.max(0.5, scale);
-    document.body.style.zoom = finalScale.toString();
-  } else {
-    document.body.style.zoom = "1";
-  }
+  document.body.style.zoom = "1";
 }
-
-// リサイズイベントの登録
-window.addEventListener("resize", adjustAppScale);
