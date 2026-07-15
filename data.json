@@ -652,33 +652,33 @@
       "pool": [
         {
           "champId": "Yone",
-          "winRate": 50,
-          "mastery": 5
+          "winRate": 57,
+          "mastery": 1
         },
         {
           "champId": "Chogath",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 54,
+          "mastery": 2
         },
         {
           "champId": "Shyvana",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 58,
+          "mastery": 2
         },
         {
           "champId": "Nasus",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 40,
+          "mastery": 2
         },
         {
           "champId": "Yorick",
-          "winRate": 50,
+          "winRate": 100,
           "mastery": 4
         },
         {
           "champId": "Malphite",
-          "winRate": 50,
-          "mastery": 4
+          "winRate": 0,
+          "mastery": 3
         },
         {
           "champId": "Poppy",
@@ -687,8 +687,68 @@
         },
         {
           "champId": "Mordekaiser",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Smolder",
+          "winRate": 78,
+          "mastery": 3
+        },
+        {
+          "champId": "Neeko",
           "winRate": 50,
+          "mastery": 3
+        },
+        {
+          "champId": "Senna",
+          "winRate": 50,
+          "mastery": 3
+        },
+        {
+          "champId": "Soraka",
+          "winRate": 100,
           "mastery": 4
+        },
+        {
+          "champId": "Shaco",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Aphelios",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Thresh",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Lillia",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Veigar",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Vex",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Jhin",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "TahmKench",
+          "winRate": 0,
+          "mastery": 3
         }
       ]
     },
