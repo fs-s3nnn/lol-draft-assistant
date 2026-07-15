@@ -1796,9 +1796,11 @@ function handleOpggImport() {
     return;
   }
 
-  const side = AppState.editingPlayer.side;
-  const index = AppState.editingPlayer.index;
-  const player = AppState.teamData[side][index];
+  const player = getEditingPlayerObject();
+  if (!player) {
+    showToast("編集対象のプレイヤーが見つかりません。");
+    return;
+  }
 
   const importedList = parseOpggText(text);
 
@@ -1809,6 +1811,7 @@ function handleOpggImport() {
 
   // 既存のプールとマージ
   const existingPoolMap = {};
+  player.pool = player.pool || [];
   player.pool.forEach(item => {
     existingPoolMap[item.champId] = item;
   });
@@ -1822,7 +1825,15 @@ function handleOpggImport() {
   });
 
   player.pool = Object.values(existingPoolMap);
-  saveTeamData();
+
+  // セーブ・同期処理（選手名簿かアクティブチームかで分岐）
+  if (AppState.editingPlayer.masterPlayerId) {
+    savePlayerMaster();
+    syncMasterPlayerPoolToActive(AppState.editingPlayer.masterPlayerId);
+  } else {
+    saveTeamData();
+    syncActivePlayerPoolToMaster(AppState.editingPlayer.side, AppState.editingPlayer.index);
+  }
 
   // モーダルとダッシュボード表示を更新
   renderModalCurrentPool();

@@ -468,6 +468,9 @@ body {
   box-shadow: 0 0 30px rgba(200, 170, 110, 0.4);
   width: 700px;
   max-width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
   border-radius: 4px;
   overflow: hidden;
   animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -504,6 +507,8 @@ body {
 
 .modal-body {
   padding: 20px;
+  overflow-y: auto; /* モーダルの中身だけを縦スクロール可能にする */
+  flex: 1; /* 余った高さを埋める */
 }
 
 /* プール追加フォーム */
