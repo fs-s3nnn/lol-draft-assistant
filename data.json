@@ -1051,22 +1051,112 @@
         {
           "champId": "Taliyah",
           "winRate": 50,
-          "mastery": 5
+          "mastery": 1
         },
         {
           "champId": "Braum",
           "winRate": 50,
-          "mastery": 5
+          "mastery": 2
         },
         {
           "champId": "Morgana",
-          "winRate": 50,
-          "mastery": 5
+          "winRate": 100,
+          "mastery": 4
         },
         {
           "champId": "XinZhao",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "Sylas",
+          "winRate": 40,
+          "mastery": 1
+        },
+        {
+          "champId": "Ivern",
           "winRate": 50,
+          "mastery": 2
+        },
+        {
+          "champId": "Milio",
+          "winRate": 100,
+          "mastery": 4
+        },
+        {
+          "champId": "TahmKench",
+          "winRate": 67,
+          "mastery": 4
+        },
+        {
+          "champId": "Jax",
+          "winRate": 33,
+          "mastery": 2
+        },
+        {
+          "champId": "Pantheon",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Gragas",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "Amumu",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "LeeSin",
+          "winRate": 50,
+          "mastery": 4
+        },
+        {
+          "champId": "JarvanIV",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Kaisa",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Zac",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Rell",
+          "winRate": 100,
+          "mastery": 5
+        },
+        {
+          "champId": "Rakan",
+          "winRate": 0,
           "mastery": 3
+        },
+        {
+          "champId": "Sivir",
+          "winRate": 0,
+          "mastery": 3
+        },
+        {
+          "champId": "Xayah",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Ezreal",
+          "winRate": 0,
+          "mastery": 4
+        },
+        {
+          "champId": "Locke",
+          "winRate": 0,
+          "mastery": 4
         }
       ]
     },
